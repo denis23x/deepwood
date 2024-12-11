@@ -7,12 +7,12 @@ var playback: AnimationNodeStateMachinePlayback
 
 func x_physics_process(delta: float) -> void:
 	pass;
-
+	
 func x_input(event: InputEvent) -> void:
 	pass;
-
+	
 func on_enter() -> void:
 	pass;
-
+	
 func on_exit() -> void:
 	pass;
