@@ -464,7 +464,7 @@ position = Vector2(-285, 80)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -11)
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 process_callback = 0
 limit_bottom = 200
 limit_smoothed = true
@@ -484,4 +484,3 @@ collision_mask = 7
 
 [node name="Skeleton" parent="." instance=ExtResource("4_el3y5")]
 position = Vector2(-178, 54)
-direction = -1

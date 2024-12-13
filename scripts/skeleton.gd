@@ -6,6 +6,7 @@ class_name Skeleton
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var direction: int = 0 # randi() % 3 - 1
+@export var area_2d: Area2D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,6 +26,9 @@ func _physics_process(delta: float) -> void:
 		elif direction > 0:
 			sprite_2d.flip_h = false
 			
+	# Handle attack collision flip
+	area_2d.position.x = 45 * (-1 if sprite_2d.flip_h else 1)
+	
 	# Handle movement
 	if direction and animation_state_machine.current_state.can_move:
 		velocity.x = direction * speed
