@@ -1,7 +1,6 @@
 extends AnimationState
-class_name PlayerStateBlock
 
-@export var walk: PlayerStateWalk
+@export var walk: AnimationState
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("block"):

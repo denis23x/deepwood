@@ -1,13 +1,12 @@
 extends AnimationState
-class_name PlayerStateWalk
 
-@export var jump: PlayerStateJump
-@export var fall: PlayerStateFall
-@export var block: PlayerStateBlock
-@export var attack: PlayerStateAttack
+@export var jump: AnimationState
+@export var fall: AnimationState
+@export var block: AnimationState
+@export var attack: AnimationState
 
 func x_physics_process(_delta: float) -> void:
-	if (not character_body_2d.is_on_floor()):
+	if not character_body_2d.is_on_floor():
 		next_state = fall
 		
 func x_input(_event: InputEvent) -> void:

@@ -12,9 +12,12 @@ func _ready() -> void:
 		if (child is AnimationState):
 			states.append(child)
 			
-			## Set the states up with they need to function
+			# Set the states up with they need to function
 			child.character_body_2d = character_body_2d
 			child.playback = animation_tree["parameters/playback"]
+			
+			# Connect Iterrupt State
+			child.connect("iterrupt_state", switch_states)
 			
 func _physics_process(delta: float) -> void:
 	# Attach _physics_process to current_state
