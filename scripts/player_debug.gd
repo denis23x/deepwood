@@ -1,7 +1,7 @@
 extends Label
 
-@export var player_state_Machine : PlayerStateMachine
+@export var animation_state_machine: AnimationStateMachine
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	text = "State: " + player_state_Machine.current_state.name
+func _process(_delta: float) -> void:
+	text = "State: " + animation_state_machine.current_state.name

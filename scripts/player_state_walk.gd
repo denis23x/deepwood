@@ -1,11 +1,12 @@
-extends PlayerState
-class_name PlayerStateFloor
+extends AnimationState
+class_name PlayerStateWalk
 
 @export var jump: PlayerStateJump
 @export var fall: PlayerStateFall
+@export var block: PlayerStateBlock
 @export var attack: PlayerStateAttack
 
-func x_physics_process(delta: float) -> void:
+func x_physics_process(_delta: float) -> void:
 	if (not character_body_2d.is_on_floor()):
 		next_state = fall
 		
@@ -17,6 +18,9 @@ func x_input(_event: InputEvent) -> void:
 			else:
 				next_state = jump
 				
+		if Input.is_action_just_pressed("block"):
+			next_state = block
+			
 		if Input.is_action_just_pressed("attack"):
 			next_state = attack
 			

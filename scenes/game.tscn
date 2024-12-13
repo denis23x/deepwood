@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://d0iqbbqi1yq7x"]
+[gd_scene load_steps=8 format=4 uid="uid://d0iqbbqi1yq7x"]
 
 [ext_resource type="PackedScene" uid="uid://c1crjs37cyq1i" path="res://scenes/player.tscn" id="1_l8voc"]
 [ext_resource type="Texture2D" uid="uid://c7onsc0ca2h1i" path="res://assets/tiles/Terrain_and_Props.png" id="2_mnox8"]
 [ext_resource type="PackedScene" uid="uid://ffvvjkv3v3xo" path="res://scenes/killzone.tscn" id="3_i3rgs"]
+[ext_resource type="PackedScene" uid="uid://nvjvfycfspqc" path="res://scenes/skeleton.tscn" id="4_el3y5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_01gmg"]
 texture = ExtResource("2_mnox8")
@@ -461,7 +462,7 @@ tile_map_data = PackedByteArray("AAAIAAQAAgAKABwAAAAIAAUAAgAKAB0AAAAJAAQAAgALABw
 tile_set = SubResource("TileSet_30456")
 
 [node name="Player" parent="." instance=ExtResource("1_l8voc")]
-position = Vector2(20, 80)
+position = Vector2(-285, 80)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -11)
@@ -484,3 +485,6 @@ collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_idc6e")
+
+[node name="Skeleton" parent="." instance=ExtResource("4_el3y5")]
+position = Vector2(-178, 53)

@@ -1,0 +1,198 @@
+[gd_scene load_steps=16 format=3 uid="uid://nvjvfycfspqc"]
+
+[ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
+[ext_resource type="Texture2D" uid="uid://dfscxbilt2xbb" path="res://assets/sprites/skeleton/Death.png" id="2_nh3wm"]
+[ext_resource type="Script" path="res://scripts/animation_state_machine.gd" id="3_b0hyp"]
+[ext_resource type="Script" path="res://scripts/animation_state.gd" id="4_nr54g"]
+[ext_resource type="Script" path="res://scripts/damageable.gd" id="5_3tgtk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brdd"]
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_4yu8w"]
+resource_name = "Death"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nh3wm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5wgk2"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_t4fhf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5nv80"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_t4fhf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqq1w"]
+_data = {
+"Death": SubResource("Animation_4yu8w"),
+"Idle": SubResource("Animation_5wgk2"),
+"RESET": SubResource("Animation_5nv80")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c6swx"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3qhn3"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xdnwn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_baelp"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gqg5k"]
+states/Death/node = SubResource("AnimationNodeAnimation_c6swx")
+states/Death/position = Vector2(595.5, 101.156)
+states/Idle/node = SubResource("AnimationNodeAnimation_3qhn3")
+states/Idle/position = Vector2(395.5, 100.578)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_xdnwn"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_baelp")]
+
+[node name="Skeleton" type="CharacterBody2D"]
+position = Vector2(-99, 70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_2brdd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t4fhf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pqq1w")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_gqg5k")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree")]
+script = ExtResource("3_b0hyp")
+current_state = NodePath("Walk")
+character_body_2d = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+
+[node name="Walk" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("4_nr54g")
+
+[node name="Death" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("4_nr54g")
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("label")]
+script = ExtResource("5_3tgtk")
+label = NodePath("../Label")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -21.0
+offset_top = -56.0
+offset_right = 91.0
+offset_bottom = -33.0
