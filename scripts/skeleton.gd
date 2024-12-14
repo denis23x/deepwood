@@ -6,8 +6,8 @@ class_name Skeleton
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var direction: int = -1 # randi() % 3 - 1
-@export var area_2d: Area2D
-@export var area_2d_xxx: Area2D
+@export var area_2d_attack_area: Area2D
+@export var area_2d_detect_player: Area2D
 @export var ray_cast_2d: RayCast2D
 
 func _physics_process(delta: float) -> void:
@@ -29,8 +29,8 @@ func _physics_process(delta: float) -> void:
 			sprite_2d.flip_h = false
 			
 	# Handle attack collision flip
-	area_2d.position.x = direction * 45
-	area_2d_xxx.position.x = direction * 23
+	area_2d_attack_area.position.x = direction * 45
+	area_2d_detect_player.position.x = direction * 23
 	ray_cast_2d.position.x = direction * 20
 	
 	# Handle movement
@@ -40,3 +40,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	move_and_slide()
+	
+func switch_direction(next_direction: int) -> void:
+	direction = next_direction
+	
+	# Handle reverse flip
+	sprite_2d.flip_h = direction < 0

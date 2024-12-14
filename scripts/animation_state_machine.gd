@@ -4,10 +4,14 @@ class_name AnimationStateMachine
 @export var current_state: AnimationState
 @export var character_body_2d: CharacterBody2D
 @export var animation_tree: AnimationTree
+@export var damageable: xDamageable
+@export var death: AnimationState
 
 var states: Array[AnimationState]
 
 func _ready() -> void:
+	damageable.connect("iterrupt_state", iterrupt_state)
+	
 	for child in get_children():
 		if child is AnimationState:
 			states.append(child)
@@ -15,9 +19,6 @@ func _ready() -> void:
 			# Set the states up with they need to function
 			child.character_body_2d = character_body_2d
 			child.playback = animation_tree["parameters/playback"]
-			
-			# Connect Iterrupt State
-			child.connect("iterrupt_state", iterrupt_state)
 			
 func _physics_process(delta: float) -> void:
 	# Attach _physics_process to current_state

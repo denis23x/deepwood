@@ -2,7 +2,6 @@ extends AnimationState
 
 @export var jump: AnimationState
 @export var fall: AnimationState
-@export var block: AnimationState
 @export var attack: AnimationState
 
 func x_physics_process(_delta: float) -> void:
@@ -17,9 +16,6 @@ func x_input(_event: InputEvent) -> void:
 			else:
 				next_state = jump
 				
-		if Input.is_action_just_pressed("block"):
-			next_state = block
-			
 		if Input.is_action_just_pressed("attack"):
 			next_state = attack
 			

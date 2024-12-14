@@ -15,6 +15,11 @@ run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+xOptimization="*res://scripts/x_optimization.gd"
+xEventBus="*res://scripts/x_event_bus.gd"
+
 [input]
 
 jump={

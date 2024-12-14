@@ -717,17 +717,17 @@ tree_root = SubResource("AnimationNodeStateMachine_gqtrw")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0.0
 
-[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree")]
+[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree", "damageable")]
 script = ExtResource("6_dnxtp")
 current_state = NodePath("Walk")
 character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
+damageable = NodePath("../Damageable")
 
-[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("jump", "fall", "block", "attack")]
+[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("jump", "fall", "attack")]
 script = ExtResource("7_r7frt")
 jump = NodePath("../Jump")
 fall = NodePath("../Fall")
-block = NodePath("../Block")
 attack = NodePath("../Attack")
 
 [node name="Fall" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
@@ -746,13 +746,13 @@ can_move = false
 [node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
 script = ExtResource("14_w2cu8")
 walk = NodePath("../Walk")
+can_move = false
 
-[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "sprite_2d")]
+[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death")]
 script = ExtResource("15_krgjb")
 damageable = NodePath("../../Damageable")
 walk = NodePath("../Walk")
 death = NodePath("../Death")
-sprite_2d = NodePath("../../Sprite2D")
 can_move = false
 
 [node name="Death" type="Node" parent="AnimationStateMachine"]
@@ -760,7 +760,6 @@ script = ExtResource("16_f011e")
 can_move = false
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
-visible = false
 offset_top = -50.0
 offset_right = 49.0
 offset_bottom = -36.0
@@ -779,10 +778,14 @@ script = ExtResource("20_s75ah")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Area2D"]
 shape = SubResource("CircleShape2D_v2tr1")
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "block", "character_body_2d")]
 script = ExtResource("21_e4j2e")
 label = NodePath("Label")
 timer = NodePath("Timer")
+hit = NodePath("../AnimationStateMachine/Hit")
+block = NodePath("../AnimationStateMachine/Block")
+character_body_2d = NodePath("..")
+knockback = Vector2(500, 0)
 
 [node name="Label" type="Label" parent="Damageable"]
 offset_top = -40.0

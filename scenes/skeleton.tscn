@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://scripts/skeleton_state_attack.gd" id="11_yxxbg"]
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="13_rp6wr"]
 [ext_resource type="Script" path="res://scripts/x_damageable.gd" id="14_p77gj"]
-[ext_resource type="Script" path="res://scripts/skeleton_detect.gd" id="15_jkiso"]
+[ext_resource type="Script" path="res://scripts/x_detect_player.gd" id="15_07p7k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brdd"]
 height = 48.0
@@ -358,15 +358,15 @@ radius = 25.0799
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
 size = Vector2(45, 62)
 
-[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d", "area_2d_xxx", "ray_cast_2d")]
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d")]
 position = Vector2(0, -26)
 collision_layer = 4
 script = ExtResource("1_64nqv")
 animation_state_machine = NodePath("AnimationStateMachine")
 animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")
-area_2d = NodePath("Attack Area2D")
-area_2d_xxx = NodePath("Detect Player Area2D2")
+area_2d_attack_area = NodePath("Attack Area2D")
+area_2d_detect_player = NodePath("Detect Player Area2D2")
 ray_cast_2d = NodePath("RayCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -387,22 +387,23 @@ tree_root = SubResource("AnimationNodeStateMachine_gqg5k")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0.0
 
-[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree")]
+[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree", "damageable", "death")]
 script = ExtResource("3_b0hyp")
 current_state = NodePath("Walk")
 character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
+damageable = NodePath("../Damageable")
+death = NodePath("Death")
 
 [node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("attack")]
 script = ExtResource("5_51qvq")
 attack = NodePath("../Attack")
 
-[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "sprite_2d")]
+[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death")]
 script = ExtResource("6_jt0v2")
 damageable = NodePath("../../Damageable")
 walk = NodePath("../Walk")
 death = NodePath("../Death")
-sprite_2d = NodePath("../../Sprite2D")
 can_move = false
 
 [node name="Death" type="Node" parent="AnimationStateMachine"]
@@ -434,10 +435,13 @@ script = ExtResource("13_rp6wr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Area2D"]
 shape = SubResource("CircleShape2D_gflcg")
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "character_body_2d")]
 script = ExtResource("14_p77gj")
 label = NodePath("Label")
 timer = NodePath("Timer")
+hit = NodePath("../AnimationStateMachine/Hit")
+character_body_2d = NodePath("..")
+knockback = Vector2(300, 0)
 
 [node name="Label" type="Label" parent="Damageable"]
 offset_top = -40.0
@@ -450,11 +454,12 @@ theme_override_font_sizes/font_size = 10
 wait_time = 0.5
 one_shot = true
 
-[node name="Detect Player Area2D2" type="Area2D" parent="." node_paths=PackedStringArray("attack", "animation_state_machine")]
+[node name="Detect Player Area2D2" type="Area2D" parent="." node_paths=PackedStringArray("damageable", "attack", "animation_state_machine")]
 position = Vector2(23, -5)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("15_jkiso")
+script = ExtResource("15_07p7k")
+damageable = NodePath("../Damageable")
 attack = NodePath("../AnimationStateMachine/Attack")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
@@ -465,8 +470,17 @@ shape = SubResource("RectangleShape2D_sv6c7")
 position = Vector2(20, 0)
 target_position = Vector2(0, 30)
 
+[node name="Static Body" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_nh3wm")
+hframes = 4
+frame = 3
+
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Death" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_finished" from="AnimationTree" to="Detect Player Area2D2" method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="Attack Area2D" to="Attack Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="Damageable/Timer" to="Damageable" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Detect Player Area2D2" to="Detect Player Area2D2" method="_on_body_entered"]
+[connection signal="body_exited" from="Detect Player Area2D2" to="Detect Player Area2D2" method="_on_body_exited"]

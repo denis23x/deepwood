@@ -7,8 +7,6 @@ var next_state: AnimationState
 var character_body_2d: CharacterBody2D
 var playback: AnimationNodeStateMachinePlayback
 
-signal iterrupt_state(next_state: AnimationState)
-
 func x_physics_process(_delta: float) -> void:
 	pass;
 	
