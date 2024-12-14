@@ -1,9 +1,9 @@
 extends AnimationState
 
-@export var damageable: Damageable
+@export var damageable: xDamageable
 @export var walk: AnimationState
 @export var death: AnimationState
-@export var knockback: Vector2 = Vector2(200, 0)
+@export var knockback: Vector2 = Vector2(500, 0)
 @export var sprite_2d: Sprite2D
 
 func _ready() -> void:

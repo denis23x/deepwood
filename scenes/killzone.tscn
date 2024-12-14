@@ -5,6 +5,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u77o3"]
 
 [node name="Killzone" type="Area2D" node_paths=PackedStringArray("timer")]
+collision_mask = 0
 script = ExtResource("1_1r0mv")
 timer = NodePath("Timer")
 

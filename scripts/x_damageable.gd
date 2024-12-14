@@ -1,10 +1,13 @@
-extends Damageable
+extends Node
+class_name xDamageable
 
 @export var health: float = 30.0
 @export var label: Label
 @export var label_position_default: Vector2 = Vector2(0, -40)
 @export var label_position_float: Vector2 = Vector2(0, -20)
 @export var timer: Timer
+
+signal on_damage_signal(direction: Vector2)
 
 func _process(delta: float) -> void:
 	if not timer.is_stopped():
@@ -17,7 +20,7 @@ func _on_timer_timeout() -> void:
 	
 func on_damage(damage: float, direction: Vector2) -> void:
 	health -= damage
-	
+
 	if health >= 0:
 		label.text = "-" + str(damage)
 		timer.start()

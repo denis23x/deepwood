@@ -9,7 +9,7 @@ var states: Array[AnimationState]
 
 func _ready() -> void:
 	for child in get_children():
-		if (child is AnimationState):
+		if child is AnimationState:
 			states.append(child)
 			
 			# Set the states up with they need to function
@@ -17,26 +17,30 @@ func _ready() -> void:
 			child.playback = animation_tree["parameters/playback"]
 			
 			# Connect Iterrupt State
-			child.connect("iterrupt_state", switch_states)
+			child.connect("iterrupt_state", iterrupt_state)
 			
 func _physics_process(delta: float) -> void:
 	# Attach _physics_process to current_state
-	if (current_state != null):
+	if current_state != null:
 		current_state.x_physics_process(delta)
 		
 	# Switch states
-	if (current_state.next_state != null):
+	if current_state.next_state != null:
 		switch_states(current_state.next_state)
 		
 func _input(event: InputEvent) -> void:
 	# Attach _input to current_state
-	if (current_state != null):
+	if current_state != null:
 		current_state.x_input(event)
 		
 func switch_states(next_state: AnimationState):
-	if (current_state != null):
+	if current_state != null:
 		current_state.on_exit()
 		current_state.next_state = null
 		
 	current_state = next_state
 	current_state.on_enter()
+	
+func iterrupt_state(next_state: AnimationState):
+	if current_state.name != "Death":
+		switch_states(next_state)

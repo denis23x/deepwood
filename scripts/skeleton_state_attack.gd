@@ -1,8 +1,10 @@
 extends AnimationState
 
+@export var walk: AnimationState
+
 func on_enter() -> void:
-	playback.travel("Death")
+	playback.travel("Attack_1")
 	
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Death":
-		character_body_2d.set_collision_layer_value(2, false)
+	if anim_name == "Attack_1":
+		next_state = walk
