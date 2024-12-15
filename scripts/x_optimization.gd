@@ -10,6 +10,7 @@ func switch_enemy(character_body_2d: CharacterBody2D) -> void:
 				new_sprite.global_position = character_body_2d.global_position
 				new_sprite.global_rotation = character_body_2d.global_rotation
 				new_sprite.global_scale = character_body_2d.global_scale
+				new_sprite.flip_h = (true if character_body_2d.direction != 1 else false)
 				new_sprite.hframes = child.hframes
 				new_sprite.vframes = child.vframes
 				new_sprite.frame = child.frame

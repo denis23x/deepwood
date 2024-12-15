@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://mxnluhttrsi8"]
+[gd_scene load_steps=9 format=3 uid="uid://mxnluhttrsi8"]
 
 [ext_resource type="Texture2D" uid="uid://bq11o53umm0ms" path="res://assets/sprites/skeleton/Sword_sprite.png" id="1_5fjg5"]
 [ext_resource type="Script" path="res://scripts/skeleton_projectile.gd" id="1_h0bax"]
+[ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="3_h2j10"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bpe3y"]
 radius = 14.0357
@@ -92,12 +93,16 @@ _data = {
 "RESET": SubResource("Animation_txkpm")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_capnm"]
+radius = 14.0357
+
 [node name="SkeletonProjectile" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_h0bax")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(5, 3)
 shape = SubResource("CircleShape2D_bpe3y")
 
@@ -111,4 +116,14 @@ libraries = {
 }
 autoplay = "Projectile"
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_h2j10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 3)
+shape = SubResource("CircleShape2D_capnm")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

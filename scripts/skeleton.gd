@@ -29,9 +29,9 @@ func _physics_process(delta: float) -> void:
 			sprite_2d.flip_h = false
 			
 	# Handle attack collision flip
-	area_2d_attack_area.position.x = direction * 45
-	area_2d_detect_player.position.x = direction * 23
-	ray_cast_2d.position.x = direction * 20
+	area_2d_attack_area.scale.x = direction
+	area_2d_detect_player.scale.x = direction
+	ray_cast_2d.scale.x = direction
 	
 	# Handle movement
 	if direction and animation_state_machine.current_state.can_move:

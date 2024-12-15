@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 xOptimization="*res://scripts/x_optimization.gd"
 xEventBus="*res://scripts/x_event_bus.gd"
 
+[display]
+
+window/size/viewport_width=2152
+window/size/viewport_height=1248
+
 [input]
 
 jump={

@@ -484,4 +484,5 @@ position = Vector2(122, 200)
 collision_mask = 7
 
 [node name="Skeleton" parent="." instance=ExtResource("4_el3y5")]
+show_behind_parent = true
 position = Vector2(-303, 6)

@@ -14,17 +14,18 @@ func _ready() -> void:
 	xEventBus.connect("switch_state", switch_state)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("jump"):
-		handle_action_queue("jump")
-	elif Input.is_action_just_pressed("attack"):
-		handle_action_queue("attack")
-	elif Input.is_action_just_pressed("block"):
-		handle_action_queue("block")
-		
-	# Process buffered inputs if no action is in progress
-	if not action_in_progress and not key_buffer.is_empty():
-		handle_action(key_buffer.pop_front())
-		
+	if not animation_state_machine.current_state.name in ["Hit", "Death"]:
+		if Input.is_action_just_pressed("jump"):
+			handle_action_queue("jump")
+		elif Input.is_action_just_pressed("attack"):
+			handle_action_queue("attack")
+		elif Input.is_action_just_pressed("block"):
+			handle_action_queue("block")
+			
+		# Process buffered inputs if no action is in progress
+		if not action_in_progress and not key_buffer.is_empty():
+			handle_action(key_buffer.pop_front())
+			
 func handle_action_queue(key: String) -> void:
 	# Process buffered inputs limit
 	if key_buffer.size() > key_buffer_limit:
@@ -65,5 +66,6 @@ func handle_action(action: String) -> void:
 			else:
 				action_in_progress = false
 				
-func switch_state(_next_state: AnimationState) -> void:
-	action_in_progress = false
+func switch_state(next_state: AnimationState) -> void:
+	if next_state.name != "Death":
+		action_in_progress = false

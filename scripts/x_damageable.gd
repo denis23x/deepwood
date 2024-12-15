@@ -23,7 +23,11 @@ func _on_timer_timeout() -> void:
 	label.position = label_position_default
 	timer.stop()
 	
-func on_damage(damage: float, direction: Vector2) -> void:
+func on_damage(damage: float, direction: Vector2, defense: bool = false) -> void:
+	if defense:
+		animation_state_machine.switch_states(block)
+		
+	# Damage behaviour
 	if animation_state_machine.current_state.name == "Block":
 		label.text = "Block"
 		label.add_theme_color_override("font_color", Color.CHARTREUSE)
@@ -33,9 +37,8 @@ func on_damage(damage: float, direction: Vector2) -> void:
 	else:
 		health -= damage
 		
-		# Handle damage impact
+		# Handle damage knockback
 		character_body_2d.velocity = knockback * direction
-		character_body_2d.switch_direction((-1 if direction.x == 1 else 1))
 			
 		if health >= 0:
 			label.text = "-" + str(damage)
@@ -43,3 +46,6 @@ func on_damage(damage: float, direction: Vector2) -> void:
 			timer.start()
 			
 			emit_signal("iterrupt_state", hit)
+			
+	# Handle damage flip
+	character_body_2d.switch_direction((-1 if direction.x == 1 else 1))

@@ -10,4 +10,6 @@ func _on_body_entered(body: Node2D) -> void:
 			var direction: Vector2 = (Vector2.LEFT if sign(direction_vector.x) < 0 else Vector2.RIGHT)
 			
 			if (child.health > 0):
-				child.on_damage(damage, direction)
+				var defence: bool = bool(randi() % 2)
+				
+				child.on_damage(damage, direction, (defence if body.name != "Player" else false))
