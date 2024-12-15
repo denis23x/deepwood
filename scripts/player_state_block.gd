@@ -2,9 +2,9 @@ extends AnimationState
 
 @export var walk: AnimationState
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("block"):
-		next_state = walk
-		
 func on_enter() -> void:
 	playback.travel("Block")
+	
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Block_1":
+		next_state = walk

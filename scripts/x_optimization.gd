@@ -3,7 +3,7 @@ extends Node
 func switch_enemy(character_body_2d: CharacterBody2D) -> void:
 	for child in character_body_2d.get_children():
 		if child is Sprite2D:
-			if child.name == "Static Body":
+			if child.name == "Static":
 				var new_sprite = Sprite2D.new()
 				
 				new_sprite.texture = child.texture

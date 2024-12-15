@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dilluct1sedsa"
-path="res://.godot/imported/DEFEND.png-5ba89ccad4ca6a9ea553711012ea927a.ctex"
+uid="uid://c6yknpv10gy87"
+path="res://.godot/imported/BLOCK 1.png-a3584df99ec01352996cd0e058f9ca89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/DEFEND.png"
-dest_files=["res://.godot/imported/DEFEND.png-5ba89ccad4ca6a9ea553711012ea927a.ctex"]
+source_file="res://assets/sprites/player/BLOCK 1.png"
+dest_files=["res://.godot/imported/BLOCK 1.png-a3584df99ec01352996cd0e058f9ca89.ctex"]
 
 [params]
 

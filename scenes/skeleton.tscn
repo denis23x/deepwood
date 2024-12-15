@@ -62,7 +62,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Attack Area2D:monitoring")
+tracks/3/path = NodePath("AttackArea2D:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -237,7 +237,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Attack Area2D:monitoring")
+tracks/3/path = NodePath("AttackArea2D:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -365,8 +365,8 @@ script = ExtResource("1_64nqv")
 animation_state_machine = NodePath("AnimationStateMachine")
 animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")
-area_2d_attack_area = NodePath("Attack Area2D")
-area_2d_detect_player = NodePath("Detect Player Area2D2")
+area_2d_attack_area = NodePath("AttackArea2D")
+area_2d_detect_player = NodePath("DetectPlayerArea2D")
 ray_cast_2d = NodePath("RayCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -416,7 +416,6 @@ walk = NodePath("../Walk")
 can_move = false
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
-visible = false
 offset_top = -40.0
 offset_right = 49.0
 offset_bottom = -26.0
@@ -425,36 +424,36 @@ text = "State: Idle"
 script = ExtResource("9_y72uv")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
-[node name="Attack Area2D" type="Area2D" parent="."]
+[node name="AttackArea2D" type="Area2D" parent="."]
 position = Vector2(45, -5)
 collision_layer = 0
 collision_mask = 2
 monitoring = false
 script = ExtResource("13_rp6wr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
 shape = SubResource("CircleShape2D_gflcg")
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "character_body_2d")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "character_body_2d", "animation_state_machine")]
 script = ExtResource("14_p77gj")
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
 character_body_2d = NodePath("..")
 knockback = Vector2(300, 0)
+animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]
 offset_top = -40.0
 offset_right = 13.0
 offset_bottom = -26.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 
 [node name="Timer" type="Timer" parent="Damageable"]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
-[node name="Detect Player Area2D2" type="Area2D" parent="." node_paths=PackedStringArray("damageable", "attack", "animation_state_machine")]
+[node name="DetectPlayerArea2D" type="Area2D" parent="." node_paths=PackedStringArray("damageable", "attack", "animation_state_machine")]
 position = Vector2(23, -5)
 collision_layer = 0
 collision_mask = 2
@@ -463,14 +462,14 @@ damageable = NodePath("../Damageable")
 attack = NodePath("../AnimationStateMachine/Attack")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect Player Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayerArea2D"]
 shape = SubResource("RectangleShape2D_sv6c7")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(20, 0)
 target_position = Vector2(0, 30)
 
-[node name="Static Body" type="Sprite2D" parent="."]
+[node name="Static" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_nh3wm")
 hframes = 4
@@ -479,8 +478,8 @@ frame = 3
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Death" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="Detect Player Area2D2" method="_on_animation_tree_animation_finished"]
-[connection signal="body_entered" from="Attack Area2D" to="Attack Area2D" method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationTree" to="DetectPlayerArea2D" method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="AttackArea2D" to="AttackArea2D" method="_on_body_entered"]
 [connection signal="timeout" from="Damageable/Timer" to="Damageable" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Detect Player Area2D2" to="Detect Player Area2D2" method="_on_body_entered"]
-[connection signal="body_exited" from="Detect Player Area2D2" to="Detect Player Area2D2" method="_on_body_exited"]
+[connection signal="body_entered" from="DetectPlayerArea2D" to="DetectPlayerArea2D" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectPlayerArea2D" to="DetectPlayerArea2D" method="_on_body_exited"]
