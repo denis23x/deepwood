@@ -772,6 +772,7 @@ shape = SubResource("CircleShape2D_v2tr1")
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "block", "character_body_2d", "animation_state_machine")]
 script = ExtResource("21_e4j2e")
+health = 100.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")

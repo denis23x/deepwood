@@ -4,7 +4,7 @@ class_name Player
 @export var animation_state_machine: AnimationStateMachine
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
-@export var speed: float = 130.0
+@export var speed: float = 120.0
 @export var area_2d: Area2D
 @export	var direction: float = 0
 

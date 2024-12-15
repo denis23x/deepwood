@@ -11,5 +11,6 @@ func _on_body_entered(body: Node2D) -> void:
 			
 			if (child.health > 0):
 				var defence: bool = bool(randi() % 2)
+				var enemy: Array[String] = ["Skeleton"]
 				
-				child.on_damage(damage, direction, (defence if body.name != "Player" else false))
+				child.on_damage(damage, direction, (defence if body.name in enemy else false))
