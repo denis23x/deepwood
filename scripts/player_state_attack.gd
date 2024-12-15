@@ -13,8 +13,7 @@ func on_enter() -> void:
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	if anim_name == "Attack_1":
 		combo = false
-		
-	if anim_name == "Attack_2":
+	elif anim_name == "Attack_2":
 		combo = false
 	
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
@@ -23,12 +22,10 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			playback.travel("Attack_2")
 		else:
 			next_state = walk
-			
-	if anim_name == "Attack_2":
+	elif anim_name == "Attack_2":
 		if combo:
 			playback.travel("Attack_3")
 		else:
 			next_state = walk
-			
-	if anim_name == "Attack_3":
+	elif anim_name == "Attack_3":
 		next_state = walk

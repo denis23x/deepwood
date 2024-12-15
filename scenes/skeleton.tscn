@@ -387,17 +387,15 @@ tree_root = SubResource("AnimationNodeStateMachine_gqg5k")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0.0
 
-[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree", "damageable", "death")]
+[node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree", "damageable")]
 script = ExtResource("3_b0hyp")
 current_state = NodePath("Walk")
 character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 damageable = NodePath("../Damageable")
-death = NodePath("Death")
 
-[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("attack")]
+[node name="Walk" type="Node" parent="AnimationStateMachine"]
 script = ExtResource("5_51qvq")
-attack = NodePath("../Attack")
 
 [node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death")]
 script = ExtResource("6_jt0v2")

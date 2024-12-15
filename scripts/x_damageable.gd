@@ -12,7 +12,7 @@ class_name xDamageable
 @export var knockback: Vector2 = Vector2(250, 0)
 @export var animation_state_machine: AnimationStateMachine
 
-@warning_ignore("unused_signal")  signal iterrupt_state(next_state: AnimationState)
+@warning_ignore("unused_signal") signal iterrupt_state(next_state: AnimationState)
 
 func _process(delta: float) -> void:
 	if not timer.is_stopped():
@@ -24,7 +24,7 @@ func _on_timer_timeout() -> void:
 	timer.stop()
 	
 func on_damage(damage: float, direction: Vector2) -> void:
-	if animation_state_machine.current_state.name == "Block" and character_body_2d.name == "Player":
+	if animation_state_machine.current_state.name == "Block":
 		label.text = "Block"
 		label.add_theme_color_override("font_color", Color.CHARTREUSE)
 		timer.start()

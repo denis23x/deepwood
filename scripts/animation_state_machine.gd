@@ -5,7 +5,6 @@ class_name AnimationStateMachine
 @export var character_body_2d: CharacterBody2D
 @export var animation_tree: AnimationTree
 @export var damageable: xDamageable
-@export var death: AnimationState
 
 var states: Array[AnimationState]
 
@@ -41,6 +40,10 @@ func switch_states(next_state: AnimationState):
 		
 	current_state = next_state
 	current_state.on_enter()
+	
+	# Emit for xInputBuffer for reset actions
+	if character_body_2d.name == "Player":
+		xEventBus.emit_signal("switch_state", next_state)
 	
 func iterrupt_state(next_state: AnimationState):
 	if current_state.name != "Death":
