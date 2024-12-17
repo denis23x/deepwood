@@ -2,8 +2,8 @@ extends Node
 class_name AnimationState
 
 @export var can_move: bool = true
+@export var animation_state_machine: AnimationStateMachine
 
-var next_state: AnimationState
 var character_body_2d: CharacterBody2D
 var playback: AnimationNodeStateMachinePlayback
 

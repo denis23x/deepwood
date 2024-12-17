@@ -7,4 +7,4 @@ func on_enter() -> void:
 	
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Block_1":
-		next_state = walk
+		animation_state_machine.switch_states(walk)

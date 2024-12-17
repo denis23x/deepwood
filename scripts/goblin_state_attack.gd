@@ -21,20 +21,22 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			elif area_2d.is_attainable and is_alive:
 				playback.travel("Attack_3")
 			else:
-				next_state = walk
+				animation_state_machine.switch_states(walk)
 		"Attack_2":
 			if area_2d.is_reachable and is_alive:
 				playback.travel("Attack_1")
 			elif area_2d.is_attainable and is_alive:
 				playback.travel("Attack_3")
 			else:
-				next_state = walk
+				animation_state_machine.switch_states(walk)
 		"Attack_3":
 			var instance = projectile.instantiate()
+			var direction: int = -1 if character_body_2d.direction == 1 else 1
 			
 			instance.name = "goblin_projectile"
 			instance.direction = character_body_2d.direction
-			instance.spawnPosition = character_body_2d.global_position
+			instance.spawnPosition.x = character_body_2d.global_position.x + 24 * (direction * -1)
+			instance.spawnPosition.y = character_body_2d.global_position.y - 7
 			instance.spawnRotation = character_body_2d.rotation
 			instance.spawnScale = character_body_2d.scale
 			
@@ -42,5 +44,8 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			
 			game.add_child.call_deferred(instance)
 			
+			# Run away from throwed bomb
+			character_body_2d.switch_direction(direction)
+			
 			# Return to default state
-			next_state = walk
+			animation_state_machine.switch_states(walk)

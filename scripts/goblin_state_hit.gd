@@ -3,6 +3,8 @@ extends AnimationState
 @export var damageable: xDamageable
 @export var walk: AnimationState
 @export var death: AnimationState
+@export var attack: AnimationState
+@export var area_2d: Area2D
 
 func on_enter() -> void:
 	playback.travel("Hit")
@@ -10,6 +12,9 @@ func on_enter() -> void:
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Hit":
 		if damageable.health > 0:
-			next_state = walk
+			if area_2d.is_colliding:
+				animation_state_machine.switch_states(attack)
+			else:
+				animation_state_machine.switch_states(walk)
 		else:
-			next_state = death
+			animation_state_machine.switch_states(death)

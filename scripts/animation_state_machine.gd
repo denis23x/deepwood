@@ -24,20 +24,13 @@ func _physics_process(delta: float) -> void:
 	if current_state != null:
 		current_state.x_physics_process(delta)
 		
-	# Switch states
-	if current_state.next_state != null:
-		switch_states(current_state.next_state)
-		
 func _input(event: InputEvent) -> void:
 	# Attach _input to current_state
 	if current_state != null:
 		current_state.x_input(event)
 		
 func switch_states(next_state: AnimationState):
-	if current_state != null:
-		current_state.on_exit()
-		current_state.next_state = null
-		
+	current_state.on_exit()
 	current_state = next_state
 	current_state.on_enter()
 	
@@ -46,5 +39,4 @@ func switch_states(next_state: AnimationState):
 		xEventBus.emit_signal("switch_state", next_state)
 	
 func iterrupt_state(next_state: AnimationState):
-	if current_state.name != "Death":
-		switch_states(next_state)
+	switch_states(next_state)

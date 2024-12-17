@@ -717,38 +717,45 @@ character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 damageable = NodePath("../Damageable")
 
-[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("fall")]
+[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("fall", "animation_state_machine")]
 script = ExtResource("7_r7frt")
 fall = NodePath("../Fall")
+animation_state_machine = NodePath("..")
 
-[node name="Fall" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
+[node name="Fall" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("9_jhlsc")
 walk = NodePath("../Walk")
+animation_state_machine = NodePath("..")
 
-[node name="Jump" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
+[node name="Jump" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("8_wdluq")
 walk = NodePath("../Walk")
+animation_state_machine = NodePath("..")
 
-[node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
+[node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("11_7p8a6")
 walk = NodePath("../Walk")
 can_move = false
+animation_state_machine = NodePath("..")
 
-[node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
+[node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("14_w2cu8")
 walk = NodePath("../Walk")
 can_move = false
+animation_state_machine = NodePath("..")
 
-[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death")]
+[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "animation_state_machine")]
 script = ExtResource("15_krgjb")
 damageable = NodePath("../../Damageable")
 walk = NodePath("../Walk")
 death = NodePath("../Death")
 can_move = false
+animation_state_machine = NodePath("..")
 
-[node name="Death" type="Node" parent="AnimationStateMachine"]
+[node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
 script = ExtResource("16_f011e")
 can_move = false
+animation_state_machine = NodePath("..")
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
 visible = false

@@ -10,6 +10,6 @@ func on_enter() -> void:
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Hit":
 		if damageable.health > 0:
-			next_state = walk
+			animation_state_machine.switch_states(walk)
 		else:
-			next_state = death
+			animation_state_machine.switch_states(death)

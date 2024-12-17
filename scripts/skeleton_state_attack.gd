@@ -21,14 +21,14 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			elif area_2d.is_attainable and is_alive:
 				playback.travel("Attack_3")
 			else:
-				next_state = walk
+				animation_state_machine.switch_states(walk)
 		"Attack_2":
 			if area_2d.is_reachable and is_alive:
 				playback.travel("Attack_1")
 			elif area_2d.is_attainable and is_alive:
 				playback.travel("Attack_3")
 			else:
-				next_state = walk
+				animation_state_machine.switch_states(walk)
 		"Attack_3":
 			var instance = projectile.instantiate()
 			
@@ -43,4 +43,4 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			game.add_child.call_deferred(instance)
 			
 			# Return to default state
-			next_state = walk
+			animation_state_machine.switch_states(walk)

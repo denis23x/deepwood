@@ -48,21 +48,21 @@ func handle_action(action: String) -> void:
 					
 					action_in_progress = false
 				else:
-					animation_state_machine.current_state.next_state = jump
+					animation_state_machine.switch_states(jump)
 					
 			# Do not iterrupt the state to allow to do double jump
 			elif animation_state_machine.current_state.name != "Jump":
-				animation_state_machine.current_state.next_state = jump
+				animation_state_machine.switch_states(jump)
 		"attack":
 			if character_body_2d.is_on_floor():
 				# Do not iterrupt the state to allow to do combo attacks
 				if animation_state_machine.current_state.name != "Attack":
-					animation_state_machine.current_state.next_state = attack
+					animation_state_machine.switch_states(attack)
 			else:
 				action_in_progress = false
 		"block":
 			if character_body_2d.is_on_floor():
-				animation_state_machine.current_state.next_state = block
+				animation_state_machine.switch_states(block)
 			else:
 				action_in_progress = false
 				

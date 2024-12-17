@@ -557,7 +557,7 @@ states/Hit/position = Vector2(197.75, -110.767)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_k7apw")
 states/Move/position = Vector2(378.5, 98.425)
 transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_65dit"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_13dfh"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_ru26h")]
-graph_offset = Vector2(-94.605, 84.4272)
+graph_offset = Vector2(94.395, -66.7952)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
 size = Vector2(32.75, 52.25)
@@ -597,33 +597,41 @@ character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 damageable = NodePath("../Damageable")
 
-[node name="Walk" type="Node" parent="AnimationStateMachine"]
+[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
 script = ExtResource("5_51qvq")
+animation_state_machine = NodePath("..")
 
-[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death")]
+[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "attack", "area_2d", "animation_state_machine")]
 script = ExtResource("6_jt0v2")
 damageable = NodePath("../../Damageable")
 walk = NodePath("../Walk")
 death = NodePath("../Death")
+attack = NodePath("../Attack")
+area_2d = NodePath("../../DetectPlayerArea2D")
 can_move = false
+animation_state_machine = NodePath("..")
 
-[node name="Death" type="Node" parent="AnimationStateMachine"]
+[node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
 script = ExtResource("7_ch5ui")
 can_move = false
+animation_state_machine = NodePath("..")
 
-[node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("area_2d", "walk")]
+[node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("area_2d", "walk", "animation_state_machine")]
 script = ExtResource("11_yxxbg")
 area_2d = NodePath("../../DetectPlayerArea2D")
 walk = NodePath("../Walk")
 can_move = false
+animation_state_machine = NodePath("..")
 
-[node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk")]
+[node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "attack", "area_2d", "animation_state_machine")]
 script = ExtResource("14_nbayc")
 walk = NodePath("../Walk")
+attack = NodePath("../Attack")
+area_2d = NodePath("../../DetectPlayerArea2D")
 can_move = false
+animation_state_machine = NodePath("..")
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
-visible = false
 offset_top = -40.0
 offset_right = 49.0
 offset_bottom = -26.0
@@ -685,7 +693,7 @@ shape = SubResource("RectangleShape2D_sv6c7")
 debug_color = Color(0.984314, 0, 0.337255, 0.0470588)
 
 [node name="RayCast2D" type="RayCast2D" parent="DetectPlayerArea2D"]
-target_position = Vector2(73, 0)
+target_position = Vector2(60, 0)
 collision_mask = 2
 
 [node name="RayCast2DProjectile" type="RayCast2D" parent="DetectPlayerArea2D"]
@@ -705,7 +713,6 @@ frame = 3
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Death" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Block" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="DetectPlayerArea2D" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_started"]
 [connection signal="body_entered" from="AttackArea2D" to="AttackArea2D" method="_on_body_entered"]
 [connection signal="timeout" from="Damageable/Timer" to="Damageable" method="_on_timer_timeout"]

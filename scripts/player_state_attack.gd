@@ -21,11 +21,11 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		if combo:
 			playback.travel("Attack_2")
 		else:
-			next_state = walk
+			animation_state_machine.switch_states(walk)
 	elif anim_name == "Attack_2":
 		if combo:
 			playback.travel("Attack_3")
 		else:
-			next_state = walk
+			animation_state_machine.switch_states(walk)
 	elif anim_name == "Attack_3":
-		next_state = walk
+		animation_state_machine.switch_states(walk)

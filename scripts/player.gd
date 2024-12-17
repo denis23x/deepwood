@@ -32,11 +32,10 @@ func _physics_process(delta: float) -> void:
 	
 func switch_direction(next_direction: float) -> void:
 	# Handle movement flip
-	if animation_state_machine.current_state.can_move:
-		if next_direction < 0:
-			sprite_2d.flip_h = true
-		elif next_direction > 0:
-			sprite_2d.flip_h = false
+	if next_direction < 0:
+		sprite_2d.flip_h = true
+	elif next_direction > 0:
+		sprite_2d.flip_h = false
 			
 	# Handle attack collision flip
 	area_2d.position.x = 20 * (-1 if sprite_2d.flip_h else 1)
