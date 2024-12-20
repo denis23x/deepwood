@@ -1,10 +1,11 @@
-[gd_scene load_steps=50 format=3 uid="uid://nvjvfycfspqc"]
+[gd_scene load_steps=56 format=3 uid="uid://nvjvfycfspqc"]
 
 [ext_resource type="Script" path="res://scripts/skeleton.gd" id="1_64nqv"]
 [ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
 [ext_resource type="Texture2D" uid="uid://dfscxbilt2xbb" path="res://assets/sprites/skeleton/Death.png" id="2_nh3wm"]
 [ext_resource type="Script" path="res://scripts/animation_state_machine.gd" id="3_b0hyp"]
 [ext_resource type="Texture2D" uid="uid://dhvoca4o50r3y" path="res://assets/sprites/skeleton/Take Hit.png" id="3_o7wfl"]
+[ext_resource type="AudioStream" uid="uid://p10n6bgqt7fj" path="res://assets/sounds/skeleton/56_Attack_03.wav" id="4_1oq74"]
 [ext_resource type="Script" path="res://scripts/skeleton_state_walk.gd" id="5_51qvq"]
 [ext_resource type="Texture2D" uid="uid://qqoomqrackat" path="res://assets/sprites/skeleton/Walk.png" id="5_oxr6o"]
 [ext_resource type="Texture2D" uid="uid://b5rkcvo4k4ev3" path="res://assets/sprites/skeleton/Attack.png" id="6_blgik"]
@@ -15,10 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://b5lltvfrv7u3e" path="res://assets/sprites/skeleton/Shield.png" id="9_e7pw7"]
 [ext_resource type="Script" path="res://scripts/animation_state_debug.gd" id="9_y72uv"]
 [ext_resource type="Script" path="res://scripts/skeleton_state_attack.gd" id="11_yxxbg"]
+[ext_resource type="AudioStream" uid="uid://fgtxw6gix5ot" path="res://assets/sounds/skeleton/03_Claw_03.wav" id="13_0or6q"]
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="13_rp6wr"]
 [ext_resource type="Script" path="res://scripts/skeleton_state_block.gd" id="14_nbayc"]
 [ext_resource type="Script" path="res://scripts/x_damageable.gd" id="14_p77gj"]
 [ext_resource type="Script" path="res://scripts/x_detect_player.gd" id="15_07p7k"]
+[ext_resource type="AudioStream" uid="uid://c145lgvt56b3i" path="res://assets/sounds/skeleton/11. Death Groan (Male).wav" id="15_efn7f"]
+[ext_resource type="AudioStream" uid="uid://50bqe173nofd" path="res://assets/sounds/skeleton/39_Block_03.wav" id="19_wwrsm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brdd"]
 height = 52.0
@@ -87,6 +91,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false, true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea2D/CollisionPolygon2DAttack_2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_c5kco"]
 resource_name = "Attack_2"
@@ -151,6 +167,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AttackArea2D/CollisionPolygon2DAttack_1:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_dvknp"]
@@ -540,11 +568,15 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ru26h"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j688k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dm3uh"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gqg5k"]
 states/Attack_1/node = SubResource("AnimationNodeAnimation_luipx")
-states/Attack_1/position = Vector2(564.228, -112.662)
+states/Attack_1/position = Vector2(564.48, -111.465)
 states/Attack_2/node = SubResource("AnimationNodeAnimation_owpne")
-states/Attack_2/position = Vector2(564.046, -262.276)
+states/Attack_2/position = Vector2(711.046, -263.374)
 states/Attack_3/node = SubResource("AnimationNodeAnimation_shq1j")
 states/Attack_3/position = Vector2(565.097, -408.188)
 states/Block/node = SubResource("AnimationNodeAnimation_cd0qo")
@@ -556,8 +588,8 @@ states/Hit/node = SubResource("AnimationNodeAnimation_dao7i")
 states/Hit/position = Vector2(197.75, -110.767)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_k7apw")
 states/Move/position = Vector2(378.5, 98.425)
-transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_65dit"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_13dfh"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_ru26h")]
-graph_offset = Vector2(94.395, -66.7952)
+transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_65dit"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_13dfh"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_ru26h"), "Attack_1", "Attack_3", SubResource("AnimationNodeStateMachineTransition_j688k"), "Attack_2", "Attack_1", SubResource("AnimationNodeStateMachineTransition_dm3uh")]
+graph_offset = Vector2(364.395, -311.235)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
 size = Vector2(32.75, 52.25)
@@ -611,10 +643,17 @@ area_2d = NodePath("../../DetectPlayerArea2D")
 can_move = false
 animation_state_machine = NodePath("..")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
+stream = ExtResource("13_0or6q")
+
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
 script = ExtResource("7_ch5ui")
 can_move = false
 animation_state_machine = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
+stream = ExtResource("15_efn7f")
+volume_db = -5.0
 
 [node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("area_2d", "walk", "animation_state_machine")]
 script = ExtResource("11_yxxbg")
@@ -622,6 +661,13 @@ area_2d = NodePath("../../DetectPlayerArea2D")
 walk = NodePath("../Walk")
 can_move = false
 animation_state_machine = NodePath("..")
+
+[node name="Timer" type="Timer" parent="AnimationStateMachine/Attack"]
+wait_time = 0.42
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
+stream = ExtResource("4_1oq74")
 
 [node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "attack", "area_2d", "animation_state_machine")]
 script = ExtResource("14_nbayc")
@@ -631,7 +677,11 @@ area_2d = NodePath("../../DetectPlayerArea2D")
 can_move = false
 animation_state_machine = NodePath("..")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Block"]
+stream = ExtResource("19_wwrsm")
+
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
+visible = false
 offset_top = -40.0
 offset_right = 49.0
 offset_bottom = -26.0
@@ -713,7 +763,11 @@ frame = 3
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Death" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Block" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_started"]
+[connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Death" method="_on_animation_tree_animation_started"]
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_started"]
+[connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Block" method="_on_animation_tree_animation_started"]
+[connection signal="timeout" from="AnimationStateMachine/Attack/Timer" to="AnimationStateMachine/Attack" method="_on_timer_timeout"]
 [connection signal="body_entered" from="AttackArea2D" to="AttackArea2D" method="_on_body_entered"]
 [connection signal="timeout" from="Damageable/Timer" to="Damageable" method="_on_timer_timeout"]
 [connection signal="body_entered" from="DetectPlayerArea2D" to="DetectPlayerArea2D" method="_on_body_entered"]

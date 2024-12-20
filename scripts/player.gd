@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle flip
 	switch_direction(direction)
-	
+
 	# Handle movement
 	if direction and animation_state_machine.current_state.can_move:
 		velocity.x = direction * speed

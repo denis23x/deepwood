@@ -10,8 +10,6 @@ class_name Goblin
 @export var area_2d_detect_player: Area2D
 @export var ray_cast_2d: RayCast2D
 
-func _ready() -> void:
-	Engine.time_scale = 0.5
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
