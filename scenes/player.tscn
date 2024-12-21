@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c1crjs37cyq1i"]
+[gd_scene load_steps=74 format=3 uid="uid://c1crjs37cyq1i"]
 
 [ext_resource type="Texture2D" uid="uid://hfx6ka7aihlm" path="res://assets/sprites/player/IDLE.png" id="1_fry4q"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ph7ag"]
@@ -27,7 +27,10 @@
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="20_s75ah"]
 [ext_resource type="Script" path="res://scripts/x_damageable.gd" id="21_e4j2e"]
 [ext_resource type="Script" path="res://scripts/x_input.gd" id="22_n86mc"]
+[ext_resource type="AudioStream" uid="uid://bi4q7xeh1hrln" path="res://assets/sounds/player/39_Block_03.wav" id="22_nlr3f"]
 [ext_resource type="AudioStream" uid="uid://bhtdonb7xxl4d" path="res://assets/sounds/player/14. Damage Grunt (Male).wav" id="23_fgqxp"]
+[ext_resource type="Script" path="res://scripts/player_state_dash.gd" id="26_1j0rb"]
+[ext_resource type="AudioStream" uid="uid://da0fvflpxjy4s" path="res://assets/sounds/player/15_human_dash_2.wav" id="27_ny224"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55pug"]
 radius = 7.0
@@ -192,7 +195,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_wkg12"]
-resource_name = "Block_1"
+resource_name = "Block"
 length = 0.42
 step = 0.07
 tracks/0/type = "value"
@@ -577,7 +580,7 @@ _data = {
 "Attack_1": SubResource("Animation_xk3ow"),
 "Attack_2": SubResource("Animation_puarc"),
 "Attack_3": SubResource("Animation_ygn07"),
-"Block_1": SubResource("Animation_wkg12"),
+"Block": SubResource("Animation_wkg12"),
 "Death": SubResource("Animation_u7ppg"),
 "Fall": SubResource("Animation_0fofo"),
 "Hit": SubResource("Animation_cmmtu"),
@@ -597,8 +600,8 @@ animation = &"Attack_2"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hbsyk"]
 animation = &"Attack_3"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hj81"]
-animation = &"Block_1"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ym6xo"]
+animation = &"Block"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wvwki"]
 animation = &"Death"
@@ -653,13 +656,13 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_equwd"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3dnrx"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qg1tl"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_511t1"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w3fce"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kim5i"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gqtrw"]
 states/Attack_1/node = SubResource("AnimationNodeAnimation_lvnw4")
@@ -668,8 +671,8 @@ states/Attack_2/node = SubResource("AnimationNodeAnimation_spvfl")
 states/Attack_2/position = Vector2(636.513, -274.026)
 states/Attack_3/node = SubResource("AnimationNodeAnimation_hbsyk")
 states/Attack_3/position = Vector2(637.344, -419.56)
-states/Block/node = SubResource("AnimationNodeAnimation_2hj81")
-states/Block/position = Vector2(194.503, 365.766)
+states/Block/node = SubResource("AnimationNodeAnimation_ym6xo")
+states/Block/position = Vector2(91.7313, 366.43)
 states/Death/node = SubResource("AnimationNodeAnimation_wvwki")
 states/Death/position = Vector2(195.844, -274.646)
 "states/Double Jump/node" = SubResource("AnimationNodeAnimation_w2qk7")
@@ -686,8 +689,8 @@ states/Jump_Fall/position = Vector2(888.088, 365.418)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_6lo5g")
 states/Move/position = Vector2(411.775, 100.214)
 states/Start/position = Vector2(90, 101.444)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_oisyb"), "Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_40vgi"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_3moo8"), "Double Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_enin4"), "Move", "Fall", SubResource("AnimationNodeStateMachineTransition_j3ol2"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_1rmd0"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_s7da4"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_equwd"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_3dnrx"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_qg1tl"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_511t1"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_w3fce")]
-graph_offset = Vector2(195.75, -100.457)
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_oisyb"), "Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_40vgi"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_3moo8"), "Double Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_enin4"), "Move", "Fall", SubResource("AnimationNodeStateMachineTransition_j3ol2"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_1rmd0"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_s7da4"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_equwd"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_qg1tl"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_511t1"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_w3fce"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_kim5i")]
+graph_offset = Vector2(-27.5374, 8.11304)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2tr1"]
 
@@ -723,8 +726,9 @@ character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 damageable = NodePath("../Damageable")
 
-[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("fall", "animation_state_machine")]
+[node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("sprite_2d", "fall", "animation_state_machine")]
 script = ExtResource("7_r7frt")
+sprite_2d = NodePath("../../Sprite2D")
 fall = NodePath("../Fall")
 animation_state_machine = NodePath("..")
 
@@ -737,6 +741,10 @@ animation_state_machine = NodePath("..")
 script = ExtResource("8_wdluq")
 walk = NodePath("../Walk")
 animation_state_machine = NodePath("..")
+
+[node name="Timer" type="Timer" parent="AnimationStateMachine/Jump"]
+wait_time = 0.2
+one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Jump"]
 stream = ExtResource("15_koyqu")
@@ -768,6 +776,13 @@ walk = NodePath("../Walk")
 can_move = false
 animation_state_machine = NodePath("..")
 
+[node name="Timer" type="Timer" parent="AnimationStateMachine/Block"]
+wait_time = 0.15
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Block"]
+stream = ExtResource("22_nlr3f")
+
 [node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "animation_state_machine")]
 script = ExtResource("15_krgjb")
 damageable = NodePath("../../Damageable")
@@ -785,8 +800,24 @@ script = ExtResource("16_f011e")
 can_move = false
 animation_state_machine = NodePath("..")
 
+[node name="Dash" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("sprite_2d", "walk", "animation_state_machine")]
+script = ExtResource("26_1j0rb")
+sprite_2d = NodePath("../../Sprite2D")
+walk = NodePath("../Walk")
+animation_state_machine = NodePath("..")
+
+[node name="Timer" type="Timer" parent="AnimationStateMachine/Dash"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="AnimationStateMachine/Dash"]
+wait_time = 0.05
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Dash"]
+stream = ExtResource("27_ny224")
+
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
-visible = false
 offset_top = -50.0
 offset_right = 49.0
 offset_bottom = -36.0
@@ -826,18 +857,23 @@ theme_override_font_sizes/font_size = 10
 wait_time = 0.2
 one_shot = true
 
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("animation_state_machine", "character_body_2d", "jump", "block", "attack")]
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("animation_state_machine", "character_body_2d", "jump", "block", "attack", "dash")]
 script = ExtResource("22_n86mc")
 animation_state_machine = NodePath("../AnimationStateMachine")
 character_body_2d = NodePath("..")
 jump = NodePath("../AnimationStateMachine/Jump")
 block = NodePath("../AnimationStateMachine/Block")
 attack = NodePath("../AnimationStateMachine/Attack")
+dash = NodePath("../AnimationStateMachine/Dash")
 
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Block" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_started"]
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_started"]
+[connection signal="timeout" from="AnimationStateMachine/Jump/Timer" to="AnimationStateMachine/Jump" method="_on_timer_timeout"]
+[connection signal="timeout" from="AnimationStateMachine/Block/Timer" to="AnimationStateMachine/Block" method="_on_timer_timeout"]
+[connection signal="timeout" from="AnimationStateMachine/Dash/Timer" to="AnimationStateMachine/Dash" method="_on_timer_timeout"]
+[connection signal="timeout" from="AnimationStateMachine/Dash/Timer2" to="AnimationStateMachine/Dash" method="_on_timer_2_timeout"]
 [connection signal="body_entered" from="AttackArea2D" to="AttackArea2D" method="_on_body_entered"]
 [connection signal="timeout" from="Damageable/Timer" to="Damageable" method="_on_timer_timeout"]

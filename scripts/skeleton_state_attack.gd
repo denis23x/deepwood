@@ -44,9 +44,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		instance.spawnRotation = character_body_2d.rotation
 		instance.spawnScale = character_body_2d.scale
 		
-		var game = get_tree().get_root().get_node("Game")
-		
-		game.add_child.call_deferred(instance)
+		get_tree().get_root().get_node("Game").add_child.call_deferred(instance)
 		
 		# Return to default state
 		animation_state_machine.switch_states(walk)

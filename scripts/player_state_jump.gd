@@ -3,6 +3,8 @@ extends AnimationState
 @onready var jump_effect = load("res://scenes/player_jump_effect.tscn")
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
+@onready var timer: Timer = $Timer
+@onready var instance = null
 
 @export var walk: AnimationState
 @export var jump_velocity: float = -300.0
@@ -40,19 +42,18 @@ func handle_jump_effect() -> void:
 	audio_stream_player_2d.play()
 	audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
 	
-	var instance = jump_effect.instantiate()
-	
+	instance = jump_effect.instantiate()
 	instance.name = "Player_Jump_Effect"
 	instance.global_position = character_body_2d.global_position
 	instance.get_node("Sprite2D").flip_h = (true if character_body_2d.direction != 1 else false)
 	instance.get_node("AnimationPlayer").play("Jump_Effect" if double_jump else "Jump_Effect_2")
 	
-	var new_timer = Timer.new()
-	new_timer.wait_time = 0.2
+	# Lifetime
+	timer.start()
 	
-	add_child(new_timer)
-	
-	new_timer.connect("timeout", instance.queue_free)
-	new_timer.start()
-	
+	# Append to scene
 	get_tree().get_root().get_node("Game").add_child.call_deferred(instance)
+	
+func _on_timer_timeout() -> void:
+	instance.queue_free()
+	instance = null

@@ -5,6 +5,7 @@ extends Node
 @export var jump: AnimationState
 @export var block: AnimationState
 @export var attack: AnimationState
+@export var dash: AnimationState
 
 var action_in_progress: bool = false
 var key_buffer: Array[String] = []
@@ -12,7 +13,7 @@ var key_buffer_limit: int = 0
 
 func _ready() -> void:
 	xEventBus.connect("switch_state", switch_state)
-
+	
 func _process(_delta: float) -> void:
 	if not animation_state_machine.current_state.name in ["Hit", "Death"]:
 		if Input.is_action_just_pressed("jump"):
@@ -21,6 +22,8 @@ func _process(_delta: float) -> void:
 			handle_action_queue("attack")
 		elif Input.is_action_just_pressed("block"):
 			handle_action_queue("block")
+		elif Input.is_action_just_pressed("dash"):
+			handle_action_queue("dash")
 			
 		# Process buffered inputs if no action is in progress
 		if not action_in_progress and not key_buffer.is_empty():
@@ -57,13 +60,15 @@ func handle_action(action: String) -> void:
 				# Do not iterrupt the state to allow to do combo attacks
 				if animation_state_machine.current_state.name != "Attack":
 					animation_state_machine.switch_states(attack)
-			#else:
-				#action_in_progress = false
 		"block":
 			if character_body_2d.is_on_floor():
 				animation_state_machine.switch_states(block)
-			#else:
-				#action_in_progress = false
+		"dash":
+			if character_body_2d.is_on_floor():
+				if character_body_2d.direction != 0:
+					animation_state_machine.switch_states(dash)
+				else:
+					action_in_progress = false
 				
 func switch_state(next_state: AnimationState) -> void:
 	if next_state.name != "Death":
