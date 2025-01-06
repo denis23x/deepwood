@@ -748,9 +748,11 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Jump"]
 stream = ExtResource("15_koyqu")
+panning_strength = 0.0
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Jump"]
 stream = ExtResource("16_qut2p")
+panning_strength = 0.0
 
 [node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("11_7p8a6")
@@ -761,14 +763,17 @@ animation_state_machine = NodePath("..")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
 stream = ExtResource("18_jaakh")
 volume_db = -5.0
+panning_strength = 0.0
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
 stream = ExtResource("19_qbllq")
 volume_db = -8.0
+panning_strength = 0.0
 
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
 stream = ExtResource("20_pvfq1")
 volume_db = -5.0
+panning_strength = 0.0
 
 [node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("14_w2cu8")
@@ -782,6 +787,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Block"]
 stream = ExtResource("22_nlr3f")
+panning_strength = 0.0
 
 [node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "animation_state_machine")]
 script = ExtResource("15_krgjb")
@@ -793,7 +799,8 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
 stream = ExtResource("23_fgqxp")
-volume_db = -10.0
+volume_db = -20.0
+panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
 script = ExtResource("16_f011e")
@@ -816,6 +823,7 @@ autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Dash"]
 stream = ExtResource("27_ny224")
+panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
 offset_top = -50.0

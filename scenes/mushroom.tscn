@@ -1,28 +1,29 @@
-[gd_scene load_steps=51 format=3 uid="uid://domdlkh82qw2q"]
+[gd_scene load_steps=51 format=3 uid="uid://bpmpxl6sp43f2"]
 
-[ext_resource type="Script" path="res://scripts/goblin.gd" id="1_6e7ke"]
-[ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
-[ext_resource type="Texture2D" uid="uid://dimxk51cm41y7" path="res://assets/sprites/goblin/Attack.png" id="3_3jy0a"]
-[ext_resource type="Script" path="res://scripts/animation_state_machine.gd" id="3_b0hyp"]
-[ext_resource type="Texture2D" uid="uid://q753crswldns" path="res://assets/sprites/goblin/Attack2.png" id="4_km6es"]
-[ext_resource type="Texture2D" uid="uid://dgsfglyc1nhg7" path="res://assets/sprites/goblin/Attack3.png" id="5_5778r"]
-[ext_resource type="Texture2D" uid="uid://h1oagan0x8jx" path="res://assets/sprites/goblin/Death.png" id="6_xi06y"]
-[ext_resource type="Texture2D" uid="uid://c18qvi0iwci3i" path="res://assets/sprites/goblin/Take Hit.png" id="7_m0jgj"]
-[ext_resource type="AudioStream" uid="uid://cfwgki55jpr7t" path="res://assets/sounds/goblin/03_Claw_03.wav" id="8_urj7s"]
-[ext_resource type="Texture2D" uid="uid://bas50jxuonhsj" path="res://assets/sprites/goblin/Idle.png" id="8_wc0ur"]
-[ext_resource type="Texture2D" uid="uid://cmq61534t1v8n" path="res://assets/sprites/goblin/Run.png" id="9_bpeyn"]
-[ext_resource type="Script" path="res://scripts/animation_state_debug.gd" id="9_y72uv"]
-[ext_resource type="Script" path="res://scripts/goblin_state_walk.gd" id="11_ahamm"]
-[ext_resource type="Script" path="res://scripts/goblin_state_hit.gd" id="12_240xg"]
-[ext_resource type="Script" path="res://scripts/goblin_state_death.gd" id="13_b8mp4"]
-[ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="13_rp6wr"]
-[ext_resource type="Script" path="res://scripts/goblin_state_attack.gd" id="14_bte23"]
-[ext_resource type="Script" path="res://scripts/x_damageable.gd" id="14_p77gj"]
-[ext_resource type="Script" path="res://scripts/x_detect_player.gd" id="15_07p7k"]
-[ext_resource type="AudioStream" uid="uid://cyhoyy6wbmoca" path="res://assets/sounds/goblin/04. Death Groan (Male).wav" id="15_fxhmg"]
-[ext_resource type="AudioStream" uid="uid://cfcd6om24w3ip" path="res://assets/sounds/goblin/56_Attack_03.wav" id="16_1e86u"]
+[ext_resource type="Script" path="res://scripts/mushroom.gd" id="1_ih1rr"]
+[ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="2_lypfb"]
+[ext_resource type="Texture2D" uid="uid://dojw4g68x67e3" path="res://assets/sprites/mushroom/Attack.png" id="3_lwca4"]
+[ext_resource type="Texture2D" uid="uid://cb2dhqlys24nf" path="res://assets/sprites/mushroom/Attack2.png" id="4_mywki"]
+[ext_resource type="Texture2D" uid="uid://bfcukikmt0ufq" path="res://assets/sprites/mushroom/Attack3.png" id="5_hh5vv"]
+[ext_resource type="Texture2D" uid="uid://bnsbaep38kgrr" path="res://assets/sprites/mushroom/Death.png" id="6_1magl"]
+[ext_resource type="Texture2D" uid="uid://dta0avd2n72ky" path="res://assets/sprites/mushroom/Take Hit.png" id="7_addpi"]
+[ext_resource type="Texture2D" uid="uid://b6tyakk6hdrlm" path="res://assets/sprites/mushroom/Idle.png" id="8_7p0b6"]
+[ext_resource type="Texture2D" uid="uid://bbadop2jii0ws" path="res://assets/sprites/mushroom/Run.png" id="9_7v3jh"]
+[ext_resource type="Script" path="res://scripts/animation_state_machine.gd" id="10_jpy2s"]
+[ext_resource type="Script" path="res://scripts/mushroom_state_walk.gd" id="11_sn7j8"]
+[ext_resource type="Script" path="res://scripts/mushroom_state_hit.gd" id="12_iycbf"]
+[ext_resource type="AudioStream" uid="uid://d23j5lqitpo3b" path="res://assets/sounds/mushroom/03_Claw_03.wav" id="13_fnnlh"]
+[ext_resource type="Script" path="res://scripts/mushroom_state_death.gd" id="14_funig"]
+[ext_resource type="AudioStream" uid="uid://da7nstahses5o" path="res://assets/sounds/mushroom/24_orc_death_spin.wav" id="15_khiiv"]
+[ext_resource type="Script" path="res://scripts/mushroom_state_attack.gd" id="16_b8eq1"]
+[ext_resource type="AudioStream" uid="uid://wyntj1l875ml" path="res://assets/sounds/mushroom/77_flesh_02.wav" id="17_nj3nm"]
+[ext_resource type="Script" path="res://scripts/animation_state_debug.gd" id="18_ib0mb"]
+[ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="19_phfj8"]
+[ext_resource type="Script" path="res://scripts/x_damageable.gd" id="20_wvo0v"]
+[ext_resource type="Script" path="res://scripts/x_detect_player.gd" id="21_p0bq2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brdd"]
+radius = 9.0
 height = 34.0
 
 [sub_resource type="Animation" id="Animation_wwqui"]
@@ -39,7 +40,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_3jy0a")]
+"values": [ExtResource("3_lwca4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -116,7 +117,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_km6es")]
+"values": [ExtResource("4_mywki")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -193,7 +194,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_5778r")]
+"values": [ExtResource("5_hh5vv")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -205,7 +206,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [12]
+"values": [11]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -258,7 +259,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_xi06y")]
+"values": [ExtResource("6_1magl")]
 }
 
 [sub_resource type="Animation" id="Animation_rb4mw"]
@@ -299,7 +300,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_m0jgj")]
+"values": [ExtResource("7_addpi")]
 }
 
 [sub_resource type="Animation" id="Animation_5wgk2"]
@@ -341,7 +342,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_wc0ur")]
+"values": [ExtResource("8_7p0b6")]
 }
 
 [sub_resource type="Animation" id="Animation_5nv80"]
@@ -380,7 +381,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ExtResource("1_t4fhf")]
+"values": [ExtResource("2_lypfb")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -458,7 +459,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_bpeyn")]
+"values": [ExtResource("9_7v3jh")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pqq1w"]
@@ -538,15 +539,15 @@ states/Hit/position = Vector2(197.75, -110.767)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_k7apw")
 states/Move/position = Vector2(378.5, 98.425)
 transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_65dit"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_13dfh"), "Attack_1", "Attack_3", SubResource("AnimationNodeStateMachineTransition_cvlop"), "Attack_2", "Attack_1", SubResource("AnimationNodeStateMachineTransition_410v0")]
-graph_offset = Vector2(418.395, -418.487)
+graph_offset = Vector2(160.095, -26.8593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
-size = Vector2(24.375, 34.125)
+size = Vector2(11.1875, 34.125)
 
-[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d")]
+[node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d")]
 position = Vector2(0, -26)
 collision_layer = 4
-script = ExtResource("1_6e7ke")
+script = ExtResource("1_ih1rr")
 animation_state_machine = NodePath("AnimationStateMachine")
 animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")
@@ -559,7 +560,7 @@ position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_2brdd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_t4fhf")
+texture = ExtResource("2_lypfb")
 region_rect = Rect2(0, 0, 600, 150)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -573,18 +574,18 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0.0
 
 [node name="AnimationStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character_body_2d", "animation_tree", "damageable")]
-script = ExtResource("3_b0hyp")
+script = ExtResource("10_jpy2s")
 current_state = NodePath("Walk")
 character_body_2d = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 damageable = NodePath("../Damageable")
 
 [node name="Walk" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
-script = ExtResource("11_ahamm")
+script = ExtResource("11_sn7j8")
 animation_state_machine = NodePath("..")
 
 [node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "attack", "area_2d", "animation_state_machine")]
-script = ExtResource("12_240xg")
+script = ExtResource("12_iycbf")
 damageable = NodePath("../../Damageable")
 walk = NodePath("../Walk")
 death = NodePath("../Death")
@@ -594,21 +595,21 @@ can_move = false
 animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
-stream = ExtResource("8_urj7s")
+stream = ExtResource("13_fnnlh")
 panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
-script = ExtResource("13_b8mp4")
+script = ExtResource("14_funig")
 can_move = false
 animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
-stream = ExtResource("15_fxhmg")
+stream = ExtResource("15_khiiv")
 volume_db = -5.0
 panning_strength = 0.0
 
 [node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("area_2d", "walk", "animation_state_machine")]
-script = ExtResource("14_bte23")
+script = ExtResource("16_b8eq1")
 area_2d = NodePath("../../DetectPlayerArea2D")
 walk = NodePath("../Walk")
 can_move = false
@@ -619,7 +620,7 @@ wait_time = 0.42
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
-stream = ExtResource("16_1e86u")
+stream = ExtResource("17_nj3nm")
 panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
@@ -629,31 +630,31 @@ offset_right = 49.0
 offset_bottom = -26.0
 theme_override_font_sizes/font_size = 10
 text = "State: Idle"
-script = ExtResource("9_y72uv")
+script = ExtResource("18_ib0mb")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="AttackArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 monitoring = false
-script = ExtResource("13_rp6wr")
+script = ExtResource("19_phfj8")
 
 [node name="CollisionPolygon2DAttack_1" type="CollisionPolygon2D" parent="AttackArea2D"]
 visible = false
-polygon = PackedVector2Array(-25, -14, -33, -19, -41, -19, -44, -13, -39, -5, -25, 4, -11, 12, 7, 20, 24, 24, 36, 24, 44, 19, 43, 14, 37, 6, 33, 6, 36, 10, 32, 13, 16, 13, 1, 7, -13, 1, -20, -3, -25, -9)
+polygon = PackedVector2Array(29, 0, 32, 7, 31, 16, 22, 21, 14, 13, 14, 5, 16, -1)
 disabled = true
 
 [node name="CollisionPolygon2DAttack_2" type="CollisionPolygon2D" parent="AttackArea2D"]
 visible = false
-polygon = PackedVector2Array(26, 21, 35, 19, 40, 14, 42, 10, 42, 2, 39, -3, 51, -2, 59, 1, 66, 8, 66, 13, 62, 18, 57, 21, 45, 24, 37, 24, 30, 23)
+polygon = PackedVector2Array(22, 0, 30, -6, 35, 1, 34, 10, 25, 15, 17, 8)
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "character_body_2d", "animation_state_machine")]
-script = ExtResource("14_p77gj")
+script = ExtResource("20_wvo0v")
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
 character_body_2d = NodePath("..")
-knockback = Vector2(400, 0)
+knockback = Vector2(300, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]
@@ -670,7 +671,7 @@ one_shot = true
 [node name="DetectPlayerArea2D" type="Area2D" parent="." node_paths=PackedStringArray("damageable", "attack", "animation_state_machine", "ray_cast_2d", "ray_cast_projectile_2d")]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("15_07p7k")
+script = ExtResource("21_p0bq2")
 damageable = NodePath("../Damageable")
 attack = NodePath("../AnimationStateMachine/Attack")
 animation_state_machine = NodePath("../AnimationStateMachine")
@@ -678,18 +679,18 @@ ray_cast_2d = NodePath("RayCast2D")
 ray_cast_projectile_2d = NodePath("RayCast2DProjectile")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayerArea2D"]
-position = Vector2(12, 9.063)
+position = Vector2(5.40625, 9.063)
 shape = SubResource("RectangleShape2D_sv6c7")
 debug_color = Color(0.984314, 0, 0.337255, 0.0470588)
 
 [node name="RayCast2D" type="RayCast2D" parent="DetectPlayerArea2D"]
 position = Vector2(0, 9)
-target_position = Vector2(45, 0)
+target_position = Vector2(24, 0)
 collision_mask = 2
 
 [node name="RayCast2DProjectile" type="RayCast2D" parent="DetectPlayerArea2D"]
 position = Vector2(0, 9)
-target_position = Vector2(120, 0)
+target_position = Vector2(50, 0)
 collision_mask = 2
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -697,7 +698,7 @@ target_position = Vector2(20, 30)
 
 [node name="Static" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("6_xi06y")
+texture = ExtResource("6_1magl")
 hframes = 4
 frame = 3
 

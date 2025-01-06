@@ -645,6 +645,7 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
 stream = ExtResource("13_0or6q")
+panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
 script = ExtResource("7_ch5ui")
@@ -654,6 +655,7 @@ animation_state_machine = NodePath("..")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
 stream = ExtResource("15_efn7f")
 volume_db = -5.0
+panning_strength = 0.0
 
 [node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("area_2d", "walk", "animation_state_machine")]
 script = ExtResource("11_yxxbg")
@@ -668,6 +670,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
 stream = ExtResource("4_1oq74")
+panning_strength = 0.0
 
 [node name="Block" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "attack", "area_2d", "animation_state_machine")]
 script = ExtResource("14_nbayc")
@@ -679,6 +682,7 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Block"]
 stream = ExtResource("19_wwrsm")
+panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
 visible = false
