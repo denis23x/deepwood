@@ -3,4 +3,6 @@
 [ext_resource type="Script" path="res://scripts/player_dash.gd" id="1_6uch8"]
 
 [node name="Sprite2D" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+show_behind_parent = true
 script = ExtResource("1_6uch8")

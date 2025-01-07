@@ -50,9 +50,8 @@ func handle_dash() -> void:
 	effect.hframes = sprite_2d.hframes
 	effect.frame = sprite_2d.frame
 	effect.flip_h = sprite_2d.flip_h
-	effect.z_index = -1
 	
-	get_tree().current_scene.add_child(effect)
+	get_node("/root/Game").add_child(effect)
 	
 func _on_timer_2_timeout() -> void:
 	if dash:

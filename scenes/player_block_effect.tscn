@@ -92,7 +92,7 @@ _data = {
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
+show_behind_parent = true
 position = Vector2(0, -16)
 texture = ExtResource("1_crohx")
 hframes = 4

@@ -30,7 +30,7 @@ func handle_block_effect() -> void:
 	timer.start()
 	
 	# Append to scene
-	get_tree().get_root().get_node("Game").add_child.call_deferred(instance)
+	get_node("/root/Game").add_child.call_deferred(instance)
 	
 func _on_timer_timeout() -> void:
 	instance.queue_free()

@@ -4,7 +4,7 @@ extends AnimationState
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 @onready var timer: Timer = $Timer
-@onready var instance = null
+@onready var instance = Sprite2D
 
 @export var walk: AnimationState
 @export var jump_velocity: float = -300.0
@@ -52,7 +52,7 @@ func handle_jump_effect() -> void:
 	timer.start()
 	
 	# Append to scene
-	get_tree().get_root().get_node("Game").add_child.call_deferred(instance)
+	get_node("/root/Game").add_child.call_deferred(instance)
 	
 func _on_timer_timeout() -> void:
 	instance.queue_free()

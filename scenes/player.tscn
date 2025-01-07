@@ -799,7 +799,7 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
 stream = ExtResource("23_fgqxp")
-volume_db = -20.0
+volume_db = -15.0
 panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
@@ -826,6 +826,7 @@ stream = ExtResource("27_ny224")
 panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
+visible = false
 offset_top = -50.0
 offset_right = 49.0
 offset_bottom = -36.0
