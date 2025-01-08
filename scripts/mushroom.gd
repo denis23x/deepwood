@@ -9,13 +9,14 @@ class_name Mushroom
 @export var area_2d_attack_area: Area2D
 @export var area_2d_detect_player: Area2D
 @export var ray_cast_2d: RayCast2D
+@export var ray_cast_2d2: RayCast2D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if not ray_cast_2d.is_colliding() and is_on_floor():
+	if not ray_cast_2d.is_colliding() and is_on_floor() or ray_cast_2d2.is_colliding():
 		direction = (-1 if direction == 1 else 1)
 		
 	# Handle movement animation direction
@@ -32,6 +33,7 @@ func _physics_process(delta: float) -> void:
 	area_2d_attack_area.scale.x = direction
 	area_2d_detect_player.scale.x = direction
 	ray_cast_2d.scale.x = direction
+	ray_cast_2d2.scale.x = direction
 	
 	# Handle movement
 	if direction and animation_state_machine.current_state.can_move:

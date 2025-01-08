@@ -544,7 +544,7 @@ graph_offset = Vector2(160.095, -26.8593)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
 size = Vector2(11.1875, 34.125)
 
-[node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d")]
+[node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d", "ray_cast_2d2")]
 position = Vector2(0, -26)
 collision_layer = 4
 script = ExtResource("1_ih1rr")
@@ -554,6 +554,7 @@ sprite_2d = NodePath("Sprite2D")
 area_2d_attack_area = NodePath("AttackArea2D")
 area_2d_detect_player = NodePath("DetectPlayerArea2D")
 ray_cast_2d = NodePath("RayCast2D")
+ray_cast_2d2 = NodePath("RayCast2D2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
@@ -695,6 +696,9 @@ collision_mask = 2
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(20, 30)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(20, 26)
 
 [node name="Static" type="Sprite2D" parent="."]
 visible = false

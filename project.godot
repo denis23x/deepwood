@@ -25,6 +25,14 @@ xEventBus="*res://scripts/x_event_bus.gd"
 window/size/viewport_width=2152
 window/size/viewport_height=1248
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "blue",
+"res://scenes/": "purple",
+"res://scripts/": "red"
+}
+
 [input]
 
 jump={

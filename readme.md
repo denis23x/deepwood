@@ -10,6 +10,10 @@
 - https://nyknck.itch.io
   - Pixel Art Effect - FX052
   - Pixel Art Effect - FX062
+- https://nikllamadev.itch.io/
+  - Ultimate Pixel Art Pack
+- https://incolgames.itch.io/
+  - Dungeon Tile Set
 
 ### SFX:
 - https://leohpaz.itch.io
@@ -21,3 +25,7 @@
 ### Ideas
 - http://devmag.org.za/2011/07/04/how-to-design-levels-for-a-platformer/
   - How to design levels for a platformer
+
+### Youtube
+
+- https://youtube.com/shorts/81ZJnEiXC1w?si=tP3YyF__m37J06bB
