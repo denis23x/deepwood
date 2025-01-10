@@ -15,10 +15,9 @@ func switch_enemy(character_body_2d: CharacterBody2D) -> void:
 				new_sprite.vframes = child.vframes
 				new_sprite.frame = child.frame
 				new_sprite.frame_coords = child.frame_coords
-				new_sprite.z_index = -1
 				
 				# Add the new Sprite2D to the main scene
-				get_node("/root/Game").get_node("Enemies").add_child(new_sprite)
+				get_node("/root/Game/Enemies").add_child(new_sprite)
 				
 				# Free the original enemy instance
 				character_body_2d.queue_free()

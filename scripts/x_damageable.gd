@@ -1,10 +1,8 @@
 extends Node
 class_name xDamageable
 
-@export var health: float = 30.0
+@export var health: float = 10.0
 @export var label: Label
-@export var label_position_default: Vector2 = Vector2(0, -40)
-@export var label_position_float: Vector2 = Vector2(0, -20)
 @export var timer: Timer
 @export var hit: AnimationState
 @export var block: AnimationState
@@ -12,8 +10,10 @@ class_name xDamageable
 @export var knockback: Vector2 = Vector2(250, 0)
 @export var animation_state_machine: AnimationStateMachine
 
-var camera_2d: Camera2D
-var camera_shake_noise: FastNoiseLite
+@onready var camera_2d: Camera2D
+@onready var camera_shake_noise: FastNoiseLite
+@onready var label_position_default: Vector2 = label.position
+@onready var label_position_float: Vector2 = label.position
 
 @warning_ignore("unused_signal") signal iterrupt_state(next_state: AnimationState)
 
@@ -50,6 +50,9 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 		# Camera shake
 		if character_body_2d.name == "Player":
 			get_tree().create_tween().tween_method(handle_camera_shake, 5.0, 1.0, 0.5)
+			
+			# Update HUD
+			xManager.handle_health(health)
 			
 		label.text = "-" + str(damage)
 		label.add_theme_color_override("font_color", Color.CRIMSON)

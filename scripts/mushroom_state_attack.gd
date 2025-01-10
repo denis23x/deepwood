@@ -36,7 +36,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		else:
 			animation_state_machine.switch_states(walk)
 	elif anim_name == "Attack_3":
-		var instance = projectile.instantiate()
+		var instance: CharacterBody2D = projectile.instantiate()
 		var direction: int = -1 if character_body_2d.direction == 1 else 1
 		
 		instance.name = "Mushroom_Projectile"

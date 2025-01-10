@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 xOptimization="*res://scripts/x_optimization.gd"
 xEventBus="*res://scripts/x_event_bus.gd"
+xManager="*res://scripts/x_manager.gd"
 
 [display]
 

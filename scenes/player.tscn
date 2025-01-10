@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c1crjs37cyq1i"]
+[gd_scene load_steps=75 format=3 uid="uid://c1crjs37cyq1i"]
 
 [ext_resource type="Texture2D" uid="uid://hfx6ka7aihlm" path="res://assets/sprites/player/IDLE.png" id="1_fry4q"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ph7ag"]
@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://bhtdonb7xxl4d" path="res://assets/sounds/player/14. Damage Grunt (Male).wav" id="23_fgqxp"]
 [ext_resource type="Script" path="res://scripts/player_state_dash.gd" id="26_1j0rb"]
 [ext_resource type="AudioStream" uid="uid://da0fvflpxjy4s" path="res://assets/sounds/player/15_human_dash_2.wav" id="27_ny224"]
+[ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="31_5pbdn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55pug"]
 radius = 7.0
@@ -841,13 +842,14 @@ collision_layer = 0
 collision_mask = 4
 monitoring = false
 script = ExtResource("20_s75ah")
+damage = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
 shape = SubResource("CircleShape2D_v2tr1")
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "block", "character_body_2d", "animation_state_machine")]
 script = ExtResource("21_e4j2e")
-health = 100.0
+health = 6.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
@@ -857,10 +859,16 @@ knockback = Vector2(400, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]
-offset_top = -40.0
-offset_right = 13.0
-offset_bottom = -26.0
-theme_override_font_sizes/font_size = 10
+z_index = 1
+offset_left = -8.0
+offset_top = -48.0
+offset_right = 24.0
+offset_bottom = -32.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("31_5pbdn")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="Damageable"]
 wait_time = 0.2

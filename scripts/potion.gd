@@ -10,7 +10,7 @@ func _ready() -> void:
 	animation_player.play("Idle")
 	
 func _on_body_entered(_body: Node2D) -> void:
-	xManager.handle_pickup("coins")
+	xManager.handle_pickup("potion")
 	
 	sprite_2d.queue_free()
 	collision_shape_2d.queue_free()

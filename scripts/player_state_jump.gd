@@ -19,11 +19,12 @@ func x_physics_process(_delta: float) -> void:
 		animation_state_machine.switch_states(walk)
 		
 func x_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("jump") and double_jump:
-		double_jump = false
-		
-		# Jump repeat
-		on_enter()
+	if xManager.double_jump:
+		if Input.is_action_just_pressed("jump") and double_jump:
+			double_jump = false
+			
+			# Jump repeat
+			on_enter()
 		
 func on_enter() -> void:
 	playback.travel("Jump")

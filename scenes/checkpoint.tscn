@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6hgch05dvl04"]
+[gd_scene load_steps=9 format=3 uid="uid://c6hgch05dvl04"]
 
-[ext_resource type="Script" path="res://scripts/flag.gd" id="1_vic6o"]
+[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_vic6o"]
+[ext_resource type="AudioStream" uid="uid://bykuy2llsdphe" path="res://assets/sounds/powerup/jump.wav" id="3_ey3e0"]
 [ext_resource type="Texture2D" uid="uid://bui2gus5arlyc" path="res://assets/sprites/flag/GreenFlag.png" id="3_lbupj"]
+[ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="4_ru1if"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sjxyx"]
 height = 35.0
@@ -113,4 +115,24 @@ libraries = {
 }
 speed_scale = 4.0
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ey3e0")
+volume_db = -10.0
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = -96.0
+offset_top = -40.0
+offset_right = 96.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("4_ru1if")
+theme_override_font_sizes/font_size = 8
+text = "Checkpoint"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

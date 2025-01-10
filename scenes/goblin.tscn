@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://domdlkh82qw2q"]
+[gd_scene load_steps=52 format=3 uid="uid://domdlkh82qw2q"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_6e7ke"]
 [ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scripts/x_detect_player.gd" id="15_07p7k"]
 [ext_resource type="AudioStream" uid="uid://cyhoyy6wbmoca" path="res://assets/sounds/goblin/04. Death Groan (Male).wav" id="15_fxhmg"]
 [ext_resource type="AudioStream" uid="uid://cfcd6om24w3ip" path="res://assets/sounds/goblin/56_Attack_03.wav" id="16_1e86u"]
+[ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="21_ssa5j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brdd"]
 height = 34.0
@@ -638,6 +639,7 @@ collision_layer = 0
 collision_mask = 2
 monitoring = false
 script = ExtResource("13_rp6wr")
+damage = 1.0
 
 [node name="CollisionPolygon2DAttack_1" type="CollisionPolygon2D" parent="AttackArea2D"]
 visible = false
@@ -650,6 +652,7 @@ polygon = PackedVector2Array(26, 21, 35, 19, 40, 14, 42, 10, 42, 2, 39, -3, 51, 
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "character_body_2d", "animation_state_machine")]
 script = ExtResource("14_p77gj")
+health = 3.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
@@ -658,11 +661,16 @@ knockback = Vector2(400, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]
-offset_top = -40.0
-offset_right = 13.0
-offset_bottom = -26.0
-theme_override_font_sizes/font_size = 10
-metadata/_edit_use_anchors_ = true
+z_index = 1
+offset_left = -8.0
+offset_top = -22.0
+offset_right = 24.0
+offset_bottom = -6.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("21_ssa5j")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="Damageable"]
 wait_time = 0.2

@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://db12le7s8l0y6"]
+[gd_scene load_steps=8 format=3 uid="uid://cd30qrubj02yp"]
 
-[ext_resource type="Script" path="res://scripts/power_up.gd" id="1_gvxmw"]
-[ext_resource type="Texture2D" uid="uid://cfxkaiobi4ldp" path="res://assets/sprites/items/animated_items.png" id="1_ni7uh"]
-[ext_resource type="AudioStream" uid="uid://bykuy2llsdphe" path="res://assets/sounds/powerup/jump.wav" id="3_tci3p"]
-[ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="4_bcggp"]
+[ext_resource type="Script" path="res://scripts/potion.gd" id="1_8n3hf"]
+[ext_resource type="Texture2D" uid="uid://cfxkaiobi4ldp" path="res://assets/sprites/items/animated_items.png" id="2_4qsra"]
+[ext_resource type="AudioStream" uid="uid://bl8aji1w8rygo" path="res://assets/sounds/coin/coin.wav" id="3_cu2js"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqlx5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0ypm"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_q6emv"]
 resource_name = "Idle"
-length = 1.2
+length = 1.6
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_ni7uh")]
+"values": [ExtResource("2_4qsra")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -43,10 +43,10 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [24, 25, 26, 27, 28, 29]
+"values": [72, 73, 74, 75, 76, 77, 78, 79]
 }
 
 [sub_resource type="Animation" id="Animation_gd7n6"]
@@ -61,7 +61,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_ni7uh")]
+"values": [ExtResource("2_4qsra")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -96,19 +96,19 @@ _data = {
 
 [node name="Area2D" type="Area2D"]
 collision_mask = 2
-script = ExtResource("1_gvxmw")
+script = ExtResource("1_8n3hf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ni7uh")
+texture = ExtResource("2_4qsra")
 hframes = 8
 vframes = 15
-frame = 24
+frame = 72
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_oqlx5")
+shape = SubResource("CircleShape2D_w0ypm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
 reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_rxyo0")
@@ -116,22 +116,8 @@ libraries = {
 speed_scale = 2.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_tci3p")
+stream = ExtResource("3_cu2js")
 volume_db = -10.0
 
-[node name="Label" type="Label" parent="."]
-z_index = 1
-offset_left = -96.0
-offset_top = -32.0
-offset_right = 96.0
-theme_override_fonts/font = ExtResource("4_bcggp")
-theme_override_font_sizes/font_size = 8
-text = "Powerup"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

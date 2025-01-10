@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciblr55rtcg3b"
-path="res://.godot/imported/IconsProjectilesUpgrades.png-4db820e91b940311c1244fcd1eb72329.ctex"
+uid="uid://c08ffqgfno7w7"
+path="res://.godot/imported/IconsHearts.png-0288fd58fe8d977da5a3c7a5dd746419.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hud/IconsProjectilesUpgrades.png"
-dest_files=["res://.godot/imported/IconsProjectilesUpgrades.png-4db820e91b940311c1244fcd1eb72329.ctex"]
+source_file="res://assets/sprites/hud/IconsHearts.png"
+dest_files=["res://.godot/imported/IconsHearts.png-0288fd58fe8d977da5a3c7a5dd746419.ctex"]
 
 [params]
 

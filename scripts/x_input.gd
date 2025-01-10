@@ -64,11 +64,14 @@ func handle_action(action: String) -> void:
 			if character_body_2d.is_on_floor():
 				animation_state_machine.switch_states(block)
 		"dash":
-			if character_body_2d.is_on_floor():
-				if character_body_2d.direction != 0:
-					animation_state_machine.switch_states(dash)
-				else:
-					action_in_progress = false
+			if xManager.dash:
+				if character_body_2d.is_on_floor():
+					if character_body_2d.direction != 0:
+						animation_state_machine.switch_states(dash)
+					else:
+						action_in_progress = false
+			else:
+				action_in_progress = false
 				
 func switch_state(next_state: AnimationState) -> void:
 	if next_state.name != "Death":

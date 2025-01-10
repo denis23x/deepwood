@@ -14,8 +14,9 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
 	# Get the input direction and handle the movement/deceleration.
-	direction = Input.get_axis("move_left", "move_right")
-	
+	if animation_state_machine.current_state.can_move:
+		direction = Input.get_axis("move_left", "move_right")
+		
 	# Handle movement animation direction
 	animation_tree.set("parameters/Move/blend_position", direction)
 	
