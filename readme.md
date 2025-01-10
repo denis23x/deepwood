@@ -14,6 +14,10 @@
   - Ultimate Pixel Art Pack
 - https://incolgames.itch.io/
   - Dungeon Tile Set
+- https://szadiart.itch.io/
+  - PixelPlatformerSet1v
+- https://dani-maccari.itch.io/
+  - Platformer Items
 
 ### SFX:
 - https://leohpaz.itch.io
@@ -29,3 +33,4 @@
 ### Youtube
 
 - https://youtube.com/shorts/81ZJnEiXC1w?si=tP3YyF__m37J06bB
+- https://www.youtube.com/watch?v=XgbEbtqBuFw

@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6hgch05dvl04"]
+[gd_scene load_steps=8 format=3 uid="uid://mucewqev2cs1"]
 
-[ext_resource type="Script" path="res://scripts/flag.gd" id="1_vic6o"]
-[ext_resource type="Texture2D" uid="uid://bui2gus5arlyc" path="res://assets/sprites/flag/GreenFlag.png" id="3_lbupj"]
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_rhn07"]
+[ext_resource type="Texture2D" uid="uid://cfxkaiobi4ldp" path="res://assets/sprites/items/animated_items.png" id="1_v7t1c"]
+[ext_resource type="AudioStream" uid="uid://bl8aji1w8rygo" path="res://assets/sounds/coin/coin.wav" id="3_naehh"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sjxyx"]
-height = 35.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0ypm"]
+radius = 12.0
 
-[sub_resource type="Animation" id="Animation_hkxe8"]
+[sub_resource type="Animation" id="Animation_q6emv"]
 resource_name = "Idle"
-length = 2.0
+length = 1.6
 loop_mode = 1
-step = 0.25
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -21,7 +22,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_lbupj")]
+"values": [ExtResource("1_v7t1c")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -33,7 +34,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -42,37 +43,37 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_jhnjk"]
+[sub_resource type="Animation" id="Animation_gd7n6"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [ExtResource("1_v7t1c")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_lbupj")]
+"values": [8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -87,30 +88,35 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o4sjy"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxyo0"]
 _data = {
-"Idle": SubResource("Animation_hkxe8"),
-"RESET": SubResource("Animation_jhnjk")
+"Idle": SubResource("Animation_q6emv"),
+"RESET": SubResource("Animation_gd7n6")
 }
 
 [node name="Area2D" type="Area2D"]
 collision_mask = 2
-script = ExtResource("1_vic6o")
+script = ExtResource("1_rhn07")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_lbupj")
-hframes = 3
-vframes = 3
+texture = ExtResource("1_v7t1c")
+hframes = 8
+vframes = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_sjxyx")
+shape = SubResource("CircleShape2D_w0ypm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 active = false
 reset_on_save = false
 libraries = {
-"": SubResource("AnimationLibrary_o4sjy")
+"": SubResource("AnimationLibrary_rxyo0")
 }
-speed_scale = 4.0
+speed_scale = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_naehh")
+volume_db = -10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

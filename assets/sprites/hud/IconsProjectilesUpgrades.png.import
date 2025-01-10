@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3gaxp8wjrljm"
-path="res://.godot/imported/BG_3.png-a757f39afb7636458465a245dad020a5.ctex"
+uid="uid://ciblr55rtcg3b"
+path="res://.godot/imported/IconsProjectilesUpgrades.png-4db820e91b940311c1244fcd1eb72329.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/BG_3.png"
-dest_files=["res://.godot/imported/BG_3.png-a757f39afb7636458465a245dad020a5.ctex"]
+source_file="res://assets/sprites/hud/IconsProjectilesUpgrades.png"
+dest_files=["res://.godot/imported/IconsProjectilesUpgrades.png-4db820e91b940311c1244fcd1eb72329.ctex"]
 
 [params]
 
