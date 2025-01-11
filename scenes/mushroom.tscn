@@ -549,6 +549,7 @@ size = Vector2(11.1875, 34.125)
 position = Vector2(0, -26)
 collision_layer = 4
 script = ExtResource("1_ih1rr")
+speed = 30.0
 animation_state_machine = NodePath("AnimationStateMachine")
 animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")

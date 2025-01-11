@@ -120,7 +120,7 @@ stream = ExtResource("3_tci3p")
 volume_db = -10.0
 
 [node name="Label" type="Label" parent="."]
-z_index = 1
+z_index = 2
 offset_left = -96.0
 offset_top = -32.0
 offset_right = 96.0

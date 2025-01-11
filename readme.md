@@ -18,6 +18,8 @@
   - PixelPlatformerSet1v
 - https://dani-maccari.itch.io/
   - Platformer Items
+- https://brackeysgames.itch.io/
+  - Brackeys Platformer Bundle
 
 ### SFX:
 - https://leohpaz.itch.io
@@ -34,3 +36,4 @@
 
 - https://youtube.com/shorts/81ZJnEiXC1w?si=tP3YyF__m37J06bB
 - https://www.youtube.com/watch?v=XgbEbtqBuFw
+- https://www.youtube.com/watch?v=tjFQlMk4rS8

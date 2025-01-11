@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://scripts/mushroom_projectile.gd" id="1_bplsy"]
 [ext_resource type="Texture2D" uid="uid://bq11o53umm0ms" path="res://assets/sprites/skeleton/Sword_sprite.png" id="2_exuh2"]
-[ext_resource type="Texture2D" uid="uid://dkohmtil66y5m" path="res://assets/sprites/goblin/Bomb_sprite.png" id="3_6u3ln"]
 [ext_resource type="Texture2D" uid="uid://dja6l1r1t8ybx" path="res://assets/sprites/mushroom/Projectile_sprite.png" id="3_kd2xy"]
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="4_vivte"]
+[ext_resource type="AudioStream" uid="uid://dsjumjyg8o066" path="res://assets/sounds/mushroom_projectile/04_Fire_explosion_04_medium.wav" id="5_qgflg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bpe3y"]
-radius = 6.0
+radius = 5.0
 
-[sub_resource type="Animation" id="Animation_8xqp4"]
-resource_name = "Projectile"
-length = 0.7
+[sub_resource type="Animation" id="Animation_ty51i"]
+resource_name = "Hit"
+length = 0.3
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,14 +44,16 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [4, 5, 6]
 }
 
-[sub_resource type="Animation" id="Animation_ty51i"]
-resource_name = "Projectile_2"
+[sub_resource type="Animation" id="Animation_8xqp4"]
+resource_name = "Projectile"
+length = 0.4
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -63,7 +65,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_6u3ln")]
+"values": [ExtResource("3_kd2xy")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -72,10 +74,10 @@ tracks/1/path = NodePath("Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -84,22 +86,10 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Area2D:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_txkpm"]
@@ -140,34 +130,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Area2D:monitoring")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6xkfh"]
 _data = {
+"Hit": SubResource("Animation_ty51i"),
 "Projectile": SubResource("Animation_8xqp4"),
-"Projectile_2": SubResource("Animation_ty51i"),
 "RESET": SubResource("Animation_txkpm")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_capnm"]
-radius = 8.06226
+radius = 7.0
 
 [node name="MushroomProjectile" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_bplsy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_bpe3y")
 
@@ -183,14 +164,17 @@ autoplay = "Projectile"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 6
-monitoring = false
+collision_mask = 2
 script = ExtResource("4_vivte")
-damage = 20.0
+damage = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_capnm")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qgflg")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -37,19 +37,15 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 			animation_state_machine.switch_states(walk)
 	elif anim_name == "Attack_3":
 		var instance: CharacterBody2D = projectile.instantiate()
-		var direction: int = -1 if character_body_2d.direction == 1 else 1
 		
 		instance.name = "Mushroom_Projectile"
 		instance.direction = character_body_2d.direction
-		instance.spawnPosition.x = character_body_2d.global_position.x + 24 * (direction * -1)
-		instance.spawnPosition.y = character_body_2d.global_position.y - 7
+		instance.spawnPosition.x = character_body_2d.global_position.x
+		instance.spawnPosition.y = character_body_2d.global_position.y - get_y_outside_camera()
 		instance.spawnRotation = character_body_2d.rotation
 		instance.spawnScale = character_body_2d.scale
 		
 		get_node("/root/Game").add_child.call_deferred(instance)
-		
-		# Run away from throwed bomb
-		character_body_2d.switch_direction(direction)
 		
 		# Return to default state
 		animation_state_machine.switch_states(walk)
@@ -57,3 +53,12 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 func _on_timer_timeout() -> void:
 	audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
 	audio_stream_player_2d.play()
+	
+func get_y_outside_camera() -> float:
+	var camera: Camera2D = get_node("/root/Game/Player/Camera2D")
+	var camera_position: Vector2 = camera.position
+	var zoom_factor: float = camera.zoom.y
+	var viewport_size: Vector2 = get_viewport().size
+	var camera_visible_height = viewport_size.y / zoom_factor
+	
+	return camera_position.y + camera_visible_height

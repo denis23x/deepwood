@@ -17,7 +17,7 @@ func _on_body_entered(_body: Node2D) -> void:
 	
 	# Play sound
 	audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
-	audio_stream_player_2d.play()
+	audio_stream_player_2d.play(0.25)
 	
 func _on_audio_stream_player_2d_finished() -> void:
 	queue_free()

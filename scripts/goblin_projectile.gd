@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var animation_player: AnimationPlayer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var speed = 50
 var direction: float
@@ -35,5 +36,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Projectile":
 		direction = 0
 		animation_player.play("Projectile_2")
+		
+		# Sound Effect
+		audio_stream_player_2d.pitch_scale = 1.5
+		audio_stream_player_2d.play()
 	elif anim_name == "Projectile_2":
 		queue_free()

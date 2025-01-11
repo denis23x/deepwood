@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/potion.gd" id="1_8n3hf"]
 [ext_resource type="Texture2D" uid="uid://cfxkaiobi4ldp" path="res://assets/sprites/items/animated_items.png" id="2_4qsra"]
-[ext_resource type="AudioStream" uid="uid://bl8aji1w8rygo" path="res://assets/sounds/coin/coin.wav" id="3_cu2js"]
+[ext_resource type="AudioStream" uid="uid://bh4kpv6tyk8qt" path="res://assets/sounds/potion/08_human_charge_1.wav" id="3_qe2ry"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w0ypm"]
 radius = 12.0
@@ -116,8 +116,8 @@ libraries = {
 speed_scale = 2.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_cu2js")
-volume_db = -10.0
+stream = ExtResource("3_qe2ry")
+volume_db = -5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

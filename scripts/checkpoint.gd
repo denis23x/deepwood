@@ -28,8 +28,8 @@ func _on_body_entered(_body: Node2D) -> void:
 	collision_shape_2d.queue_free()
 	
 	# Play sound
-	audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
-	audio_stream_player_2d.play()
+	#audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
+	audio_stream_player_2d.play(0.05)
 	
 func _on_timer_timeout() -> void:
 	label.queue_free()
