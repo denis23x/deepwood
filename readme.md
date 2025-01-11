@@ -20,6 +20,8 @@
   - Platformer Items
 - https://brackeysgames.itch.io/
   - Brackeys Platformer Bundle
+- https://cainos.itch.io/
+  - Pixel Art Platformer - Village Props
 
 ### SFX:
 - https://leohpaz.itch.io
@@ -31,6 +33,14 @@
 ### Ideas
 - http://devmag.org.za/2011/07/04/how-to-design-levels-for-a-platformer/
   - How to design levels for a platformer
+
+### Shaders
+- https://godotshaders.com/author/ephnrora/
+  - Pixel Art Style Shader
+- https://godotshaders.com/author/literallywize/
+  - Simple Sway
+- https://godotshaders.com/author/nadjiel/
+  - Eye Dropper – Palette swapper
 
 ### Youtube
 
