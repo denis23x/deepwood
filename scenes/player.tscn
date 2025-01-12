@@ -803,10 +803,15 @@ stream = ExtResource("23_fgqxp")
 volume_db = -15.0
 panning_strength = 0.0
 
-[node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
+[node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("16_f011e")
+walk = NodePath("../Walk")
 can_move = false
 animation_state_machine = NodePath("..")
+
+[node name="Timer" type="Timer" parent="AnimationStateMachine/Death"]
+wait_time = 2.0
+one_shot = true
 
 [node name="Dash" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("sprite_2d", "walk", "animation_state_machine")]
 script = ExtResource("26_1j0rb")
@@ -890,6 +895,7 @@ dash = NodePath("../AnimationStateMachine/Dash")
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_started"]
 [connection signal="timeout" from="AnimationStateMachine/Jump/Timer" to="AnimationStateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationStateMachine/Block/Timer" to="AnimationStateMachine/Block" method="_on_timer_timeout"]
+[connection signal="timeout" from="AnimationStateMachine/Death/Timer" to="AnimationStateMachine/Death" method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationStateMachine/Dash/Timer" to="AnimationStateMachine/Dash" method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationStateMachine/Dash/Timer2" to="AnimationStateMachine/Dash" method="_on_timer_2_timeout"]
 [connection signal="body_entered" from="AttackArea2D" to="AttackArea2D" method="_on_body_entered"]

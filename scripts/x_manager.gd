@@ -9,12 +9,24 @@ extends Node
 @onready var dash: bool = false
 @onready var dash_h: Panel
 
+# Player
+@onready var player: CharacterBody2D
+@onready var player_position: Vector2
+@onready var player_direction: float
+
 func _ready() -> void:
 	hearts = get_node("/root/Game/Player/Damageable")
 	coins_h = get_node("/root/Game/HUD/%Coins")
 	hearts_h = get_node("/root/Game/HUD/%Hearts")
 	double_jump_h = get_node("/root/Game/HUD/%DoubleJump")
 	dash_h = get_node("/root/Game/HUD/%Dash")
+	
+	# Player
+	player = get_node("/root/Game/Player")
+	
+	# Default respawn
+	player_position = player.global_position
+	player_direction = player.direction
 	
 func handle_pickup(value: String) -> void:
 	match value:
@@ -33,7 +45,7 @@ func handle_pickup(value: String) -> void:
 				handle_health(hearts.health)
 		_:
 			print("Picked up something unknown")
-			
+	
 func handle_health(health: float) -> void:
 	var full_hearts: float = floor(health / 2)
 	var remainder: float = fmod(health, 2.0)
@@ -47,4 +59,14 @@ func handle_health(health: float) -> void:
 			sprite.frame = 1
 		else:
 			sprite.frame = 2
-			
+	
+func handle_checkpoint() -> void:
+	player_position = player.global_position
+	player_direction = player.direction
+	
+func handle_respawn() -> void:
+	hearts.health = 6
+	handle_health(hearts.health)
+	
+	player.global_position = player_position
+	player.switch_direction(player_direction)

@@ -1,0 +1,165 @@
+[gd_scene load_steps=11 format=3 uid="uid://bc445xyd0y24w"]
+
+[ext_resource type="Script" path="res://scripts/saw.gd" id="1_3kaop"]
+[ext_resource type="Texture2D" uid="uid://bqswiidg0h37f" path="res://assets/sprites/saw/BigSawBlades.png" id="1_5c68f"]
+[ext_resource type="Texture2D" uid="uid://dn0r43ii0uqge" path="res://assets/tiles/other_and_decorative.png" id="3_71sfw"]
+[ext_resource type="Shader" path="res://shaders/swap_color.gdshader" id="4_3flwk"]
+[ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="5_kho1f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8tjwt"]
+radius = 12.8
+
+[sub_resource type="Animation" id="Animation_14qd2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5c68f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qho1k"]
+resource_name = "Rotate"
+length = 0.75
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_5c68f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6t0fw"]
+_data = {
+"RESET": SubResource("Animation_14qd2"),
+"Rotate": SubResource("Animation_qho1k")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_646b2"]
+resource_local_to_scene = true
+shader = ExtResource("4_3flwk")
+shader_parameter/new = Color(0.6, 0.6, 0.582, 1)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D"]
+scale = Vector2(1.25, 1.25)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_3kaop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_8tjwt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_6t0fw")
+}
+speed_scale = -3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_646b2")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_5c68f")
+hframes = 3
+frame = 2
+region_rect = Rect2(0, 0, 72, 24)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -12.8)
+texture = ExtResource("3_71sfw")
+hframes = 40
+vframes = 40
+frame = 54
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -25.6)
+texture = ExtResource("3_71sfw")
+hframes = 40
+vframes = 40
+frame = 94
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -1.90735e-06)
+texture = ExtResource("3_71sfw")
+hframes = 40
+vframes = 40
+frame = 136
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_kho1f")
+damage = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_8tjwt")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

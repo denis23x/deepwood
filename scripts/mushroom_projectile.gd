@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var target: CharacterBody2D
+@onready var target_health: xDamageable
 @onready var speed: int = 200
 @onready var direction: float
 @onready var spawnPosition: Vector2
@@ -20,6 +21,7 @@ func _ready() -> void:
 	
 	# Link player
 	target = get_node("/root/Game/Player")
+	target_health = get_node("/root/Game/Player/Damageable")
 	
 func _physics_process(_delta) -> void:
 	var pos: Vector2 = target.position
@@ -30,6 +32,9 @@ func _physics_process(_delta) -> void:
 	
 	velocity = dir * speed
 	
+	if target_health.health <= 0:
+		animation_player.play("Hit")
+		
 	move_and_slide()
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

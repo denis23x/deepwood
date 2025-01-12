@@ -69,5 +69,6 @@ shape = SubResource("RectangleShape2D_b5q41")
 one_way_collision = true
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
