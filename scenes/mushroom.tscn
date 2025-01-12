@@ -608,7 +608,7 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
 stream = ExtResource("15_khiiv")
-volume_db = -5.0
+volume_db = -3.0
 panning_strength = 0.0
 
 [node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("area_2d", "walk", "animation_state_machine")]

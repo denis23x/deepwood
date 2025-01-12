@@ -23,7 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 			if child is xDamageable:
 				target = child
 				
-				animation_state_machine.switch_states(attack)
+				if target and target.health > 0:
+					animation_state_machine.switch_states(attack)
 					
 func _on_body_exited(_body: Node2D) -> void:
 	is_colliding = false
