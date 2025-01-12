@@ -9,58 +9,18 @@ size = Vector2(48, 8)
 [node name="AnimatableBody2D" type="AnimatableBody2D"]
 script = ExtResource("1_frfyo")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(-16, 0)
 texture = ExtResource("1_0bi44")
-hframes = 20
-vframes = 34
-frame = 212
-region_rect = Rect2(189.757, 155.979, 42.7721, 20.2272)
+region_enabled = true
+region_rect = Rect2(192, 160, 48, 16)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("1_0bi44")
-hframes = 20
-vframes = 34
-frame = 213
-region_rect = Rect2(189.757, 155.979, 42.7721, 20.2272)
-
-[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
-position = Vector2(16, 0)
-texture = ExtResource("1_0bi44")
-hframes = 20
-vframes = 34
-frame = 213
-region_rect = Rect2(189.757, 155.979, 42.7721, 20.2272)
-
-[node name="Node2D2" type="Node2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = 1
-
-[node name="Sprite2D4" type="Sprite2D" parent="Node2D2"]
-position = Vector2(-16, -16)
+position = Vector2(0, -12)
 texture = ExtResource("1_0bi44")
-hframes = 20
-vframes = 34
-frame = 192
-region_rect = Rect2(189.757, 155.979, 42.7721, 20.2272)
-
-[node name="Sprite2D5" type="Sprite2D" parent="Node2D2"]
-position = Vector2(0, -16)
-texture = ExtResource("1_0bi44")
-hframes = 20
-vframes = 34
-frame = 193
-region_rect = Rect2(189.757, 155.979, 42.7721, 20.2272)
-
-[node name="Sprite2D6" type="Sprite2D" parent="Node2D2"]
-position = Vector2(16, -16)
-texture = ExtResource("1_0bi44")
-hframes = 20
-vframes = 34
-frame = 193
-region_rect = Rect2(189.757, 155.979, 42.7721, 20.2272)
+region_enabled = true
+region_rect = Rect2(192, 152, 48, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

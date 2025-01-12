@@ -20,8 +20,8 @@
   - Platformer Items
 - https://brackeysgames.itch.io/
   - Brackeys Platformer Bundle
-- https://cainos.itch.io/
-  - Pixel Art Platformer - Village Props
+- https://gandalfhardcore.itch.io/
+  - GandalfHardcore FREE Platformer Assets
 
 ### SFX:
 - https://leohpaz.itch.io
@@ -39,8 +39,10 @@
   - Pixel Art Style Shader
 - https://godotshaders.com/author/literallywize/
   - Simple Sway
-- https://godotshaders.com/author/nadjiel/
-  - Eye Dropper – Palette swapper
+- https://godotshaders.com/author/randomdam/
+  - Color manipulator
+- https://godotshaders.com/author/exuin/
+  - Palette Swap
 
 ### Youtube
 

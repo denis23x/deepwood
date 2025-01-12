@@ -2,7 +2,7 @@ extends AnimatableBody2D
 
 @onready var timer: Timer = $Timer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var node_2d: Node2D = $Node2D
+@onready var sprite_2d_2: Sprite2D = $Sprite2D2
 
 @export var start: Vector2 = Vector2(0, 0)
 @export var finish: Vector2 = Vector2(0, 0)
@@ -17,17 +17,17 @@ func _physics_process(delta: float) -> void:
 		if not done:
 			if finish.x != position.x:
 				position.x += 1
-				node_2d.rotation = 10 * delta
+				sprite_2d_2.rotation = 10 * delta
 			else:
-				node_2d.rotation = 0 
+				sprite_2d_2.rotation = 0 
 				done = true
 				timer.start()
 		else:
 			if start.x != position.x:
 				position.x -= 1
-				node_2d.rotation = -10 * delta
+				sprite_2d_2.rotation = -10 * delta
 			else:
-				node_2d.rotation = 0 
+				sprite_2d_2.rotation = 0 
 				done = false
 				timer.start()
 				

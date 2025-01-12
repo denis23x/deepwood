@@ -126,28 +126,12 @@ hframes = 3
 frame = 2
 region_rect = Rect2(0, 0, 72, 24)
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(0, -12.8)
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -9.53674e-07)
 texture = ExtResource("3_71sfw")
-hframes = 40
-vframes = 40
-frame = 54
-
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
-position = Vector2(0, -25.6)
-texture = ExtResource("3_71sfw")
-hframes = 40
-vframes = 40
-frame = 94
-
-[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
-position = Vector2(0, -1.90735e-06)
-texture = ExtResource("3_71sfw")
-hframes = 40
-vframes = 40
-frame = 136
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(224, 16, 16, 48)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

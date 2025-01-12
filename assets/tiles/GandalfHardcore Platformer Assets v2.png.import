@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2q0gbqgjlitx"
-path="res://.godot/imported/TX Village Props.png-dbf2c5600519851e9eee4136a1e12f81.ctex"
+uid="uid://c3pk3xvmqiqba"
+path="res://.godot/imported/GandalfHardcore Platformer Assets v2.png-d4f2202dfc1d9c9e6f45e4a84f793f81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/TX Village Props.png"
-dest_files=["res://.godot/imported/TX Village Props.png-dbf2c5600519851e9eee4136a1e12f81.ctex"]
+source_file="res://assets/tiles/GandalfHardcore Platformer Assets v2.png"
+dest_files=["res://.godot/imported/GandalfHardcore Platformer Assets v2.png-d4f2202dfc1d9c9e6f45e4a84f793f81.ctex"]
 
 [params]
 
