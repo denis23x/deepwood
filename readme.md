@@ -1,4 +1,14 @@
-# Free Assets
+# Deepwood
+
+![Godot 2D Platformer](./assets/screenshots/screenshot-1.png)
+
+## About
+
+I decided to try making a simple game and I got hooked, it's very exciting to set up all these traps and think through the game design
+
+Another pet project in my collection, a brief game that takes 3–5 minutes to complete, for development download this repository and open the project in Godot
+
+## Used Free Assets
 
 ### 2D Assets:
 - https://xzany.itch.io/
@@ -30,10 +40,6 @@
 - https://voicebosch.itch.io
   - DEATH SOUNDS (Male)
 
-### Ideas
-- http://devmag.org.za/2011/07/04/how-to-design-levels-for-a-platformer/
-  - How to design levels for a platformer
-
 ### Shaders
 - https://godotshaders.com/author/ephnrora/
   - Pixel Art Style Shader
@@ -43,9 +49,3 @@
   - Color manipulator
 - https://godotshaders.com/author/exuin/
   - Palette Swap
-
-### Youtube
-
-- https://youtube.com/shorts/81ZJnEiXC1w?si=tP3YyF__m37J06bB
-- https://www.youtube.com/watch?v=XgbEbtqBuFw
-- https://www.youtube.com/watch?v=tjFQlMk4rS8

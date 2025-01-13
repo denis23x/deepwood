@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="swamp"
+config/name="deepwood"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
