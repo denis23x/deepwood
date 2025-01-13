@@ -1,94 +1,92 @@
-[gd_scene load_steps=8 format=3 uid="uid://co2uiskre10pa"]
+[gd_scene load_steps=17 format=3 uid="uid://co2uiskre10pa"]
 
 [ext_resource type="Texture2D" uid="uid://cihc2ssiagxef" path="res://assets/sprites/torch/RedTorch.png" id="1_gp1td"]
 [ext_resource type="Script" path="res://scripts/torch.gd" id="2_1t5x4"]
 
-[sub_resource type="Animation" id="Animation_ow80q"]
-resource_name = "Idle"
-length = 2.7
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_gp1td")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu245"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(24, 0, 24, 24)
 
-[sub_resource type="Animation" id="Animation_fvxr7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_gp1td")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnyhg"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(48, 0, 24, 24)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1svi"]
-_data = {
-"Idle": SubResource("Animation_ow80q"),
-"RESET": SubResource("Animation_fvxr7")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rp5d"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmnoo"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0buy"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2k3do"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw4fj"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxh7u"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vme3l"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj8c3"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_futfq"]
+atlas = ExtResource("1_gp1td")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7n8ol"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu245")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnyhg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rp5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmnoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0buy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2k3do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw4fj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxh7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vme3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj8c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_futfq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_m5feg"]
 colors = PackedColorArray(1, 0.6, 0.2, 1, 1, 0.6, 0.2, 0)
@@ -102,20 +100,13 @@ fill_to = Vector2(0.9, 0.1)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("2_1t5x4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gp1td")
-hframes = 4
-vframes = 3
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_x1svi")
-}
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7n8ol")
+autoplay = "default"
 speed_scale = 2.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.6, 0.2, 1)
-energy = 1.2
 texture = SubResource("GradientTexture2D_qxqc7")
 
 [node name="Timer" type="Timer" parent="."]

@@ -4,8 +4,7 @@ extends Node2D
 @export var label_position_default: Vector2 = Vector2(0, -40)
 @export var label_position_float: Vector2 = Vector2(0, -20)
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var timer: Timer = $Timer
@@ -13,9 +12,6 @@ extends Node2D
 
 func _ready() -> void:
 	label.visible = false
-	
-	animation_player.active = true
-	animation_player.play("Idle")
 	
 func _process(delta: float) -> void:
 	if not timer.is_stopped():
@@ -42,7 +38,7 @@ func _on_body_entered(_body: Node2D) -> void:
 	label.add_theme_color_override("font_color", Color.CHARTREUSE)
 	timer.start()
 		
-	sprite_2d.queue_free()
+	animated_sprite_2d.queue_free()
 	collision_shape_2d.queue_free()
 	
 	# Play sound

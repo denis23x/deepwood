@@ -6,7 +6,7 @@ class_name Player
 @export var sprite_2d: Sprite2D
 @export var speed: float = 120.0
 @export var area_2d: Area2D
-@export	var direction: float = 0
+@export var direction: float = 0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

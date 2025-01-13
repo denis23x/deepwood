@@ -32,6 +32,8 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
   - Brackeys Platformer Bundle
 - https://gandalfhardcore.itch.io/
   - GandalfHardcore FREE Platformer Assets
+- https://karsiori.itch.io/
+  - Pixel Art Spruce Tree Pack
 
 ### SFX:
 - https://leohpaz.itch.io
@@ -41,11 +43,11 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
   - DEATH SOUNDS (Male)
 
 ### Shaders
-- https://godotshaders.com/author/ephnrora/
-  - Pixel Art Style Shader
-- https://godotshaders.com/author/literallywize/
-  - Simple Sway
 - https://godotshaders.com/author/randomdam/
   - Color manipulator
-- https://godotshaders.com/author/exuin/
-  - Palette Swap
+- https://godotshaders.com/author/timesi/
+  - Swap Color
+- https://godotshaders.com/author/pend00/
+  - God rays
+- https://godotshaders.com/author/scimple/
+  - Vignette Shader

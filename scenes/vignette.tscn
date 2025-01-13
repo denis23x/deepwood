@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1pa25ilu82iw"]
+
+[ext_resource type="Script" path="res://scripts/vignette.gd" id="1_pg2u1"]
+[ext_resource type="Shader" path="res://shaders/player_vignette.gdshader" id="2_0d3ws"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5xfe2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mib5u"]
+shader = ExtResource("2_0d3ws")
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/vignette_opacity = 0.33
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[node name="Vignette" type="Area2D"]
+z_index = 1
+position = Vector2(1712, 272)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_pg2u1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_5xfe2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_mib5u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

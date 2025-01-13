@@ -1,118 +1,87 @@
-[gd_scene load_steps=8 format=3 uid="uid://mucewqev2cs1"]
+[gd_scene load_steps=14 format=3 uid="uid://mucewqev2cs1"]
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_rhn07"]
 [ext_resource type="Texture2D" uid="uid://cfxkaiobi4ldp" path="res://assets/sprites/items/animated_items.png" id="1_v7t1c"]
 [ext_resource type="AudioStream" uid="uid://bl8aji1w8rygo" path="res://assets/sounds/coin/coin.wav" id="3_naehh"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvwtt"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1tj2"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7cvp"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvodn"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esu15"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x178"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t2wa"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wuix"]
+atlas = ExtResource("1_v7t1c")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rp21x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvwtt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1tj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7cvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvodn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esu15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3x178")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t2wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wuix")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_w0ypm"]
 radius = 12.0
-
-[sub_resource type="Animation" id="Animation_q6emv"]
-resource_name = "Idle"
-length = 1.6
-loop_mode = 1
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_v7t1c")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_gd7n6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_v7t1c")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxyo0"]
-_data = {
-"Idle": SubResource("Animation_q6emv"),
-"RESET": SubResource("Animation_gd7n6")
-}
 
 [node name="Area2D" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_rhn07")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_v7t1c")
-hframes = 8
-vframes = 15
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rp21x")
+autoplay = "default"
+speed_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w0ypm")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
-reset_on_save = false
-libraries = {
-"": SubResource("AnimationLibrary_rxyo0")
-}
-speed_scale = 2.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_naehh")

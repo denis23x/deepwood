@@ -31,7 +31,8 @@ window/size/viewport_height=1248
 folder_colors={
 "res://assets/": "blue",
 "res://scenes/": "purple",
-"res://scripts/": "red"
+"res://scripts/": "red",
+"res://shaders/": "green"
 }
 
 [input]

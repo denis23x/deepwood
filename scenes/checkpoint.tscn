@@ -1,119 +1,107 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6hgch05dvl04"]
+[gd_scene load_steps=17 format=3 uid="uid://c6hgch05dvl04"]
 
 [ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_vic6o"]
 [ext_resource type="AudioStream" uid="uid://dfl5basr28ipe" path="res://assets/sounds/checkpoint/02_Heal_02.wav" id="3_jpkxi"]
 [ext_resource type="Texture2D" uid="uid://bui2gus5arlyc" path="res://assets/sprites/flag/GreenFlag.png" id="3_lbupj"]
 [ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="4_ru1if"]
+[ext_resource type="Shader" path="res://shaders/god_rays.gdshader" id="5_17c1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqnja"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(0, 0, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_321c7"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(24, 0, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_838j3"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(48, 0, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vffi8"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(0, 36, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcmky"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(24, 36, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cca15"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(48, 36, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stk1h"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(0, 72, 24, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0ehw"]
+atlas = ExtResource("3_lbupj")
+region = Rect2(24, 72, 24, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ps3yr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqnja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_321c7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_838j3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vffi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcmky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cca15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stk1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0ehw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sjxyx"]
 height = 35.0
 
-[sub_resource type="Animation" id="Animation_hkxe8"]
-resource_name = "Idle"
-length = 2.0
-loop_mode = 1
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_lbupj")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_jhnjk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_lbupj")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o4sjy"]
-_data = {
-"Idle": SubResource("Animation_hkxe8"),
-"RESET": SubResource("Animation_jhnjk")
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pr4q"]
+shader = ExtResource("5_17c1m")
+shader_parameter/angle = 0.0
+shader_parameter/position = 0.0
+shader_parameter/spread = 1.0
+shader_parameter/cutoff = 0.01
+shader_parameter/falloff = 1.0
+shader_parameter/edge_fade = 0.303
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
 
 [node name="Area2D" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_vic6o")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_lbupj")
-hframes = 3
-vframes = 3
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ps3yr")
+autoplay = "default"
+frame = 1
+frame_progress = 0.219072
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_sjxyx")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
-reset_on_save = false
-libraries = {
-"": SubResource("AnimationLibrary_o4sjy")
-}
-speed_scale = 4.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_jpkxi")
@@ -133,6 +121,17 @@ vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+material = SubResource("ShaderMaterial_4pr4q")
+offset_left = -16.0
+offset_top = -21.0
+offset_right = 16.0
+offset_bottom = 29.0
+rotation = 3.14159
+pivot_offset = Vector2(15.9076, 19.5612)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
