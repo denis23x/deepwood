@@ -694,6 +694,7 @@ transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-27.5374, 8.11304)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v2tr1"]
+radius = 12.0416
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d")]
 collision_layer = 2
@@ -852,12 +853,13 @@ damage = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
 shape = SubResource("CircleShape2D_v2tr1")
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "block", "character_body_2d", "animation_state_machine")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "block", "character_body_2d", "animation_state_machine")]
 script = ExtResource("21_e4j2e")
 health = 6.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
+death = NodePath("../AnimationStateMachine/Death")
 block = NodePath("../AnimationStateMachine/Block")
 character_body_2d = NodePath("..")
 knockback = Vector2(400, 0)

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Demon
+class_name Eye
 
 @export var speed: float = 60.0
 @export var animation_state_machine: AnimationStateMachine

@@ -203,6 +203,7 @@ autoplay = "Projectile"
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(6, -3)
 texture = ExtResource("5_umvnt")
+flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

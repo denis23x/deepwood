@@ -4322,13 +4322,13 @@ position = Vector2(1123, 534)
 position = Vector2(1622, 870)
 
 [node name="Eye" parent="Enemies" instance=ExtResource("17_yop7g")]
-position = Vector2(208, 1176)
+position = Vector2(208, 1174)
 
 [node name="Eye2" parent="Enemies" instance=ExtResource("17_yop7g")]
-position = Vector2(1576, 984)
+position = Vector2(1600, 982)
 
 [node name="Eye3" parent="Enemies" instance=ExtResource("17_yop7g")]
-position = Vector2(1880, 392)
+position = Vector2(1812, 390)
 
 [node name="Eye4" parent="Enemies" instance=ExtResource("17_yop7g")]
 position = Vector2(1064, 840)
@@ -4483,7 +4483,7 @@ position = Vector2(1624, 1144)
 
 [node name="Player" parent="." instance=ExtResource("1_l8voc")]
 z_index = 1
-position = Vector2(2008, 264)
+position = Vector2(2494, 263)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 editor_description = "7.5 default for Zoom
@@ -4574,7 +4574,7 @@ visible = false
 [node name="Boss" type="Node" parent="."]
 
 [node name="Demon" parent="Boss" instance=ExtResource("33_51k7f")]
-position = Vector2(2488, 160)
+position = Vector2(2608, 104)
 
 [node name="Area2D" type="Area2D" parent="Boss"]
 

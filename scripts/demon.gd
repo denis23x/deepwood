@@ -1,39 +1,40 @@
 extends CharacterBody2D
-class_name Skeleton
+class_name Demon
 
 @export var speed: float = 60.0
 @export var animation_state_machine: AnimationStateMachine
 @export var animation_tree: AnimationTree
 @export var sprite_2d: Sprite2D
 @export var direction: int = -1 # randi() % 3 - 1
-@export var area_2d_attack_area: Area2D
-@export var area_2d_detect_player: Area2D
-@export var ray_cast_2d: RayCast2D
-@export var ray_cast_2d2: RayCast2D
+@export var attack: AnimationState
 
+@onready var target: xDamageable
+@onready var player: CharacterBody2D
+
+func _ready() -> void:
+	# Link player
+	target = get_node("/root/Game/Player/Damageable")
+	player = get_node("/root/Game/Player")
+	
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	if position.y <= 104:
+		velocity.y += 1000 * delta
+	elif position.y >= 192:
+		velocity.y -= 1000 * delta
 		
-	if not ray_cast_2d.is_colliding() and is_on_floor() or ray_cast_2d2.is_colliding():
+	if position.x + 10 < 2384 or position.x - 10 > 2608:
 		direction = (-1 if direction == 1 else 1)
 		
 	# Handle movement animation direction
 	animation_tree.set("parameters/Move/blend_position", direction)
 	
+	var dir: Vector2 = (player.global_position - global_position).normalized()
+	
 	# Handle movement flip
-	if animation_state_machine.current_state.can_move:
-		if direction < 0:
-			sprite_2d.flip_h = true
-		elif direction > 0:
-			sprite_2d.flip_h = false
-			
-	# Handle attack collision flip
-	area_2d_attack_area.scale.x = direction
-	area_2d_detect_player.scale.x = direction
-	ray_cast_2d.scale.x = direction
-	ray_cast_2d2.scale.x = direction
+	if dir.x < 0:
+		sprite_2d.flip_h = true
+	else:
+		sprite_2d.flip_h = false
 	
 	# Handle movement
 	if direction and animation_state_machine.current_state.can_move:
@@ -43,8 +44,9 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	
-func switch_direction(next_direction: int) -> void:
-	direction = next_direction
+func switch_direction(_next_direction: int) -> void:
+	pass
 	
-	# Handle reverse flip
-	sprite_2d.flip_h = direction < 0
+func _on_timer_timeout() -> void:
+	if target and target.health > 0:
+		animation_state_machine.switch_states(attack)

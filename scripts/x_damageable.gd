@@ -5,6 +5,7 @@ class_name xDamageable
 @export var label: Label
 @export var timer: Timer
 @export var hit: AnimationState
+@export var death: AnimationState
 @export var block: AnimationState
 @export var character_body_2d: CharacterBody2D
 @export var knockback: Vector2 = Vector2(250, 0)
@@ -40,13 +41,14 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 		timer.start()
 		
 		emit_signal("iterrupt_state", block)
-	elif health >= 0:
+	elif health > 0:
 		# Minus HP
 		health -= damage
 		
 		# Handle damage knockback
-		character_body_2d.velocity.x = knockback.x * direction.x
-		
+		if character_body_2d.name != "Demon":
+			character_body_2d.velocity.x = knockback.x * direction.x
+			
 		# Camera shake
 		if character_body_2d.name == "Player":
 			get_tree().create_tween().tween_method(handle_camera_shake, 5.0, 1.0, 0.5)
@@ -58,8 +60,11 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 		label.add_theme_color_override("font_color", Color.CRIMSON)
 		timer.start()
 		
-		emit_signal("iterrupt_state", hit)
-		
+		if health == 0:
+			emit_signal("iterrupt_state", death)
+		else:
+			emit_signal("iterrupt_state", hit)
+			
 	# Handle damage flip
 	character_body_2d.switch_direction((-1 if direction.x == 1 else 1))
 	

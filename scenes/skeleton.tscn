@@ -713,12 +713,13 @@ disabled = true
 visible = false
 polygon = PackedVector2Array(27, 17, 40, 10, 46, -2, 45, -17, 38, -28, 23, -34, 8, -32, -1, -25, -16, -36, -9, -46, 10, -59, 29, -61, 50, -56, 64, -45, 73, -29, 72, -10, 64, 3, 52, 12, 37, 18)
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "block", "character_body_2d", "animation_state_machine")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "block", "character_body_2d", "animation_state_machine")]
 script = ExtResource("14_p77gj")
 health = 2.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
+death = NodePath("../AnimationStateMachine/Death")
 block = NodePath("../AnimationStateMachine/Block")
 character_body_2d = NodePath("..")
 knockback = Vector2(300, 0)
