@@ -16,6 +16,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
+	if ray_cast_2d.get_collider():
+		if ray_cast_2d.get_collider().get("name").begins_with("AnimatableBody2D"):
+			direction = (-1 if direction == 1 else 1)
+		
 	if not ray_cast_2d.is_colliding() and is_on_floor() or ray_cast_2d2.is_colliding():
 		direction = (-1 if direction == 1 else 1)
 		

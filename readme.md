@@ -13,6 +13,7 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
 ### 2D Assets:
 - https://xzany.itch.io/
   - Knight 2D Pixel Art
+  - Flying Demon 2D Pixel Art
 - https://theflavare.itch.io/
   - Fantasy Swamp Forest
 - https://luizmelo.itch.io/
