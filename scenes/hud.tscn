@@ -5,14 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://u0w3xfwyuvfe" path="res://assets/sprites/hud/IconsPowerUps.png" id="3_w6e5n"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-scale = Vector2(5, 5)
-transform = Transform2D(5, 0, 0, 5, 0, 0)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 118.0
-offset_bottom = 74.0
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 158.0
+offset_bottom = 114.0
+scale = Vector2(5, 5)
 theme_override_constants/separation = 8
 
 [node name="Coins" type="Label" parent="VBoxContainer"]
