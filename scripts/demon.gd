@@ -11,18 +11,25 @@ class_name Demon
 @onready var target: xDamageable
 @onready var player: CharacterBody2D
 
+@onready var x_left: int = 2592
+@onready var x_bottom: int = 192
+@onready var x_right: int = 2816
+@onready var x_top: int = 104
+
 func _ready() -> void:
 	# Link player
 	target = get_node("/root/Game/Player/Damageable")
 	player = get_node("/root/Game/Player")
 	
 func _physics_process(delta: float) -> void:
-	if position.y <= 104:
-		velocity.y += 1000 * delta
-	elif position.y >= 192:
-		velocity.y -= 1000 * delta
+	# Move Y
+	if global_position.y <= x_bottom:
+		velocity.y += 10 * delta
+	elif global_position.y >= x_top:
+		velocity.y -= 100 * delta
 		
-	if position.x + 10 < 2384 or position.x - 10 > 2608:
+	# Move X
+	if global_position.x + 10 < x_left or global_position.x - 10 > x_right:
 		direction = (-1 if direction == 1 else 1)
 		
 	# Handle movement animation direction
