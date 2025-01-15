@@ -547,7 +547,7 @@ radius = 11.0454
 radius = 25.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
-size = Vector2(21.375, 52.25)
+size = Vector2(18, 32)
 
 [node name="Eye" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d", "ray_cast_2d2")]
 position = Vector2(0, -26)
@@ -667,7 +667,7 @@ timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
 death = NodePath("../AnimationStateMachine/Death")
 character_body_2d = NodePath("..")
-knockback = Vector2(300, 0)
+knockback = Vector2(100, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]
@@ -697,7 +697,7 @@ ray_cast_2d = NodePath("RayCast2D")
 ray_cast_projectile_2d = NodePath("RayCast2DProjectile")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayerArea2D"]
-position = Vector2(10.3125, 0)
+position = Vector2(9, 10)
 shape = SubResource("RectangleShape2D_sv6c7")
 debug_color = Color(0.984314, 0, 0.337255, 0.0470588)
 

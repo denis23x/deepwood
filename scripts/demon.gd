@@ -7,14 +7,17 @@ class_name Demon
 @export var sprite_2d: Sprite2D
 @export var direction: int = -1 # randi() % 3 - 1
 @export var attack: AnimationState
+@export var direction_change_interval: float = 2.0  # Time in seconds
 
 @onready var target: xDamageable
 @onready var player: CharacterBody2D
-
-@onready var x_left: int = 2592
-@onready var x_bottom: int = 192
-@onready var x_right: int = 2816
-@onready var x_top: int = 104
+@onready var x_left: int = -128
+@onready var x_bottom: int = -40
+@onready var x_right: int = 128
+@onready var x_top: int = -128
+@onready var time_since_change = 0.0
+@onready var damageable: xDamageable = $Damageable
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	# Link player
@@ -22,35 +25,32 @@ func _ready() -> void:
 	player = get_node("/root/Game/Player")
 	
 func _physics_process(delta: float) -> void:
-	# Move Y
-	if global_position.y <= x_bottom:
-		velocity.y += 10 * delta
-	elif global_position.y >= x_top:
-		velocity.y -= 100 * delta
+	if damageable.health > 0:
+		position += velocity * speed * delta
 		
-	# Move X
-	if global_position.x + 10 < x_left or global_position.x - 10 > x_right:
-		direction = (-1 if direction == 1 else 1)
+		# Reverse direction at bounds
+		if position.x <= x_left or position.x >= x_right:
+			velocity.x *= -1
+		if position.y <= x_top or position.y >= x_bottom:
+			velocity.y *= -1
+			
+		# Randomize direction periodically
+		time_since_change += delta
 		
-	# Handle movement animation direction
-	animation_tree.set("parameters/Move/blend_position", direction)
-	
-	var dir: Vector2 = (player.global_position - global_position).normalized()
-	
-	# Handle movement flip
-	if dir.x < 0:
-		sprite_2d.flip_h = true
-	else:
-		sprite_2d.flip_h = false
-	
-	# Handle movement
-	if direction and animation_state_machine.current_state.can_move:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		if time_since_change >= direction_change_interval:
+			velocity = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+			time_since_change = 0.0
+			
+		var dir: Vector2 = (player.global_position - global_position).normalized()
 		
-	move_and_slide()
-	
+		# Handle movement flip
+		if dir.x < 0:
+			sprite_2d.flip_h = true
+			collision_shape_2d.position.x = -8
+		else:
+			sprite_2d.flip_h = false
+			collision_shape_2d.position.x = 8
+		
 func switch_direction(_next_direction: int) -> void:
 	pass
 	

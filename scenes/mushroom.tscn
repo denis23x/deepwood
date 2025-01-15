@@ -543,7 +543,7 @@ transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(160.095, -26.8593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
-size = Vector2(11.1875, 34.125)
+size = Vector2(13.1875, 35.1255)
 
 [node name="Mushroom" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d", "ray_cast_2d2")]
 position = Vector2(0, -26)
@@ -660,7 +660,7 @@ timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
 death = NodePath("../AnimationStateMachine/Death")
 character_body_2d = NodePath("..")
-knockback = Vector2(300, 0)
+knockback = Vector2(200, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]
@@ -690,7 +690,7 @@ ray_cast_2d = NodePath("RayCast2D")
 ray_cast_projectile_2d = NodePath("RayCast2DProjectile")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayerArea2D"]
-position = Vector2(5.40625, 9.063)
+position = Vector2(6.40625, 8.56275)
 shape = SubResource("RectangleShape2D_sv6c7")
 debug_color = Color(0.984314, 0, 0.337255, 0.0470588)
 

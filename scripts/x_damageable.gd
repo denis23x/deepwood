@@ -15,10 +15,12 @@ class_name xDamageable
 @onready var camera_shake_noise: FastNoiseLite
 @onready var label_position_default: Vector2 = label.position
 @onready var label_position_float: Vector2 = label.position
+@onready var h_box_container: HBoxContainer
 
 @warning_ignore("unused_signal") signal iterrupt_state(next_state: AnimationState)
 
-func _ready():
+func _ready() -> void:
+	h_box_container = get_node("/root/Game/Boss/CanvasLayer/Panel/VBoxContainer/HBoxContainer")
 	camera_2d = get_node("/root/Game/Player/Camera2D")
 	camera_shake_noise = FastNoiseLite.new()
 	
@@ -49,6 +51,9 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 		if character_body_2d.name != "Demon":
 			character_body_2d.velocity.x = knockback.x * direction.x
 			
+		if character_body_2d.name == "Demon":
+			handle_health()
+			
 		# Camera shake
 		if character_body_2d.name == "Player":
 			get_tree().create_tween().tween_method(handle_camera_shake, 5.0, 1.0, 0.5)
@@ -61,6 +66,9 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 		timer.start()
 		
 		if health == 0:
+			# Disabled collisions
+			character_body_2d.set_collision_layer_value(2 if character_body_2d.name == "Player" else 3, false)
+			
 			emit_signal("iterrupt_state", death)
 		else:
 			emit_signal("iterrupt_state", hit)
@@ -75,3 +83,16 @@ func handle_camera_shake(intensity: float):
 	
 	camera_2d.offset.x = camera_offset_x + camera_offset
 	camera_2d.offset.y = camera_offset_y + camera_offset
+	
+func handle_health():
+	var panels: Array[Node] = h_box_container.get_children()
+	
+	for i in range(panels.size() - 1, -1, -1):
+		var panel: Panel = panels[i]
+		
+		if panel.get_child_count() >= 2:
+			var second_sprite: Sprite2D = panel.get_child(1)
+			
+			if second_sprite is Sprite2D and second_sprite.visible:
+				second_sprite.visible = false
+				break

@@ -658,7 +658,7 @@ timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
 death = NodePath("../AnimationStateMachine/Death")
 character_body_2d = NodePath("..")
-knockback = Vector2(400, 0)
+knockback = Vector2(500, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Label" type="Label" parent="Damageable"]

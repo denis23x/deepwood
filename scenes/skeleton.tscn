@@ -593,7 +593,7 @@ transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(364.395, -311.235)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
-size = Vector2(32.75, 52.25)
+size = Vector2(29.375, 49.125)
 
 [node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d_attack_area", "area_2d_detect_player", "ray_cast_2d", "ray_cast_2d2")]
 position = Vector2(0, -26)
@@ -752,7 +752,7 @@ ray_cast_2d = NodePath("RayCast2D")
 ray_cast_projectile_2d = NodePath("RayCast2DProjectile")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectPlayerArea2D"]
-position = Vector2(16, 0)
+position = Vector2(14.3125, 1.5625)
 shape = SubResource("RectangleShape2D_sv6c7")
 debug_color = Color(0.984314, 0, 0.337255, 0.0470588)
 

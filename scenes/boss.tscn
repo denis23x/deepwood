@@ -1,0 +1,332 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjrmmj26oycto"]
+
+[ext_resource type="Script" path="res://scripts/boss.gd" id="1_srodq"]
+[ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="2_dkkvg"]
+[ext_resource type="Texture2D" uid="uid://q62cdqn8hiqs" path="res://assets/tiles/GUI_4x_sliced.png" id="3_yhv3r"]
+[ext_resource type="PackedScene" uid="uid://blha0cmjkts11" path="res://scenes/demon.tscn" id="4_5se0t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k3s5"]
+size = Vector2(426.5, 101)
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1_srodq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -40.0
+offset_right = 160.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(162.88, 60)
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_dkkvg")
+theme_override_font_sizes/font_size = 16
+text = "Demon"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(284, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel2"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel2"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel2"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel6" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel6"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel6"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel6"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel7" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel7"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel7"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel7"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel8" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel8"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel8"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel8"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel9" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel9"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel9"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel9"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel10" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel10"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel10"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel10"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel5" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel5"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel5"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel5"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel4"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(320, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel4"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel4"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(32, 20)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel3"]
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(356, 416, 32, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel3"]
+z_index = -1
+position = Vector2(0.0800049, 2)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 500, 32, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer/Panel3"]
+z_index = -2
+position = Vector2(0.0800049, 4)
+texture = ExtResource("3_yhv3r")
+centered = false
+region_enabled = true
+region_rect = Rect2(348, 180, 32, 12)
+
+[node name="Demon" parent="." instance=ExtResource("4_5se0t")]
+position = Vector2(0, -64)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4k3s5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

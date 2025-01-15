@@ -24,3 +24,6 @@ func switch_enemy(character_body_2d: CharacterBody2D) -> void:
 					character_body_2d.queue_free()
 	else:
 		character_body_2d.queue_free()
+		
+		# Remove BOSS
+		character_body_2d.get_parent().queue_free()

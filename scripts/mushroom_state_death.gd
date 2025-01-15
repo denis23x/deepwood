@@ -5,9 +5,6 @@ extends AnimationState
 func on_enter() -> void:
 	playback.travel("Death")
 	
-	# Disabled collisions
-	character_body_2d.set_collision_layer_value(3, false)
-	
 func on_exit() -> void:
 	audio_stream_player_2d.stop()
 	

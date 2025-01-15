@@ -4,7 +4,7 @@ extends Node
 @onready var hearts_h: HBoxContainer
 @onready var coins: int = 0
 @onready var coins_h: Label
-@onready var double_jump: bool = true
+@onready var double_jump: bool = false
 @onready var double_jump_h: Panel
 @onready var dash: bool = false
 @onready var dash_h: Panel

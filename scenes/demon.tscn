@@ -319,14 +319,15 @@ advance_mode = 2
 states/Attack/node = SubResource("AnimationNodeAnimation_luipx")
 states/Attack/position = Vector2(564.48, -111.465)
 states/Death/node = SubResource("AnimationNodeAnimation_c6swx")
-states/Death/position = Vector2(198.875, -262.472)
-states/End/position = Vector2(563.864, 99.2125)
+states/Death/position = Vector2(198.64, -262.472)
+states/End/position = Vector2(564.172, 99.2125)
 states/Hit/node = SubResource("AnimationNodeAnimation_dao7i")
 states/Hit/position = Vector2(198.562, -111.116)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_k7apw")
 states/Move/position = Vector2(378.5, 98.425)
+states/Start/position = Vector2(199.32, 99.6062)
 transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_xlnh7")]
-graph_offset = Vector2(132.269, -171.688)
+graph_offset = Vector2(197.256, -163.461)
 
 [node name="Demon" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "attack")]
 position = Vector2(0, -26)
@@ -338,7 +339,7 @@ sprite_2d = NodePath("Sprite2D")
 attack = NodePath("AnimationStateMachine/Attack")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(8, 4)
 shape = SubResource("CapsuleShape2D_2brdd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -367,9 +368,8 @@ damageable = NodePath("../Damageable")
 script = ExtResource("10_lhfox")
 animation_state_machine = NodePath("..")
 
-[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("damageable", "walk", "death", "animation_state_machine")]
+[node name="Hit" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "death", "animation_state_machine")]
 script = ExtResource("11_rqr3c")
-damageable = NodePath("../../Damageable")
 walk = NodePath("../Walk")
 death = NodePath("../Death")
 can_move = false
@@ -416,7 +416,6 @@ animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine")]
 script = ExtResource("14_p77gj")
-health = 12.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
