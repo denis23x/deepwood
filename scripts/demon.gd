@@ -18,6 +18,7 @@ class_name Demon
 @onready var time_since_change = 0.0
 @onready var damageable: xDamageable = $Damageable
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var h_box_container: HBoxContainer
 
 func _ready() -> void:
 	# Link player
@@ -57,3 +58,19 @@ func switch_direction(_next_direction: int) -> void:
 func _on_timer_timeout() -> void:
 	if target and target.health > 0:
 		animation_state_machine.switch_states(attack)
+		
+func handle_health():
+	if h_box_container == null:
+		h_box_container = get_node("/root/Game/Boss/CanvasLayer/Panel/VBoxContainer/HBoxContainer")
+		
+	var panels: Array[Node] = h_box_container.get_children()
+	
+	for i in range(panels.size() - 1, -1, -1):
+		var panel: Panel = panels[i]
+		
+		if panel.get_child_count() >= 2:
+			var second_sprite: Sprite2D = panel.get_child(1)
+			
+			if second_sprite is Sprite2D and second_sprite.visible:
+				second_sprite.visible = false
+				break

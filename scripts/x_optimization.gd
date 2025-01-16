@@ -1,5 +1,10 @@
 extends Node
 
+@onready var menu: CanvasLayer
+
+func _ready() -> void:
+	menu = get_node("/root/Game/Menu")
+	
 func switch_enemy(character_body_2d: CharacterBody2D) -> void:
 	if character_body_2d.name != "Demon":
 		for child in character_body_2d.get_children():
@@ -23,7 +28,19 @@ func switch_enemy(character_body_2d: CharacterBody2D) -> void:
 					# Free the original enemy instance
 					character_body_2d.queue_free()
 	else:
-		character_body_2d.queue_free()
-		
-		# Remove BOSS
 		character_body_2d.get_parent().queue_free()
+		
+		# Handle finish the game
+		var timer = Timer.new()
+		
+		timer.wait_time = 1.0
+		timer.one_shot = true
+		
+		add_child(timer)
+		
+		timer.connect("timeout", _on_timer_timeout)
+		timer.start()
+		
+func _on_timer_timeout():
+	menu.handle_finish()
+	

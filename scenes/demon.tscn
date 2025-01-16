@@ -377,6 +377,7 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
 stream = ExtResource("13_0or6q")
+max_distance = 4000.0
 panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
@@ -387,6 +388,7 @@ animation_state_machine = NodePath("..")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
 stream = ExtResource("15_efn7f")
 volume_db = -5.0
+max_distance = 4000.0
 panning_strength = 0.0
 
 [node name="Attack" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("sprite_2d", "walk", "animation_state_machine")]
@@ -402,6 +404,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
 stream = ExtResource("4_1oq74")
+max_distance = 4000.0
 panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
@@ -414,7 +417,7 @@ text = "State: Idle"
 script = ExtResource("9_y72uv")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine", "demon")]
 script = ExtResource("14_p77gj")
 label = NodePath("Label")
 timer = NodePath("Timer")
@@ -423,6 +426,7 @@ death = NodePath("../AnimationStateMachine/Death")
 character_body_2d = NodePath("..")
 knockback = Vector2(300, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
+demon = NodePath("..")
 
 [node name="Label" type="Label" parent="Damageable"]
 z_index = 1

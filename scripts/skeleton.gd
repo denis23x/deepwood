@@ -29,11 +29,13 @@ func _physics_process(delta: float) -> void:
 		elif direction > 0:
 			sprite_2d.flip_h = false
 			
+	var scale_x = -1 if sprite_2d.flip_h else 1
+	
 	# Handle attack collision flip
-	area_2d_attack_area.scale.x = direction
-	area_2d_detect_player.scale.x = direction
-	ray_cast_2d.scale.x = direction
-	ray_cast_2d2.scale.x = direction
+	area_2d_attack_area.scale.x = scale_x
+	area_2d_detect_player.scale.x = scale_x
+	ray_cast_2d.scale.x = scale_x
+	ray_cast_2d2.scale.x = scale_x
 	
 	# Handle movement
 	if direction and animation_state_machine.current_state.can_move:

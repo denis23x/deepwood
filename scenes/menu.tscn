@@ -1,60 +1,103 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdul31do5wb6w"]
+[gd_scene load_steps=7 format=3 uid="uid://cdul31do5wb6w"]
 
 [ext_resource type="FontFile" uid="uid://clhe6it2dwr8e" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_ann5p"]
-[ext_resource type="Script" path="res://scripts/menu.gd" id="1_dvqeb"]
+[ext_resource type="Script" path="res://scripts/x_menu.gd" id="1_dvqeb"]
+[ext_resource type="Texture2D" uid="uid://q62cdqn8hiqs" path="res://assets/tiles/GUI_4x_sliced.png" id="2_1qxc5"]
 [ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="2_sn6tt"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex82j"]
+atlas = ExtResource("2_1qxc5")
+region = Rect2(144, 580, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psy7q"]
+atlas = ExtResource("2_1qxc5")
+region = Rect2(0, 544, 32, 32)
+
 [node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_dvqeb")
 
 [node name="Panel" type="Panel" parent="."]
-self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.0
-offset_top = -68.0
-offset_right = 130.0
-offset_bottom = 68.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(5, 5)
-pivot_offset = Vector2(132.996, 66.9427)
-theme_override_constants/separation = 40
+scale = Vector2(3, 3)
+pivot_offset = Vector2(0, 80)
+use_top_left = true
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_ex82j")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_psy7q")
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_ann5p")
 theme_override_font_sizes/font_size = 32
 text = "Deepwood"
+horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_sn6tt")
+theme_override_font_sizes/font_size = 8
+text = "Thank you for playing my game! 
+If you’d like to get in touch, please visit my website. 
+
+https://denis23x.info"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel/CenterContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_sn6tt")
 theme_override_font_sizes/font_size = 16
 text = "Start"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer/VBoxContainer"]
+[node name="Button2" type="Button" parent="Panel/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_sn6tt")
 theme_override_font_sizes/font_size = 16
 text = "Exit"
 
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

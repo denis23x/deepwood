@@ -10,18 +10,17 @@ class_name xDamageable
 @export var character_body_2d: CharacterBody2D
 @export var knockback: Vector2 = Vector2(250, 0)
 @export var animation_state_machine: AnimationStateMachine
+@export var demon: Demon
 
 @onready var camera_2d: Camera2D
 @onready var camera_shake_noise: FastNoiseLite
 @onready var label_position_default: Vector2 = label.position
 @onready var label_position_float: Vector2 = label.position
-@onready var h_box_container: HBoxContainer
 
 @warning_ignore("unused_signal") signal iterrupt_state(next_state: AnimationState)
 
 func _ready() -> void:
-	h_box_container = get_node("/root/Game/Boss/CanvasLayer/Panel/VBoxContainer/HBoxContainer")
-	camera_2d = get_node("/root/Game/Player/Camera2D")
+	camera_2d = get_node("/root/Game/Camera2D")
 	camera_shake_noise = FastNoiseLite.new()
 	
 func _process(delta: float) -> void:
@@ -52,7 +51,7 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 			character_body_2d.velocity.x = knockback.x * direction.x
 			
 		if character_body_2d.name == "Demon":
-			handle_health()
+			demon.handle_health()
 			
 		# Camera shake
 		if character_body_2d.name == "Player":
@@ -65,10 +64,7 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 		label.add_theme_color_override("font_color", Color.CRIMSON)
 		timer.start()
 		
-		if health == 0:
-			# Disabled collisions
-			character_body_2d.set_collision_layer_value(2 if character_body_2d.name == "Player" else 3, false)
-			
+		if health <= 0:
 			emit_signal("iterrupt_state", death)
 		else:
 			emit_signal("iterrupt_state", hit)
@@ -83,16 +79,3 @@ func handle_camera_shake(intensity: float):
 	
 	camera_2d.offset.x = camera_offset_x + camera_offset
 	camera_2d.offset.y = camera_offset_y + camera_offset
-	
-func handle_health():
-	var panels: Array[Node] = h_box_container.get_children()
-	
-	for i in range(panels.size() - 1, -1, -1):
-		var panel: Panel = panels[i]
-		
-		if panel.get_child_count() >= 2:
-			var second_sprite: Sprite2D = panel.get_child(1)
-			
-			if second_sprite is Sprite2D and second_sprite.visible:
-				second_sprite.visible = false
-				break

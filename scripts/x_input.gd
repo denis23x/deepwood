@@ -6,6 +6,7 @@ extends Node
 @export var block: AnimationState
 @export var attack: AnimationState
 @export var dash: AnimationState
+@export var menu: CanvasLayer
 
 var action_in_progress: bool = false
 var key_buffer: Array[String] = []
@@ -14,21 +15,25 @@ var key_buffer_limit: int = 0
 func _ready() -> void:
 	xEventBus.connect("switch_state", switch_state)
 	
+	# Attach menu
+	menu = get_node("/root/Game/Menu")
+	
 func _process(_delta: float) -> void:
-	if not animation_state_machine.current_state.name in ["Hit", "Death"]:
-		if Input.is_action_just_pressed("jump"):
-			handle_action_queue("jump")
-		elif Input.is_action_just_pressed("attack"):
-			handle_action_queue("attack")
-		elif Input.is_action_just_pressed("block"):
-			handle_action_queue("block")
-		elif Input.is_action_just_pressed("dash"):
-			handle_action_queue("dash")
-			
-		# Process buffered inputs if no action is in progress
-		if not action_in_progress and not key_buffer.is_empty():
-			handle_action(key_buffer.pop_front())
-			
+	if not menu.menu.visible:
+		if not animation_state_machine.current_state.name in ["Hit", "Death"]:
+			if Input.is_action_just_pressed("jump"):
+				handle_action_queue("jump")
+			elif Input.is_action_just_pressed("attack"):
+				handle_action_queue("attack")
+			elif Input.is_action_just_pressed("block"):
+				handle_action_queue("block")
+			elif Input.is_action_just_pressed("dash"):
+				handle_action_queue("dash")
+				
+			# Process buffered inputs if no action is in progress
+			if not action_in_progress and not key_buffer.is_empty():
+				handle_action(key_buffer.pop_front())
+				
 func handle_action_queue(key: String) -> void:
 	# Process buffered inputs limit
 	if key_buffer.size() > key_buffer_limit:
@@ -37,7 +42,7 @@ func handle_action_queue(key: String) -> void:
 	# Handle repeated inputs and append
 	if not action_in_progress:
 		handle_action(key)
-	elif (key_buffer.is_empty() or key_buffer.back() != key) and not key in ["attack", "jump"]:
+	elif (key_buffer.is_empty() or key_buffer.back() != key) and not key in ["attack", "jump", "escape"]:
 		key_buffer.append(key)
 		
 func handle_action(action: String) -> void:

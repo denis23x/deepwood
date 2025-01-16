@@ -17,7 +17,7 @@ extends Node
 func get_current_scene_name() -> String:
 	var current_scene = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
 	return current_scene.name if current_scene else "No scene loaded"
-
+	
 func _ready() -> void:
 	hearts = get_node("/root/Game/Player/Damageable")
 	coins_h = get_node("/root/Game/HUD/%Coins")

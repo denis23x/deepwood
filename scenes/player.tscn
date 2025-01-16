@@ -984,7 +984,6 @@ script = ExtResource("8_7weci")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="AttackArea2D" type="Area2D" parent="."]
-position = Vector2(20, -15)
 collision_layer = 0
 collision_mask = 4
 monitoring = false
@@ -993,14 +992,17 @@ damage = 1.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackArea2D"]
 visible = false
-polygon = PackedVector2Array(-52, -9, -44, -1, -28, 7, -12, 7, 4, -1, 4, -9, -12, -1, -28, -1)
+position = Vector2(20, -15)
+polygon = PackedVector2Array(-52, -9, -44, -1, -28, 7, -5, 7, 7, 2, 0, -7, -9, 0, -28, -1)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="AttackArea2D"]
 visible = false
+position = Vector2(19, -15)
 polygon = PackedVector2Array(-44, 7, -28, 15, -4, 15, 12, -1, -4, 7, -28, 7, -36, -1)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="AttackArea2D"]
 visible = false
+position = Vector2(20, -14)
 polygon = PackedVector2Array(-28, -25, -4, -33, 12, -17, 12, -1, 4, 15, -4, 7, 4, -1, 4, -17, -4, -25)
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "block", "character_body_2d", "animation_state_machine")]

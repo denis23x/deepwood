@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=4 uid="uid://d0iqbbqi1yq7x"]
+[gd_scene load_steps=113 format=4 uid="uid://d0iqbbqi1yq7x"]
 
 [ext_resource type="PackedScene" uid="uid://c1crjs37cyq1i" path="res://scenes/player.tscn" id="1_l8voc"]
 [ext_resource type="Script" path="res://scripts/x_game.gd" id="1_ps11s"]
@@ -32,7 +32,6 @@
 [ext_resource type="PackedScene" uid="uid://d1pa25ilu82iw" path="res://scenes/vignette.tscn" id="28_gd2vs"]
 [ext_resource type="Texture2D" uid="uid://cfxkaiobi4ldp" path="res://assets/sprites/items/animated_items.png" id="30_14fps"]
 [ext_resource type="PackedScene" uid="uid://cdul31do5wb6w" path="res://scenes/menu.tscn" id="31_vnunb"]
-[ext_resource type="PackedScene" uid="uid://bjrmmj26oycto" path="res://scenes/boss.tscn" id="33_fuv6s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_01gmg"]
 texture = ExtResource("2_mnox8")
@@ -3750,62 +3749,72 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uwhmu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7the"]
 atlas = ExtResource("30_14fps")
-region = Rect2(0, 128, 32, 32)
+region = Rect2(0, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2u17j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6osfj"]
 atlas = ExtResource("30_14fps")
-region = Rect2(32, 128, 32, 32)
+region = Rect2(32, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vg4oq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqa2s"]
 atlas = ExtResource("30_14fps")
-region = Rect2(64, 128, 32, 32)
+region = Rect2(64, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7pce0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe6ke"]
 atlas = ExtResource("30_14fps")
-region = Rect2(96, 128, 32, 32)
+region = Rect2(96, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_88bm5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n12kr"]
 atlas = ExtResource("30_14fps")
-region = Rect2(128, 128, 32, 32)
+region = Rect2(128, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g873c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuvhh"]
 atlas = ExtResource("30_14fps")
-region = Rect2(160, 128, 32, 32)
+region = Rect2(160, 256, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gwcdy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_etqhm"]
 atlas = ExtResource("30_14fps")
-region = Rect2(192, 128, 32, 32)
+region = Rect2(192, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_700l4"]
+atlas = ExtResource("30_14fps")
+region = Rect2(224, 256, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q8ds4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uwhmu")
+"texture": SubResource("AtlasTexture_u7the")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2u17j")
+"texture": SubResource("AtlasTexture_6osfj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vg4oq")
+"texture": SubResource("AtlasTexture_uqa2s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7pce0")
+"texture": SubResource("AtlasTexture_oe6ke")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_88bm5")
+"texture": SubResource("AtlasTexture_n12kr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g873c")
+"texture": SubResource("AtlasTexture_kuvhh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gwcdy")
+"texture": SubResource("AtlasTexture_etqhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_700l4")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jqhx5"]
+radius = 16.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ps11s")
@@ -4282,6 +4291,22 @@ autoplay = "default"
 frame_progress = 0.838092
 speed_scale = 2.0
 
+[node name="Area2D3" type="Area2D" parent="PickUps"]
+collision_mask = 2
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="PickUps/Area2D3"]
+position = Vector2(2704, 256)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_q8ds4")
+autoplay = "default"
+frame_progress = 0.445464
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUps/Area2D3"]
+position = Vector2(2704, 256)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_jqhx5")
+
 [node name="Checkpoints" type="Node" parent="."]
 
 [node name="Area2D" parent="Checkpoints" instance=ExtResource("4_fr5m6")]
@@ -4380,7 +4405,9 @@ z_index = -1
 position = Vector2(2184, 256)
 scale = Vector2(0.5, 0.5)
 
-[node name="Labels" type="Node" parent="."]
+[node name="Labels" type="Node2D" parent="."]
+visible = false
+z_index = 1
 
 [node name="Label" type="Label" parent="Labels"]
 z_index = -1
@@ -4560,23 +4587,23 @@ motion_mirroring = Vector2(426, 0)
 texture = ExtResource("16_ghobd")
 centered = false
 
-[node name="Player" parent="." instance=ExtResource("1_l8voc")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera_2d", "menu") instance=ExtResource("1_l8voc")]
 z_index = 1
-position = Vector2(2328, 120)
+position = Vector2(56, 232)
+camera_2d = NodePath("../Camera2D")
+camera_2d_attach = true
+menu = NodePath("../Menu")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-unique_name_in_owner = true
+[node name="Camera2D" type="Camera2D" parent="."]
 editor_description = "7.5 default for Zoom
 -60 default offset
 x2496y248 boos fight pos"
+position = Vector2(56, 232)
 offset = Vector2(0, -60)
 zoom = Vector2(7.5, 7.5)
 process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
-
-[node name="Boss" parent="." instance=ExtResource("33_fuv6s")]
-position = Vector2(2704, 232)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0.75, 0.75, 0.75, 1)
@@ -4596,3 +4623,5 @@ visible = false
 
 [node name="Menu" parent="." instance=ExtResource("31_vnunb")]
 visible = false
+
+[connection signal="body_entered" from="PickUps/Area2D3" to="." method="_on_area_2d_3_body_entered"]

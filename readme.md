@@ -35,6 +35,8 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
   - GandalfHardcore FREE Platformer Assets
 - https://karsiori.itch.io/
   - Pixel Art Spruce Tree Pack
+- https://paperhatlizard.itch.io/
+  - Cryo's Mini GUI
 
 ### SFX:
 - https://leohpaz.itch.io

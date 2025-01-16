@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="5_kho1f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8tjwt"]
-radius = 12.8
+radius = 11.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6tttr"]
 shader = ExtResource("4_3flwk")
@@ -74,7 +74,7 @@ one_shot = true
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_kho1f")
-damage = 2.0
+damage = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_8tjwt")
