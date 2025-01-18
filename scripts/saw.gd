@@ -1,7 +1,9 @@
 extends AnimatableBody2D
 
 @onready var timer: Timer = $Timer
+@onready var timer_2: Timer = $Timer2
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var area_2d: xAttackArea = $Area2D
 
 @export var start: Vector2 = Vector2(0, 0)
 @export var finish: Vector2 = Vector2(0, 0)
@@ -28,3 +30,10 @@ func _physics_process(delta: float) -> void:
 				
 func _on_timer_timeout() -> void:
 	timer.stop()
+	
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	area_2d.set_deferred("monitoring", false)
+	timer_2.start()
+	
+func _on_timer_2_timeout() -> void:
+	area_2d.set_deferred("monitoring", true)

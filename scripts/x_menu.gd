@@ -9,6 +9,8 @@ extends CanvasLayer
 @onready var label_2: Label = %Label2
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var texture_rect_2: TextureRect = %TextureRect2
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var game_over: bool = false
 
 func _ready() -> void:
 	hud = get_node("/root/Game/HUD")
@@ -17,7 +19,7 @@ func _ready() -> void:
 	labels = get_node("/root/Game/Labels")
 	
 func _process(_delta: float) -> void:
-	if labels.visible:
+	if labels.visible and not game_over:
 		if Input.is_action_just_pressed("escape"):
 			if not menu.visible:
 				show_menu()
@@ -27,11 +29,13 @@ func _process(_delta: float) -> void:
 func _on_button_pressed() -> void:
 	hide_menu()
 	
+	button.text = "Continue"
+	
 	# Show labels
 	labels.visible = true
 	
-func _on_button_2_pressed() -> void:
-	get_tree().quit()
+	# Start Main music
+	xMusic.handle_music("main")
 	
 func show_menu() -> void:
 	if labels.visible:
@@ -40,6 +44,8 @@ func show_menu() -> void:
 	hud.visible = false
 	menu.visible = true
 	
+	xMusic.fade_in(audio_stream_player_2d)
+	
 func hide_menu() -> void:
 	if labels.visible:
 		get_tree().paused = false
@@ -47,11 +53,21 @@ func hide_menu() -> void:
 	hud.visible = true
 	menu.visible = false
 	
+	# Music
+	xMusic.fade_out(audio_stream_player_2d)
+	
 func handle_finish() -> void:
 	label.text = "You Won!"
 	label_2.visible = true
 	button.visible = false
 	texture_rect.visible = false
 	texture_rect_2.visible = true
+	
+	game_over = true
+	
+	# Change music
+	audio_stream_player_2d.stream = load("res://assets/music/My Walk.mp3")
+	audio_stream_player_2d.set("parameters/looping", false)
+	audio_stream_player_2d.volume_db = 5.0
 	
 	show_menu()

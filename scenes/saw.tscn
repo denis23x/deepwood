@@ -49,7 +49,6 @@ collision_mask = 0
 script = ExtResource("1_3kaop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_8tjwt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -70,13 +69,18 @@ region_rect = Rect2(224, 16, 16, 48)
 wait_time = 0.5
 one_shot = true
 
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_kho1f")
-damage = 20.0
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_8tjwt")
 
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

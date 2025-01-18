@@ -18,6 +18,10 @@ func _on_body_entered(_body: Node2D) -> void:
 	target_vignette_intensity = 2.4
 	transition_time = 0.0
 	
+	xMusic.handle_music("cave")
+	
 func _on_body_exited(_body: Node2D) -> void:
 	target_vignette_intensity = 0.4
 	transition_time = 0.0
+	
+	xMusic.handle_music("main")

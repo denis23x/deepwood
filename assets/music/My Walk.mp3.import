@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpgcsytglqjql"
+path="res://.godot/imported/My Walk.mp3-7c658dba1339062488e8f0ace40d3c5b.mp3str"
+
+[deps]
+
+source_file="res://assets/music/My Walk.mp3"
+dest_files=["res://.godot/imported/My Walk.mp3-7c658dba1339062488e8f0ace40d3c5b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

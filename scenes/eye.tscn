@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
 [ext_resource type="Texture2D" uid="uid://dbytwu7q4qdwi" path="res://assets/sprites/eye/Attack.png" id="3_4unhr"]
 [ext_resource type="Script" path="res://scripts/animation_state_machine.gd" id="3_b0hyp"]
-[ext_resource type="AudioStream" uid="uid://p10n6bgqt7fj" path="res://assets/sounds/skeleton/56_Attack_03.wav" id="4_1oq74"]
 [ext_resource type="Texture2D" uid="uid://c7y08kapl6uso" path="res://assets/sprites/eye/Attack2.png" id="4_lsxoj"]
 [ext_resource type="Texture2D" uid="uid://u1a8tofla2oo" path="res://assets/sprites/eye/Attack3.png" id="5_wapwi"]
 [ext_resource type="Texture2D" uid="uid://d1rvosunyteqy" path="res://assets/sprites/eye/Death.png" id="6_ltp3q"]
@@ -13,13 +12,14 @@
 [ext_resource type="Script" path="res://scripts/animation_state_debug.gd" id="9_y72uv"]
 [ext_resource type="Script" path="res://scripts/eye_state_walk.gd" id="11_lvouu"]
 [ext_resource type="Script" path="res://scripts/eye_state_hit.gd" id="12_8rhjj"]
-[ext_resource type="AudioStream" uid="uid://fgtxw6gix5ot" path="res://assets/sounds/skeleton/03_Claw_03.wav" id="13_0or6q"]
+[ext_resource type="AudioStream" uid="uid://c31g404ayyl3u" path="res://assets/sounds/eye/03_Claw_03.wav" id="12_ba8yi"]
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="13_rp6wr"]
+[ext_resource type="AudioStream" uid="uid://d1l3soab3l88v" path="res://assets/sounds/eye/14_human_death_spin.wav" id="14_enkv7"]
 [ext_resource type="Script" path="res://scripts/eye_state_death.gd" id="14_kakyb"]
 [ext_resource type="Script" path="res://scripts/x_damageable.gd" id="14_p77gj"]
 [ext_resource type="Script" path="res://scripts/x_detect_player.gd" id="15_07p7k"]
-[ext_resource type="AudioStream" uid="uid://c145lgvt56b3i" path="res://assets/sounds/skeleton/11. Death Groan (Male).wav" id="15_efn7f"]
 [ext_resource type="Script" path="res://scripts/eye_state_attack.gd" id="16_4wq55"]
+[ext_resource type="AudioStream" uid="uid://cmkvkp0cmg6la" path="res://assets/sounds/eye/77_flesh_02.wav" id="16_utpth"]
 [ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="23_rkyld"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2brdd"]
@@ -602,7 +602,7 @@ can_move = false
 animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
-stream = ExtResource("13_0or6q")
+stream = ExtResource("12_ba8yi")
 panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("animation_state_machine")]
@@ -611,7 +611,7 @@ can_move = false
 animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
-stream = ExtResource("15_efn7f")
+stream = ExtResource("14_enkv7")
 volume_db = -5.0
 panning_strength = 0.0
 
@@ -627,7 +627,7 @@ wait_time = 0.42
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
-stream = ExtResource("4_1oq74")
+stream = ExtResource("16_utpth")
 panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]

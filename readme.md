@@ -44,6 +44,8 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
   - Minifantasy Dungeon SFX 
 - https://voicebosch.itch.io
   - DEATH SOUNDS (Male)
+- https://tiptoptomcat.itch.io
+  - 8Bit GB Songs Vol 2 MP3 (GB Studio)
 
 ### Shaders
 - https://godotshaders.com/author/randomdam/

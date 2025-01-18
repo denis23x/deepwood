@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
 [ext_resource type="Script" path="res://scripts/animation_state_machine.gd" id="3_b0hyp"]
 [ext_resource type="Texture2D" uid="uid://1mr5p6746tkn" path="res://assets/sprites/demon/DEATH.png" id="3_smikx"]
-[ext_resource type="AudioStream" uid="uid://p10n6bgqt7fj" path="res://assets/sounds/skeleton/56_Attack_03.wav" id="4_1oq74"]
 [ext_resource type="Texture2D" uid="uid://cyrn8xevmlewj" path="res://assets/sprites/demon/HURT.png" id="4_2vfyr"]
 [ext_resource type="Texture2D" uid="uid://cgccy1hrmx2c1" path="res://assets/sprites/demon/IDLE.png" id="5_mqksc"]
 [ext_resource type="Texture2D" uid="uid://1o0rsx1eyusv" path="res://assets/sprites/demon/FLYING.png" id="6_5664c"]
 [ext_resource type="Texture2D" uid="uid://cmpt57vrw8w3x" path="res://assets/sprites/demon/ATTACK.png" id="6_pn3if"]
 [ext_resource type="Script" path="res://scripts/animation_state_debug.gd" id="9_y72uv"]
 [ext_resource type="Script" path="res://scripts/demon_state_walk.gd" id="10_lhfox"]
+[ext_resource type="AudioStream" uid="uid://l4w46r1376lc" path="res://assets/sounds/demon/03_Claw_03.wav" id="11_32kaj"]
 [ext_resource type="Script" path="res://scripts/demon_state_hit.gd" id="11_rqr3c"]
-[ext_resource type="AudioStream" uid="uid://fgtxw6gix5ot" path="res://assets/sounds/skeleton/03_Claw_03.wav" id="13_0or6q"]
+[ext_resource type="AudioStream" uid="uid://dnleum1rfq5ym" path="res://assets/sounds/demon/69_Enemy_death_01.wav" id="13_e3p52"]
 [ext_resource type="Script" path="res://scripts/demon_state_death.gd" id="13_pxrfg"]
 [ext_resource type="Script" path="res://scripts/x_damageable.gd" id="14_p77gj"]
-[ext_resource type="AudioStream" uid="uid://c145lgvt56b3i" path="res://assets/sounds/skeleton/11. Death Groan (Male).wav" id="15_efn7f"]
+[ext_resource type="AudioStream" uid="uid://b4vrjncdxn0jx" path="res://assets/sounds/demon/04_Fire_explosion_04_medium.wav" id="15_ah7dt"]
 [ext_resource type="Script" path="res://scripts/demon_state_attack.gd" id="15_i7esp"]
 [ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="23_rkyld"]
 
@@ -376,7 +376,7 @@ can_move = false
 animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
-stream = ExtResource("13_0or6q")
+stream = ExtResource("11_32kaj")
 max_distance = 4000.0
 panning_strength = 0.0
 
@@ -386,8 +386,8 @@ can_move = false
 animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
-stream = ExtResource("15_efn7f")
-volume_db = -5.0
+stream = ExtResource("13_e3p52")
+volume_db = 5.0
 max_distance = 4000.0
 panning_strength = 0.0
 
@@ -403,7 +403,8 @@ wait_time = 0.42
 one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Attack"]
-stream = ExtResource("4_1oq74")
+stream = ExtResource("15_ah7dt")
+volume_db = 2.0
 max_distance = 4000.0
 panning_strength = 0.0
 
@@ -419,6 +420,7 @@ animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine", "demon")]
 script = ExtResource("14_p77gj")
+health = 1.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")

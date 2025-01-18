@@ -14,7 +14,7 @@ func on_exit() -> void:
 	
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	if anim_name == "Hit":
-		audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
+		audio_stream_player_2d.pitch_scale = randf_range(1.0, 1.25)
 		audio_stream_player_2d.play()
 	
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:

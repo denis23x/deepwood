@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c3iynwde55iw3"
+path="res://.godot/imported/Where Have the Flowers Gone.mp3-d8a4b8f4bd29c7a5ac1f87f4df36c0ad.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Where Have the Flowers Gone.mp3"
+dest_files=["res://.godot/imported/Where Have the Flowers Gone.mp3-d8a4b8f4bd29c7a5ac1f87f4df36c0ad.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

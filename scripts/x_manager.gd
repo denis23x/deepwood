@@ -8,6 +8,7 @@ extends Node
 @onready var double_jump_h: Panel
 @onready var dash: bool = false
 @onready var dash_h: Panel
+@onready var area_2d_3: Area2D
 
 # Player
 @onready var player: CharacterBody2D
@@ -24,9 +25,12 @@ func _ready() -> void:
 	hearts_h = get_node("/root/Game/HUD/%Hearts")
 	double_jump_h = get_node("/root/Game/HUD/%DoubleJump")
 	dash_h = get_node("/root/Game/HUD/%Dash")
-	
+
 	# Player
 	player = get_node("/root/Game/Player")
+	
+	# Boss spawn
+	area_2d_3 = get_node("/root/Game/PickUps/Area2D3")
 	
 	# Default respawn
 	player_position = player.global_position
@@ -44,9 +48,8 @@ func handle_pickup(value: String) -> void:
 			dash = true
 			dash_h.visible = dash
 		"potion":
-			if hearts.health + 2 <= 6:
-				hearts.health += 2
-				handle_health(hearts.health)
+			hearts.health = 6.0 if hearts.health + 2.0 >= 6 else hearts.health + 2.0
+			handle_health(hearts.health)
 		_:
 			print("Picked up something unknown")
 	
@@ -74,3 +77,16 @@ func handle_respawn() -> void:
 	
 	player.global_position = player_position
 	player.switch_direction(player_direction)
+	
+	if has_node("/root/Game/Boss"):
+		player.camera_2d_attach = true
+		
+		# Restore Summon
+		area_2d_3.visible = true
+		area_2d_3.monitoring = true
+		
+		# Remove boss
+		get_node("/root/Game/Boss").queue_free()
+		
+		# Change music
+		xMusic.handle_music("main")

@@ -10,7 +10,7 @@ func on_exit() -> void:
 	
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	if anim_name == "Death":
-		audio_stream_player_2d.play(0.15)
+		audio_stream_player_2d.play(0.65)
 		
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Death":

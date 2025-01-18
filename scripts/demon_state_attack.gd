@@ -12,7 +12,7 @@ func on_enter() -> void:
 	
 func on_exit() -> void:
 	timer.stop()
-	audio_stream_player_2d.stop()
+	#audio_stream_player_2d.stop()
 	
 func _on_animation_tree_animation_started(anim_name: StringName) -> void:
 	if anim_name in ["Attack"]:

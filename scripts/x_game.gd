@@ -8,6 +8,8 @@ extends Node2D
 @onready var area_2d_3: Area2D = $PickUps/Area2D3
 @onready var menu: CanvasLayer = $Menu
 @onready var vignette: CanvasLayer = $Vignette/CanvasLayer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $PickUps/Area2D3/AudioStreamPlayer2D
+@onready var player: Player = $Player
 
 func _ready() -> void:
 	menu.show_menu()
@@ -33,7 +35,16 @@ func update_node(node):
 		update_node(child)
 		
 func _on_area_2d_3_body_entered(_body: Node2D) -> void:
-	area_2d_3.queue_free()
+	area_2d_3.set_deferred("visible", false)
+	area_2d_3.set_deferred("monitoring", false)
+	audio_stream_player_2d.play()
+	
+	var damageable: xDamageable = player.get_node("Damageable")
+	
+	get_tree().create_tween().tween_method(damageable.handle_camera_shake, 5.0, 1.0, 2.0)
+	
+	# Change music
+	xMusic.handle_music("boss")
 	
 	# Spawn
 	var instance: Node2D = boss.instantiate()

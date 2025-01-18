@@ -843,6 +843,7 @@ script = ExtResource("1_ph7ag")
 animation_state_machine = NodePath("AnimationStateMachine")
 animation_tree = NodePath("AnimationTree")
 sprite_2d = NodePath("Sprite2D")
+speed = 130.0
 area_2d = NodePath("AttackArea2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -942,7 +943,7 @@ animation_state_machine = NodePath("..")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Hit"]
 stream = ExtResource("23_fgqxp")
-volume_db = -15.0
+volume_db = -12.5
 panning_strength = 0.0
 
 [node name="Death" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
