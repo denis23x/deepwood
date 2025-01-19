@@ -1,12 +1,12 @@
 extends Node
 
-@export var animation_state_machine: AnimationStateMachine
-@export var character_body_2d: CharacterBody2D
-@export var jump: AnimationState
-@export var block: AnimationState
-@export var attack: AnimationState
-@export var dash: AnimationState
-@export var menu: CanvasLayer
+@onready var animation_state_machine: AnimationStateMachine
+@onready var character_body_2d: CharacterBody2D
+@onready var jump: AnimationState
+@onready var block: AnimationState
+@onready var attack: AnimationState
+@onready var dash: AnimationState
+@onready var menu: CanvasLayer
 
 var action_in_progress: bool = false
 var key_buffer: Array[String] = []
@@ -15,7 +15,12 @@ var key_buffer_limit: int = 0
 func _ready() -> void:
 	xEventBus.connect("switch_state", switch_state)
 	
-	# Attach menu
+	animation_state_machine = get_node("/root/Game/Player/AnimationStateMachine")
+	character_body_2d = get_node("/root/Game/Player")
+	jump = get_node("/root/Game/Player/AnimationStateMachine/Jump")
+	block = get_node("/root/Game/Player/AnimationStateMachine/Block")
+	attack = get_node("/root/Game/Player/AnimationStateMachine/Attack")
+	dash = get_node("/root/Game/Player/AnimationStateMachine/Dash")
 	menu = get_node("/root/Game/Menu")
 	
 func _process(_delta: float) -> void:
@@ -29,6 +34,8 @@ func _process(_delta: float) -> void:
 				handle_action_queue("block")
 			elif Input.is_action_just_pressed("dash"):
 				handle_action_queue("dash")
+			elif Input.is_action_just_pressed("down"):
+				handle_action_queue("down")
 				
 			# Process buffered inputs if no action is in progress
 			if not action_in_progress and not key_buffer.is_empty():
@@ -51,12 +58,8 @@ func handle_action(action: String) -> void:
 	match action:
 		"jump":
 			if character_body_2d.is_on_floor():
-				if Input.is_action_pressed("move_down"):
-					character_body_2d.position.y += 1
-					action_in_progress = false
-				else:
-					animation_state_machine.switch_states(jump)
-					
+				animation_state_machine.switch_states(jump)
+				
 			# Do not iterrupt the state to allow to do double jump
 			elif animation_state_machine.current_state.name not in ["Jump", "Fall"]:
 				animation_state_machine.switch_states(jump)
@@ -65,6 +68,10 @@ func handle_action(action: String) -> void:
 				# Do not iterrupt the state to allow to do combo attacks
 				if animation_state_machine.current_state.name != "Attack":
 					animation_state_machine.switch_states(attack)
+		"down":
+			if character_body_2d.is_on_floor():
+				character_body_2d.position.y += 1
+				action_in_progress = false
 		"block":
 			if character_body_2d.is_on_floor():
 				animation_state_machine.switch_states(block)

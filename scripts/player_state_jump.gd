@@ -4,7 +4,7 @@ extends AnimationState
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 @onready var timer: Timer = $Timer
-@onready var instance = Sprite2D
+@onready var instance: Node2D
 
 @export var walk: AnimationState
 @export var jump_velocity: float = -300.0
@@ -43,6 +43,9 @@ func handle_jump_effect() -> void:
 	audio_stream_player_2d.play()
 	audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
 	
+	if not instance == null:
+		_on_timer_timeout()
+		
 	instance = jump_effect.instantiate()
 	instance.name = "Player_Jump_Effect"
 	instance.global_position = character_body_2d.global_position
@@ -53,7 +56,7 @@ func handle_jump_effect() -> void:
 	timer.start()
 	
 	# Append to scene
-	get_node("/root/Game").add_child.call_deferred(instance)
+	get_node("/root/Game").add_child(instance)
 	
 func _on_timer_timeout() -> void:
 	instance.queue_free()

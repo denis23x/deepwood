@@ -18,6 +18,9 @@ func _ready() -> void:
 	camera_2d = get_node("/root/Game/Camera2D")
 	labels = get_node("/root/Game/Labels")
 	
+	# Loop
+	audio_stream_player_2d.connect("finished", _on_AudioStreamPlayer2D_finished)
+	
 func _process(_delta: float) -> void:
 	if labels.visible and not game_over:
 		if Input.is_action_just_pressed("escape"):
@@ -37,13 +40,14 @@ func _on_button_pressed() -> void:
 	# Start Main music
 	xMusic.handle_music("main")
 	
-func show_menu() -> void:
+func show_menu(volume_db = -5.0) -> void:
 	if labels.visible:
 		get_tree().paused = true
 		
 	hud.visible = false
 	menu.visible = true
 	
+	audio_stream_player_2d.volume_db = volume_db
 	xMusic.fade_in(audio_stream_player_2d)
 	
 func hide_menu() -> void:
@@ -53,7 +57,7 @@ func hide_menu() -> void:
 	hud.visible = true
 	menu.visible = false
 	
-	# Music
+	audio_stream_player_2d.volume_db = -5.0
 	xMusic.fade_out(audio_stream_player_2d)
 	
 func handle_finish() -> void:
@@ -67,7 +71,9 @@ func handle_finish() -> void:
 	
 	# Change music
 	audio_stream_player_2d.stream = load("res://assets/music/My Walk.mp3")
-	audio_stream_player_2d.set("parameters/looping", false)
-	audio_stream_player_2d.volume_db = 5.0
+	audio_stream_player_2d.disconnect("finished", _on_AudioStreamPlayer2D_finished)
 	
-	show_menu()
+	show_menu(5.0)
+	
+func _on_AudioStreamPlayer2D_finished() -> void:
+	audio_stream_player_2d.play()

@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.		
 	if not menu.menu.visible:
 		if animation_state_machine.current_state.can_move:
-			direction = Input.get_axis("move_left", "move_right")
+			direction = Input.get_axis("left", "right")
 		
 	# Handle movement animation direction
 	animation_tree.set("parameters/Move/blend_position", direction)

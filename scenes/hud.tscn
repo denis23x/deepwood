@@ -11,7 +11,7 @@ offset_left = 60.0
 offset_top = 60.0
 offset_right = 158.0
 offset_bottom = 114.0
-scale = Vector2(5, 5)
+scale = Vector2(4, 4)
 theme_override_constants/separation = 8
 
 [node name="Coins" type="Label" parent="VBoxContainer"]

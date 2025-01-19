@@ -420,7 +420,6 @@ animation_state_machine = NodePath("../AnimationStateMachine")
 
 [node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine", "demon")]
 script = ExtResource("14_p77gj")
-health = 1.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")

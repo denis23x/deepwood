@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c1crjs37cyq1i"]
+[gd_scene load_steps=73 format=3 uid="uid://c1crjs37cyq1i"]
 
 [ext_resource type="Texture2D" uid="uid://hfx6ka7aihlm" path="res://assets/sprites/player/IDLE.png" id="1_fry4q"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ph7ag"]
@@ -26,7 +26,6 @@
 [ext_resource type="AudioStream" uid="uid://58ttt6a5mc61" path="res://assets/sounds/player/07_human_atk_sword_3.wav" id="20_pvfq1"]
 [ext_resource type="Script" path="res://scripts/x_attack_area.gd" id="20_s75ah"]
 [ext_resource type="Script" path="res://scripts/x_damageable.gd" id="21_e4j2e"]
-[ext_resource type="Script" path="res://scripts/x_input.gd" id="22_n86mc"]
 [ext_resource type="AudioStream" uid="uid://bi4q7xeh1hrln" path="res://assets/sounds/player/39_Block_03.wav" id="22_nlr3f"]
 [ext_resource type="AudioStream" uid="uid://bhtdonb7xxl4d" path="res://assets/sounds/player/14. Damage Grunt (Male).wav" id="23_fgqxp"]
 [ext_resource type="Script" path="res://scripts/player_state_dash.gd" id="26_1j0rb"]
@@ -1033,15 +1032,6 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="Damageable"]
 wait_time = 0.2
 one_shot = true
-
-[node name="Node" type="Node" parent="." node_paths=PackedStringArray("animation_state_machine", "character_body_2d", "jump", "block", "attack", "dash")]
-script = ExtResource("22_n86mc")
-animation_state_machine = NodePath("../AnimationStateMachine")
-character_body_2d = NodePath("..")
-jump = NodePath("../AnimationStateMachine/Jump")
-block = NodePath("../AnimationStateMachine/Block")
-attack = NodePath("../AnimationStateMachine/Attack")
-dash = NodePath("../AnimationStateMachine/Dash")
 
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Block" method="_on_animation_tree_animation_finished"]

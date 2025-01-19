@@ -48,7 +48,7 @@ func handle_pickup(value: String) -> void:
 			dash = true
 			dash_h.visible = dash
 		"potion":
-			hearts.health = 6.0 if hearts.health + 2.0 >= 6 else hearts.health + 2.0
+			hearts.on_heal(2.0)
 			handle_health(hearts.health)
 		_:
 			print("Picked up something unknown")

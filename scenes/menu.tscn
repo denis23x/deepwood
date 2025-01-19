@@ -39,7 +39,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 pivot_offset = Vector2(0, 80)
 use_top_left = true
 
@@ -99,6 +99,5 @@ stream = ExtResource("5_1wc1y")
 volume_db = -5.0
 max_distance = 4000.0
 panning_strength = 0.0
-parameters/looping = true
 
 [connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

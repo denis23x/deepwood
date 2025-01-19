@@ -32,13 +32,21 @@ func _on_timer_timeout() -> void:
 	label.position = label_position_default
 	timer.stop()
 	
+func on_heal(heal: float) -> void:
+	health = 6.0 if health + heal >= 6 else health + heal
+	label.text = "+" + str(heal) if health < 6 else "Full"
+	label.add_theme_color_override("font_color", Color.CHARTREUSE)
+	timer.wait_time = 0.4
+	timer.start()
+	
 func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> void:
 	if health > 0 and (can_block or animation_state_machine.current_state.name == "Block"):
 		if character_body_2d.name == "Player":
 			animation_state_machine.current_state.handle_block_effect()
 				
 		label.text = "Block"
-		label.add_theme_color_override("font_color", Color.CHARTREUSE)
+		label.add_theme_color_override("font_color", Color.ORANGE)
+		timer.wait_time = 0.2
 		timer.start()
 		
 		emit_signal("iterrupt_state", block)
@@ -62,6 +70,7 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 			
 		label.text = "-" + str(damage)
 		label.add_theme_color_override("font_color", Color.CRIMSON)
+		timer.wait_time = 0.2
 		timer.start()
 		
 		if health <= 0:

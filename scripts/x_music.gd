@@ -7,6 +7,7 @@ extends Node
 
 func _ready() -> void:
 	audio_stream_player_2d = get_node("/root/Game/AudioStreamPlayer2D")
+	audio_stream_player_2d.connect("finished", _on_AudioStreamPlayer2D_finished)
 	
 func fade_out(player: AudioStreamPlayer2D) -> void:
 	var elapsed_time: float = 0.0
@@ -45,8 +46,11 @@ func handle_music(music: String) -> void:
 			audio_stream_player_2d.stream =  load("res://assets/music/Herding Cats.mp3")
 			audio_stream_player_2d.volume_db = 2.5
 		
-	# Debug
-	audio_stream_player_2d.volume_db = -80.0
+	# TODO: debug
+	#audio_stream_player_2d.volume_db = -80.0
 	
 	# Play
 	fade_in(audio_stream_player_2d)
+	
+func _on_AudioStreamPlayer2D_finished() -> void:
+	audio_stream_player_2d.play()
