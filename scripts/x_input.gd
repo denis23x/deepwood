@@ -61,8 +61,12 @@ func handle_action(action: String) -> void:
 				animation_state_machine.switch_states(jump)
 				
 			# Do not iterrupt the state to allow to do double jump
-			elif animation_state_machine.current_state.name not in ["Jump", "Fall"]:
-				animation_state_machine.switch_states(jump)
+			elif animation_state_machine.current_state.name != "Jump":
+				if animation_state_machine.current_state.name == "Fall":
+					if animation_state_machine.current_state.coyote_time:
+						animation_state_machine.switch_states(jump)
+				else:
+					animation_state_machine.switch_states(jump)
 		"attack":
 			if character_body_2d.is_on_floor():
 				# Do not iterrupt the state to allow to do combo attacks

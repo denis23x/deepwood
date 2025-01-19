@@ -880,6 +880,10 @@ script = ExtResource("9_jhlsc")
 walk = NodePath("../Walk")
 animation_state_machine = NodePath("..")
 
+[node name="Timer" type="Timer" parent="AnimationStateMachine/Fall"]
+wait_time = 0.2
+one_shot = true
+
 [node name="Jump" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("8_wdluq")
 walk = NodePath("../Walk")
@@ -1038,6 +1042,7 @@ one_shot = true
 [connection signal="animation_finished" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Attack" method="_on_animation_tree_animation_started"]
 [connection signal="animation_started" from="AnimationTree" to="AnimationStateMachine/Hit" method="_on_animation_tree_animation_started"]
+[connection signal="timeout" from="AnimationStateMachine/Fall/Timer" to="AnimationStateMachine/Fall" method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationStateMachine/Jump/Timer" to="AnimationStateMachine/Jump" method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationStateMachine/Block/Timer" to="AnimationStateMachine/Block" method="_on_timer_timeout"]
 [connection signal="timeout" from="AnimationStateMachine/Death/Timer" to="AnimationStateMachine/Death" method="_on_timer_timeout"]

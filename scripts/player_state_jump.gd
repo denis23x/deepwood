@@ -50,7 +50,13 @@ func handle_jump_effect() -> void:
 	instance.name = "Player_Jump_Effect"
 	instance.global_position = character_body_2d.global_position
 	instance.get_node("Sprite2D").flip_h = (true if character_body_2d.direction != 1 else false)
-	instance.get_node("AnimationPlayer").play("Jump_Effect" if double_jump else "Jump_Effect_2")
+	
+	await get_tree().process_frame
+	
+	if character_body_2d.is_on_floor():
+		instance.get_node("AnimationPlayer").play("Jump_Effect")
+	else:
+		instance.get_node("AnimationPlayer").play("Jump_Effect_2")
 	
 	# Lifetime
 	timer.start()
