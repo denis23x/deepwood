@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://pv15sojvfrl6"]
+
+[ext_resource type="Texture2D" uid="uid://cktypltsgkhk8" path="res://assets/tiles/Dungeon Tile Set.png" id="1_2xv04"]
+[ext_resource type="Script" path="res://scripts/x_destructible.gd" id="1_lrqv6"]
+[ext_resource type="Texture2D" uid="uid://b7jktcp3ywtwy" path="res://assets/sprites/barrel/projectile_sprite.png" id="2_kpfgy"]
+[ext_resource type="AudioStream" uid="uid://dkw3bnpfx7taf" path="res://assets/sounds/barrel/15_Impact_flesh_02.wav" id="4_s80w1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ismuo"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyo7n"]
+atlas = ExtResource("2_kpfgy")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7ckc"]
+atlas = ExtResource("2_kpfgy")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f1ut"]
+atlas = ExtResource("2_kpfgy")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20e78"]
+atlas = ExtResource("2_kpfgy")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1w3u"]
+atlas = ExtResource("2_kpfgy")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jg63a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyo7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7ckc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f1ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20e78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1w3u")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="StaticBody2D" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d", "animated_sprite_2d", "audio_stream_player_2d")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_lrqv6")
+sprite_2d = NodePath("Sprite2D")
+animated_sprite_2d = NodePath("AnimatedSprite2D")
+audio_stream_player_2d = NodePath("AudioStreamPlayer2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ismuo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2xv04")
+region_enabled = true
+region_rect = Rect2(160, 192, 16, 16)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_jg63a")
+frame = 1
+frame_progress = 0.344004
+speed_scale = 1.25
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_s80w1")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
