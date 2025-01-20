@@ -59,19 +59,14 @@ func handle_action(action: String) -> void:
 		"jump":
 			if character_body_2d.is_on_floor():
 				animation_state_machine.switch_states(jump)
-				
-			# Do not iterrupt the state to allow to do double jump
-			elif animation_state_machine.current_state.name != "Jump":
-				if animation_state_machine.current_state.name == "Fall":
-					if animation_state_machine.current_state.coyote_time:
-						animation_state_machine.switch_states(jump)
-				else:
+			else:
+				if animation_state_machine.current_state.name == "Fall" and animation_state_machine.current_state.coyote_time:
 					animation_state_machine.switch_states(jump)
+				else:
+					action_in_progress = false
 		"attack":
 			if character_body_2d.is_on_floor():
-				# Do not iterrupt the state to allow to do combo attacks
-				if animation_state_machine.current_state.name != "Attack":
-					animation_state_machine.switch_states(attack)
+				animation_state_machine.switch_states(attack)
 		"down":
 			if character_body_2d.is_on_floor():
 				character_body_2d.position.y += 1
@@ -81,11 +76,10 @@ func handle_action(action: String) -> void:
 				animation_state_machine.switch_states(block)
 		"dash":
 			if xManager.dash:
-				if character_body_2d.is_on_floor():
-					if character_body_2d.direction != 0:
-						animation_state_machine.switch_states(dash)
-					else:
-						action_in_progress = false
+				if character_body_2d.is_on_floor() and character_body_2d.direction != 0:
+					animation_state_machine.switch_states(dash)
+				else:
+					action_in_progress = false
 			else:
 				action_in_progress = false
 				

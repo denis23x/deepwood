@@ -2,6 +2,7 @@ extends Node
 
 @onready var hearts: xDamageable
 @onready var hearts_h: HBoxContainer
+@onready var fps: Label
 @onready var coins: int = 0
 @onready var coins_h: Label
 @onready var double_jump: bool = false
@@ -9,18 +10,16 @@ extends Node
 @onready var dash: bool = false
 @onready var dash_h: Panel
 @onready var area_2d_3: Area2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D
 
 # Player
 @onready var player: CharacterBody2D
 @onready var player_position: Vector2
 @onready var player_direction: float
 
-func get_current_scene_name() -> String:
-	var current_scene = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
-	return current_scene.name if current_scene else "No scene loaded"
-	
 func _ready() -> void:
 	hearts = get_node("/root/Game/Player/Damageable")
+	fps = get_node("/root/Game/HUD/%Fps")
 	coins_h = get_node("/root/Game/HUD/%Coins")
 	hearts_h = get_node("/root/Game/HUD/%Hearts")
 	double_jump_h = get_node("/root/Game/HUD/%DoubleJump")
@@ -28,6 +27,7 @@ func _ready() -> void:
 
 	# Player
 	player = get_node("/root/Game/Player")
+	audio_stream_player_2d = get_node("/root/Game/Player/AnimationStateMachine/Walk/AudioStreamPlayer2D")
 	
 	# Boss spawn
 	area_2d_3 = get_node("/root/Game/PickUps/Area2D3")
@@ -35,6 +35,9 @@ func _ready() -> void:
 	# Default respawn
 	player_position = player.global_position
 	player_direction = player.direction
+	
+func _process(_delta: float) -> void:
+	fps.text = "FPS: " + str(Engine.get_frames_per_second())
 	
 func handle_pickup(value: String) -> void:
 	match value:
@@ -77,6 +80,10 @@ func handle_respawn() -> void:
 	
 	player.global_position = player_position
 	player.switch_direction(player_direction)
+	
+	# Play sound
+	#audio_stream_player_2d.pitch_scale = randf_range(0.75, 1.25)
+	audio_stream_player_2d.play(0.05)
 	
 	if has_node("/root/Game/Boss"):
 		player.camera_2d_attach = true

@@ -43,13 +43,14 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 	if health > 0 and (can_block or animation_state_machine.current_state.name == "Block"):
 		if character_body_2d.name == "Player":
 			animation_state_machine.current_state.handle_block_effect()
-				
+		else:
+			emit_signal("iterrupt_state", block)
+			
 		label.text = "Block"
 		label.add_theme_color_override("font_color", Color.ORANGE)
 		timer.wait_time = 0.2
 		timer.start()
 		
-		emit_signal("iterrupt_state", block)
 	elif health > 0:
 		# Minus HP
 		health -= damage

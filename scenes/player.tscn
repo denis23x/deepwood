@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c1crjs37cyq1i"]
+[gd_scene load_steps=75 format=3 uid="uid://c1crjs37cyq1i"]
 
 [ext_resource type="Texture2D" uid="uid://hfx6ka7aihlm" path="res://assets/sprites/player/IDLE.png" id="1_fry4q"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ph7ag"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://p7q4ynbjgier" path="res://assets/sprites/player/HURT.png" id="9_wl0rm"]
 [ext_resource type="Texture2D" uid="uid://c46yf36whgwr5" path="res://assets/sprites/player/DEATH.png" id="10_p7wl5"]
 [ext_resource type="Script" path="res://scripts/player_state_attack.gd" id="11_7p8a6"]
+[ext_resource type="AudioStream" uid="uid://b6yryunge7yk8" path="res://assets/sounds/player/02_Heal_02.wav" id="13_78e4t"]
 [ext_resource type="Script" path="res://scripts/player_state_block.gd" id="14_w2cu8"]
 [ext_resource type="AudioStream" uid="uid://j87bvama3n4a" path="res://assets/sounds/player/12_human_jump_1.wav" id="15_koyqu"]
 [ext_resource type="Script" path="res://scripts/player_state_hit.gd" id="15_krgjb"]
@@ -29,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://bi4q7xeh1hrln" path="res://assets/sounds/player/39_Block_03.wav" id="22_nlr3f"]
 [ext_resource type="AudioStream" uid="uid://bhtdonb7xxl4d" path="res://assets/sounds/player/14. Damage Grunt (Male).wav" id="23_fgqxp"]
 [ext_resource type="Script" path="res://scripts/player_state_dash.gd" id="26_1j0rb"]
+[ext_resource type="AudioStream" uid="uid://58lagyclxr0h" path="res://assets/sounds/player/44_Sleep_01.wav" id="26_fbgr8"]
 [ext_resource type="AudioStream" uid="uid://da0fvflpxjy4s" path="res://assets/sounds/player/15_human_dash_2.wav" id="27_ny224"]
 [ext_resource type="FontFile" uid="uid://e18ewcgnne5g" path="res://assets/fonts/PixelOperator8.ttf" id="31_5pbdn"]
 
@@ -808,8 +810,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kim5i"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0fvr5"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gqtrw"]
 states/Attack_1/node = SubResource("AnimationNodeAnimation_lvnw4")
 states/Attack_1/position = Vector2(638.176, -130.92)
@@ -835,8 +835,8 @@ states/Jump_Fall/position = Vector2(888.088, 365.418)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_6lo5g")
 states/Move/position = Vector2(411.775, 100.214)
 states/Start/position = Vector2(90, 101.444)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_oisyb"), "Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_40vgi"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_3moo8"), "Double Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_enin4"), "Move", "Fall", SubResource("AnimationNodeStateMachineTransition_j3ol2"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_1rmd0"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_s7da4"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_equwd"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_qg1tl"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_511t1"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_w3fce"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_kim5i"), "Block", "Move", SubResource("AnimationNodeStateMachineTransition_0fvr5")]
-graph_offset = Vector2(10.4202, 101.173)
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_oisyb"), "Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_40vgi"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_3moo8"), "Double Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_enin4"), "Move", "Fall", SubResource("AnimationNodeStateMachineTransition_j3ol2"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_1rmd0"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_s7da4"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_equwd"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_qg1tl"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_511t1"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_w3fce"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_kim5i")]
+graph_offset = Vector2(-204.402, -179.702)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d")]
 collision_layer = 2
@@ -855,6 +855,7 @@ shape = SubResource("CapsuleShape2D_55pug")
 position = Vector2(0, -19)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+deterministic = true
 libraries = {
 "": SubResource("AnimationLibrary_ubw6k")
 }
@@ -876,6 +877,12 @@ script = ExtResource("7_r7frt")
 sprite_2d = NodePath("../../Sprite2D")
 fall = NodePath("../Fall")
 animation_state_machine = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Walk"]
+stream = ExtResource("13_78e4t")
+volume_db = -5.0
+max_distance = 4000.0
+panning_strength = 0.0
 
 [node name="Fall" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("walk", "animation_state_machine")]
 script = ExtResource("9_jhlsc")
@@ -961,6 +968,12 @@ animation_state_machine = NodePath("..")
 wait_time = 2.0
 one_shot = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationStateMachine/Death"]
+stream = ExtResource("26_fbgr8")
+volume_db = 5.0
+max_distance = 4000.0
+panning_strength = 0.0
+
 [node name="Dash" type="Node" parent="AnimationStateMachine" node_paths=PackedStringArray("sprite_2d", "walk", "animation_state_machine")]
 script = ExtResource("26_1j0rb")
 sprite_2d = NodePath("../../Sprite2D")
@@ -980,6 +993,7 @@ stream = ExtResource("27_ny224")
 panning_strength = 0.0
 
 [node name="AnimationDebug" type="Label" parent="." node_paths=PackedStringArray("animation_state_machine")]
+visible = false
 offset_top = -50.0
 offset_right = 49.0
 offset_bottom = -36.0

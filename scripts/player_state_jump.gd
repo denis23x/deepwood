@@ -28,10 +28,12 @@ func x_input(_event: InputEvent) -> void:
 		
 func on_enter() -> void:
 	playback.travel("Jump")
-	character_body_2d.velocity.y = jump_velocity
 	
-	# Draw effetcs
+	# Draw effects
 	handle_jump_effect()
+	
+	# Velocity
+	character_body_2d.velocity.y = jump_velocity
 	
 func on_exit() -> void: 
 	double_jump = true
@@ -51,13 +53,14 @@ func handle_jump_effect() -> void:
 	instance.global_position = character_body_2d.global_position
 	instance.get_node("Sprite2D").flip_h = (true if character_body_2d.direction != 1 else false)
 	
-	await get_tree().process_frame
-	
 	if character_body_2d.is_on_floor():
 		instance.get_node("AnimationPlayer").play("Jump_Effect")
 	else:
+		# Fix animation
+		await get_tree().process_frame
+		
 		instance.get_node("AnimationPlayer").play("Jump_Effect_2")
-	
+		
 	# Lifetime
 	timer.start()
 	

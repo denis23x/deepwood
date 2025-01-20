@@ -12,6 +12,8 @@ extends Node2D
 @onready var player: Player = $Player
 
 func _ready() -> void:
+	Engine.max_fps = 60
+	
 	menu.show_menu()
 	
 	# Turn on visible

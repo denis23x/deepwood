@@ -30,7 +30,9 @@ func _input(event: InputEvent) -> void:
 		current_state.x_input(event)
 		
 func switch_states(next_state: AnimationState):
-	if character_body_2d.name != "Player" and current_state.name != "Death" or character_body_2d.name == "Player":
+	if current_state.name != next_state.name and (current_state.name != "Death" or character_body_2d.name == "Player"):
+		await get_tree().process_frame
+		
 		current_state.on_exit()
 		current_state = null
 		current_state = next_state
@@ -39,7 +41,6 @@ func switch_states(next_state: AnimationState):
 		# Emit for xInputBuffer for reset actions
 		if character_body_2d.name == "Player":
 			xEventBus.emit_signal("switch_state", next_state)
-			
+		
 func iterrupt_state(next_state: AnimationState):
-	if character_body_2d.name != "Player" and current_state.name != "Death" or character_body_2d.name == "Player":
-		switch_states(next_state)
+	switch_states(next_state)
