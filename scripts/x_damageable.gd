@@ -41,6 +41,7 @@ func on_heal(heal: float) -> void:
 	
 func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> void:
 	if animation_state_machine.current_state.name == "Death":
+		await get_tree().process_frame
 		return
 		
 	if health > 0 and (can_block or animation_state_machine.current_state.name == "Block"):
