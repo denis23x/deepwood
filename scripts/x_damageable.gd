@@ -40,6 +40,9 @@ func on_heal(heal: float) -> void:
 	timer.start()
 	
 func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> void:
+	if animation_state_machine.current_state.name == "Death":
+		return
+		
 	if health > 0 and (can_block or animation_state_machine.current_state.name == "Block"):
 		if character_body_2d.name == "Player":
 			animation_state_machine.current_state.handle_block_effect()

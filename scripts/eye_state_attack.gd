@@ -8,6 +8,9 @@ extends AnimationState
 @export var walk: AnimationState
 
 func on_enter() -> void:
+	if playback.get_current_node() == "Attack_1":
+		await get_tree().process_frame
+		
 	playback.travel("Attack_1")
 	
 func on_exit() -> void:

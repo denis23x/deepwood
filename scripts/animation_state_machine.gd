@@ -30,9 +30,7 @@ func _input(event: InputEvent) -> void:
 		current_state.x_input(event)
 		
 func switch_states(next_state: AnimationState):
-	if current_state.name != next_state.name and (current_state.name != "Death" or character_body_2d.name == "Player"):
-		await get_tree().process_frame
-		
+	if current_state.name != next_state.name:
 		current_state.on_exit()
 		current_state = null
 		current_state = next_state

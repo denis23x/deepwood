@@ -8,6 +8,9 @@ extends AnimationState
 @export var walk: AnimationState
 
 func on_enter() -> void:
+	if playback.get_current_node() == "Block":
+		await get_tree().process_frame
+		
 	playback.travel("Block")
 	
 func on_exit() -> void:
@@ -15,6 +18,7 @@ func on_exit() -> void:
 	
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Block":
+		print("animation_finished")
 		animation_state_machine.switch_states(walk)
 	
 func handle_block_effect() -> void:

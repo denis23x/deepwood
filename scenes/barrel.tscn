@@ -52,13 +52,14 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="StaticBody2D" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d", "animated_sprite_2d", "audio_stream_player_2d")]
+[node name="StaticBody2D" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d", "animated_sprite_2d", "audio_stream_player_2d", "collision_shape_2d")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_lrqv6")
 sprite_2d = NodePath("Sprite2D")
 animated_sprite_2d = NodePath("AnimatedSprite2D")
 audio_stream_player_2d = NodePath("AudioStreamPlayer2D")
+collision_shape_2d = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ismuo")

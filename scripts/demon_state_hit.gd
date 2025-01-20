@@ -7,6 +7,9 @@ extends AnimationState
 @export var area_2d: Area2D
 
 func on_enter() -> void:
+	if playback.get_current_node() == "Hit":
+		await get_tree().process_frame
+		
 	playback.travel("Hit")
 	
 func on_exit() -> void:

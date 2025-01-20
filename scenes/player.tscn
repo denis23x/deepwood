@@ -836,7 +836,7 @@ states/Move/node = SubResource("AnimationNodeBlendSpace1D_6lo5g")
 states/Move/position = Vector2(411.775, 100.214)
 states/Start/position = Vector2(90, 101.444)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_oisyb"), "Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_40vgi"), "Jump", "Double Jump", SubResource("AnimationNodeStateMachineTransition_3moo8"), "Double Jump", "Jump_Fall", SubResource("AnimationNodeStateMachineTransition_enin4"), "Move", "Fall", SubResource("AnimationNodeStateMachineTransition_j3ol2"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_1rmd0"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_s7da4"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_equwd"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_qg1tl"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_511t1"), "Move", "Jump", SubResource("AnimationNodeStateMachineTransition_w3fce"), "Move", "Block", SubResource("AnimationNodeStateMachineTransition_kim5i")]
-graph_offset = Vector2(-204.402, -179.702)
+graph_offset = Vector2(23.343, -354.19)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "area_2d")]
 collision_layer = 2
