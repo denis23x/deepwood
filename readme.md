@@ -1,16 +1,44 @@
-# Deepwood
+## Godot 4.3 Platformer Game
 
-![Godot 2D Platformer](./assets/screenshots/screenshot-1.png)
+**Chrome, Firefox, Edge** ✅ **Safari** ⛔️
 
-## About
+![cover.png](./assets/promo/cover.png)
 
-I decided to try making a simple game and I got hooked, it's very exciting to set up all these traps and think through the game design
+<p align="center">
+  <img src="./assets/promo/Screenshot1.png" alt="Screenshot1" width="30%" />
+  <img src="./assets/promo/Screenshot2.png" alt="Screenshot2" width="30%" />
+  <img src="./assets/promo/Screenshot3.png" alt="Screenshot3" width="30%" />
+</p>
 
-Another pet project in my collection, a brief game that takes 3–5 minutes to complete, for development download this repository and open the project in Godot
+## [Run Game For Free on Itch.io](https://denis23x.itch.io/deepwood)
 
-## Used Free Assets
+### Description
 
-### 2D Assets:
+Embark on an epic journey in this action-packed 2D platformer! Play as a brave knight, armed with a trusty sword and unyielding courage, as you traverse dense, mystical woods and treacherous, shadowy caves.
+
+### Features
+
+• Classic 2D platformer gameplay with modern twists.
+
+• Beautifully hand-drawn environments that bring the woods and caves to life.
+
+• Engaging combat mechanics with upgradeable power ups.
+
+• An epic boss fight with the demon, combining strategy and precision.
+
+### About
+
+I decided to try making a simple game and I got hooked, it's very exciting to set up all these traps and think through the game design.
+
+Another pet project in my collection, a brief game that takes 3–5 minutes to complete, for development download this repository and open the project in Godot.
+
+### Thanks
+
+The game uses free assets from the following authors,
+I thank them for the materials provided!
+
+**2D Assets:**
+
 - https://xzany.itch.io/
   - Knight 2D Pixel Art
   - Flying Demon 2D Pixel Art
@@ -18,7 +46,7 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
   - Fantasy Swamp Forest
 - https://luizmelo.itch.io/
   - Monsters Creatures Fantasy
-- https://nyknck.itch.io
+- https://nyknck.itch.io/
   - Pixel Art Effect - FX052
   - Pixel Art Effect - FX062
 - https://nikllamadev.itch.io/
@@ -38,7 +66,8 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
 - https://paperhatlizard.itch.io/
   - Cryo's Mini GUI
 
-### SFX:
+**SFX:**
+
 - https://leohpaz.itch.io
   - RPG_Essentials_Free
   - Minifantasy Dungeon SFX 
@@ -47,7 +76,8 @@ Another pet project in my collection, a brief game that takes 3–5 minutes to c
 - https://tiptoptomcat.itch.io
   - 8Bit GB Songs Vol 2 MP3 (GB Studio)
 
-### Shaders
+**Shaders:**
+
 - https://godotshaders.com/author/randomdam/
   - Color manipulator
 - https://godotshaders.com/author/timesi/

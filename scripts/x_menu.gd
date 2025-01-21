@@ -2,7 +2,6 @@ extends CanvasLayer
 
 @onready var hud: CanvasLayer
 @onready var menu: CanvasLayer
-@onready var camera_2d: Camera2D
 @onready var labels: Node
 @onready var button: Button = %Button
 @onready var label: Label = %Label
@@ -11,11 +10,11 @@ extends CanvasLayer
 @onready var texture_rect_2: TextureRect = %TextureRect2
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var game_over: bool = false
+@onready var panel: Panel = %Panel
 
 func _ready() -> void:
 	hud = get_node("/root/Game/HUD")
 	menu = get_node("/root/Game/Menu")
-	camera_2d = get_node("/root/Game/Camera2D")
 	labels = get_node("/root/Game/Labels")
 	
 	# Loop
@@ -61,6 +60,7 @@ func hide_menu() -> void:
 	xMusic.fade_out(audio_stream_player_2d)
 	
 func handle_finish() -> void:
+	panel.self_modulate.a = 1
 	label.text = "You Won!"
 	label_2.visible = true
 	button.visible = false

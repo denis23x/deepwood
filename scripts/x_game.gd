@@ -10,10 +10,15 @@ extends Node2D
 @onready var vignette: CanvasLayer = $Vignette/CanvasLayer
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $PickUps/Area2D3/AudioStreamPlayer2D
 @onready var player: Player = $Player
+@onready var camera_2d: Camera2D = $Camera2D
 
 func _ready() -> void:
 	Engine.max_fps = 60
 	
+	# Apply dynamic offset
+	camera_2d.offset.y = player.camera_2d_y_offset
+	
+	# Show main menu
 	menu.show_menu()
 	
 	# Turn on visible

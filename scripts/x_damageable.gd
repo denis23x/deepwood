@@ -83,7 +83,7 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 	
 func handle_camera_shake(intensity: float):
 	var camera_offset_x: float = 0
-	var camera_offset_y: float = -60
+	var camera_offset_y: float = character_body_2d.camera_2d_y_offset
 	var camera_offset: float = camera_shake_noise.get_noise_1d(Time.get_ticks_msec()) * intensity
 	
 	camera_2d.offset.x = camera_offset_x + camera_offset

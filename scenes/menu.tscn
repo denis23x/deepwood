@@ -19,6 +19,7 @@ process_mode = 3
 script = ExtResource("1_dvqeb")
 
 [node name="Panel" type="Panel" parent="."]
+unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 0.501961)
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +84,24 @@ theme_override_font_sizes/font_size = 8
 text = "Thank you for playing my game! 
 If you’d like to get in touch, please visit my website. 
 
-https://denis23x.info"
+https://denis23x.info
+
+The game uses free assets from the following authors, 
+I thank them for the materials provided!
+
+2D Assets:
+
+xzany • theflavare • luizmelo • nyknck • nikllamadev
+incolgames • szadiart • danimaccari • brackeysgames
+gandalfhardcore • karsiori • paperhatlizard
+
+SFX:
+
+leohpaz • voicebosch • tiptoptomcat • brackeysgames
+
+Shaders:
+
+randomdam • timesi • pend00 • scimple"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Panel/CenterContainer/VBoxContainer/VBoxContainer"]

@@ -58,9 +58,9 @@ func _on_timer_timeout() -> void:
 	audio_stream_player_2d.play()
 	
 func get_y_outside_camera() -> float:
-	var camera: Camera2D = get_node("/root/Game/Camera2D")
-	var camera_position: Vector2 = camera.position
-	var zoom_factor: float = camera.zoom.y
+	var camera_2d: Camera2D = get_node("/root/Game/Camera2D")
+	var camera_position: Vector2 = camera_2d.position
+	var zoom_factor: float = camera_2d.zoom.y
 	var viewport_size: Vector2 = get_viewport().size
 	var camera_visible_height = viewport_size.y / zoom_factor
 	

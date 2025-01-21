@@ -9,6 +9,7 @@ class_name Player
 @export var direction: float = 0
 @export var camera_2d: Camera2D
 @export var camera_2d_attach: bool
+@export var camera_2d_y_offset: int = -60
 @export var menu: CanvasLayer
 
 func _physics_process(delta: float) -> void:
