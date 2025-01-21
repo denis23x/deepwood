@@ -2,12 +2,10 @@
 
 **Chrome, Firefox, Edge** ✅ **Safari** ⛔️
 
-![cover.png](./assets/promo/cover.png)
-
-<p align="center">
-  <img src="./assets/promo/Screenshot1.png" alt="Screenshot1" width="30%" />
-  <img src="./assets/promo/Screenshot2.png" alt="Screenshot2" width="30%" />
-  <img src="./assets/promo/Screenshot3.png" alt="Screenshot3" width="30%" />
+<p>
+  <img src="./assets/promo/Screenshot1.png" alt="Screenshot1" width="32%"/>
+  <img src="./assets/promo/Screenshot2.png" alt="Screenshot2" width="32%"/>
+  <img src="./assets/promo/Screenshot3.png" alt="Screenshot3" width="32%"/>
 </p>
 
 ## [Run Game For Free on Itch.io](https://denis23x.itch.io/deepwood)
