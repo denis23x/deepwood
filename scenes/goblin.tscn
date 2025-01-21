@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://domdlkh82qw2q"]
+[gd_scene load_steps=53 format=3 uid="uid://domdlkh82qw2q"]
 
 [ext_resource type="Script" path="res://scripts/goblin.gd" id="1_6e7ke"]
 [ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
@@ -524,6 +524,10 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_12brx"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r47eb"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gqg5k"]
 states/Attack_1/node = SubResource("AnimationNodeAnimation_luipx")
 states/Attack_1/position = Vector2(564.228, -112.662)
@@ -538,8 +542,8 @@ states/Hit/node = SubResource("AnimationNodeAnimation_dao7i")
 states/Hit/position = Vector2(197.75, -110.767)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_k7apw")
 states/Move/position = Vector2(378.5, 98.425)
-transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_65dit"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_13dfh"), "Attack_1", "Attack_3", SubResource("AnimationNodeStateMachineTransition_cvlop"), "Attack_2", "Attack_1", SubResource("AnimationNodeStateMachineTransition_410v0"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_12brx")]
-graph_offset = Vector2(-62.3999, -225.437)
+transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Move", "Attack_1", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Attack_1", "Attack_2", SubResource("AnimationNodeStateMachineTransition_65dit"), "Attack_2", "Attack_3", SubResource("AnimationNodeStateMachineTransition_13dfh"), "Attack_1", "Attack_3", SubResource("AnimationNodeStateMachineTransition_cvlop"), "Attack_2", "Attack_1", SubResource("AnimationNodeStateMachineTransition_410v0"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_12brx"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_r47eb")]
+graph_offset = Vector2(102.083, -140.132)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sv6c7"]
 size = Vector2(24.375, 34.125)

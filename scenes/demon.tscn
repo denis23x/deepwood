@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://blha0cmjkts11"]
+[gd_scene load_steps=40 format=3 uid="uid://blha0cmjkts11"]
 
 [ext_resource type="Script" path="res://scripts/demon.gd" id="1_b0it7"]
 [ext_resource type="Texture2D" uid="uid://bo5s3bqhidqme" path="res://assets/sprites/skeleton/Idle.png" id="1_t4fhf"]
@@ -312,8 +312,12 @@ blend_mode = 1
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6sh1"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xlnh7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2tuv5"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gqg5k"]
 states/Attack/node = SubResource("AnimationNodeAnimation_luipx")
@@ -326,8 +330,8 @@ states/Hit/position = Vector2(198.562, -111.116)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_k7apw")
 states/Move/position = Vector2(378.5, 98.425)
 states/Start/position = Vector2(199.32, 99.6062)
-transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_xlnh7")]
-graph_offset = Vector2(197.256, -163.461)
+transitions = ["Hit", "Death", SubResource("AnimationNodeStateMachineTransition_hng8u"), "Start", "Move", SubResource("AnimationNodeStateMachineTransition_2ecpa"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_q6sh1"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_xlnh7"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_2tuv5")]
+graph_offset = Vector2(-43.1415, -337.949)
 
 [node name="Demon" type="CharacterBody2D" node_paths=PackedStringArray("animation_state_machine", "animation_tree", "sprite_2d", "attack")]
 position = Vector2(0, -26)
@@ -418,9 +422,8 @@ text = "State: Idle"
 script = ExtResource("9_y72uv")
 animation_state_machine = NodePath("../AnimationStateMachine")
 
-[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine", "demon")]
+[node name="Damageable" type="Node2D" parent="." node_paths=PackedStringArray("label", "timer", "hit", "death", "character_body_2d", "animation_state_machine")]
 script = ExtResource("14_p77gj")
-health = 1.0
 label = NodePath("Label")
 timer = NodePath("Timer")
 hit = NodePath("../AnimationStateMachine/Hit")
@@ -428,7 +431,6 @@ death = NodePath("../AnimationStateMachine/Death")
 character_body_2d = NodePath("..")
 knockback = Vector2(300, 0)
 animation_state_machine = NodePath("../AnimationStateMachine")
-demon = NodePath("..")
 
 [node name="Label" type="Label" parent="Damageable"]
 z_index = 1

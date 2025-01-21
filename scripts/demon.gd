@@ -57,7 +57,8 @@ func switch_direction(_next_direction: int) -> void:
 	
 func _on_timer_timeout() -> void:
 	if target and target.health > 0:
-		animation_state_machine.switch_states(attack)
+		if not animation_state_machine.current_state.name == "Death":
+			animation_state_machine.switch_states(attack)
 		
 func handle_health():
 	if h_box_container == null:

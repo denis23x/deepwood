@@ -10,7 +10,6 @@ class_name xDamageable
 @export var character_body_2d: CharacterBody2D
 @export var knockback: Vector2 = Vector2(250, 0)
 @export var animation_state_machine: AnimationStateMachine
-@export var demon: Demon
 
 @onready var camera_2d: Camera2D
 @onready var camera_shake_noise: FastNoiseLite
@@ -40,10 +39,6 @@ func on_heal(heal: float) -> void:
 	timer.start()
 	
 func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> void:
-	if animation_state_machine.current_state.name == "Death":
-		await get_tree().process_frame
-		return
-		
 	if health > 0 and (can_block or animation_state_machine.current_state.name == "Block"):
 		if character_body_2d.name == "Player":
 			animation_state_machine.current_state.handle_block_effect()
@@ -64,7 +59,7 @@ func on_damage(damage: float, direction: Vector2, can_block: bool = false) -> vo
 			character_body_2d.velocity.x = knockback.x * direction.x
 			
 		if character_body_2d.name == "Demon":
-			demon.handle_health()
+			character_body_2d.handle_health()
 			
 		# Camera shake
 		if character_body_2d.name == "Player":
