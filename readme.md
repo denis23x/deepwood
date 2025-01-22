@@ -10,27 +10,28 @@
 
 ## [Run Game For Free on Itch.io](https://denis23x.itch.io/deepwood)
 
-### Description
+### Description 🕹️
 
 Embark on an epic journey in this action-packed 2D platformer! Play as a brave knight, armed with a trusty sword and unyielding courage, as you traverse dense, mystical woods and treacherous, shadowy caves.
 
-### Features
+### Features ⭐️
 
-• Classic 2D platformer gameplay with modern twists.
+- Classic 2D platformer gameplay with modern twists.
+- Beautifully hand-drawn environments that bring the woods and caves to life.
+- Engaging combat mechanics with upgradeable power ups.
+- An epic boss fight with the demon, combining strategy and precision.
 
-• Beautifully hand-drawn environments that bring the woods and caves to life.
-
-• Engaging combat mechanics with upgradeable power ups.
-
-• An epic boss fight with the demon, combining strategy and precision.
-
-### About
+### About 👨🏻‍💻
 
 I decided to try making a simple game and I got hooked, it's very exciting to set up all these traps and think through the game design.
 
+> I’m a full-stack Node.js developer with a passion for game development. If you’re looking for a dedicated and creative developer to join your team, I’d love to connect!
+
 Another pet project in my collection, a brief game that takes 3–5 minutes to complete, for development download this repository and open the project in Godot.
 
-### Thanks
+### Thanks 🙏
+
+My good friend **Gennadiy Uvarov** for testing this game!
 
 The game uses free assets from the following authors,
 I thank them for the materials provided!
