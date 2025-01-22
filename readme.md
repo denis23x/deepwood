@@ -25,9 +25,9 @@ Embark on an epic journey in this action-packed 2D platformer! Play as a brave k
 
 I decided to try making a simple game and I got hooked, it's very exciting to set up all these traps and think through the game design.
 
-> I’m a full-stack Node.js developer with a passion for game development. If you’re looking for a dedicated and creative developer to join your team, I’d love to connect!
-
 Another pet project in my collection, a brief game that takes 3–5 minutes to complete, for development download this repository and open the project in Godot.
+
+If you like this project, feel free to give it a ⭐ on GitHub! It really helps me grow and stay motivated to build more awesome things. Your support means a lot!
 
 ### Thanks 🙏
 
@@ -85,3 +85,7 @@ I thank them for the materials provided!
   - God rays
 - https://godotshaders.com/author/scimple/
   - Vignette Shader
+
+### PS ‼️
+
+I’m a full-stack Node.js developer with a passion for game development. If you’re looking for a dedicated and creative developer to join your team, I’d love to connect!
